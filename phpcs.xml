@@ -1,0 +1,16 @@
+<ruleset>
+    <rule ref="PSR2">
+        <exclude name="Squiz" />
+        <exclude name="Generic.Files.LineLength" />
+        <exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingAfterOpen" />
+        <exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingBeforeClose" />
+        <exclude name="PSR2.Methods.MethodDeclaration.Underscore" />
+    </rule>
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="120" />
+            <property name="absoluteLineLimit" value="128" />
+            <property name="ignoreComments" value="true" />
+        </properties>
+    </rule>
+</ruleset>

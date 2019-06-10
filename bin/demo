@@ -1,0 +1,26 @@
+#!/usr/bin/env php
+<?php
+/**
+ * This file is part of the yannoff/console library
+ * (c) 2019 Yannoff (https://github.com/yannoff)
+ *
+ * @project   yannoff/console
+ * @link      https://github.com/yannoff/console
+ * @license   http://opensource.org/licenses/MIT
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use Yannoff\Component\Console\Application;
+use Yannoff\Component\Console\Tests\Command\HelloCommand;
+
+$application = new Application('foobar', '0.0.0');
+
+$application->addCommands([
+    new HelloCommand(),
+]);
+
+$application->run();

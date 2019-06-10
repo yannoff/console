@@ -1,0 +1,22 @@
+{
+    "name": "yannoff/console",
+    "description": "A simple, lightweight console implementation for command-line PHP applications.",
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://github.com/yannoff/console",
+    "authors": [
+        {
+            "name": "Yannoff",
+            "homepage": "https://github.com/yannoff"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Yannoff\\Component\\Console\\": "src/"
+        }
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.4"
+    }
+}
