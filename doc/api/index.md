@@ -10,6 +10,8 @@
 - [Yannoff\Component\Console\Definition\Option](definition.option.md)
 - [Yannoff\Component\Console\Definition\Argument](definition.argument.md)
 <!-- - [Yannoff\Component\Console\Exception\ResolverException](exception/resolver.md) -->
+- [Yannoff\Component\Console\Exception\CommandException](exception/command.md)
+- [Yannoff\Component\Console\Exception\Command\UnknownCommandException](exception/command.unknown.md)
 - [Yannoff\Component\Console\Exception\DefinitionException](exception/definition.md)
 - [Yannoff\Component\Console\Exception\Definition\TooManyArgumentsException](exception/definition.argument.toomany.md)
 - [Yannoff\Component\Console\Exception\Definition\UnknownOptionException](exception/definition.option.unknown.md)

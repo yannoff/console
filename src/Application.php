@@ -15,6 +15,8 @@ namespace Yannoff\Component\Console;
 
 use Yannoff\Component\Console\Command\HelpCommand;
 use Yannoff\Component\Console\Command\VersionCommand;
+use Yannoff\Component\Console\Exception\Command\UnknownCommandException;
+use Yannoff\Component\Console\IO\IOStreamHelperTrait;
 
 /**
  * Class Application
@@ -23,6 +25,8 @@ use Yannoff\Component\Console\Command\VersionCommand;
  */
 class Application
 {
+    use IOStreamHelperTrait;
+
     /**
      * The application name
      *
@@ -118,6 +122,7 @@ class Application
             case '--help':
             case '-h':
             case '--usage':
+            case null:
                 $command = 'help';
                 break;
 
@@ -125,7 +130,13 @@ class Application
                 break;
         endswitch;
 
-        return $this->get($command)->run($args);
+        try {
+            return $this->get($command)->run($args);
+        } catch (UnknownCommandException $e) {
+            $error = sprintf('%s: %s. Exiting.', $this->getScript(), $e->getMessage());
+            $this->err($error);
+            return $e->getCode();
+        }
     }
 
     /**
@@ -170,6 +181,7 @@ class Application
      * @param string $name The requested command name
      *
      * @return Command
+     * @throws UnknownCommandException
      */
     public function find($name)
     {
@@ -182,12 +194,12 @@ class Application
      * @param string $name The requested command name
      *
      * @return Command
+     * @throws UnknownCommandException
      */
     public function get($name)
     {
         if (!$this->has($name)) {
-            $error = sprintf('Command with name "%s" not found by the application.', $name);
-            throw new \RuntimeException($error);
+            throw new UnknownCommandException($name);
         }
 
         return $this->commands[$name];
