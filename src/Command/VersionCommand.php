@@ -14,6 +14,7 @@
 namespace Yannoff\Component\Console\Command;
 
 use Yannoff\Component\Console\Command;
+use Yannoff\Component\Console\Definition\Option;
 
 /**
  * Class VersionCommand
@@ -30,6 +31,12 @@ class VersionCommand extends Command
         $this
             ->setName('version')
             ->setHelp('Display application version and exit')
+            ->addOption(
+                'raw',
+                null,
+                Option::FLAG,
+                'Output version as raw plain text'
+            )
             ;
     }
 
@@ -38,9 +45,10 @@ class VersionCommand extends Command
      */
     public function execute()
     {
-        $version = $this->application->getVersion();
-        $name = $this->application->getName();
-        $message = sprintf('<strong>%s</strong> version <strong>%s</strong>', $name, $version);
+        $raw = $this->getOption('raw');
+        $version = $this->getApplication()->getVersion();
+        $name = $this->getApplication()->getName();
+        $message = $raw ? $version : sprintf('<strong>%s</strong> version <strong>%s</strong>', $name, $version);
         $this->writeln($message);
 
         return 0;
