@@ -75,7 +75,7 @@ addUsage($usage)|-|
 configure()|configure()|[Details](#commandconfigure)
 execute($input, $output)|execute()|[Details](#commandexecute)
 getAliases()|-|
-getApplication()|getApplication()|[Details](#commandgetapplication)
+getApplication()|getApplication()|[Details](#commandsetapplication--commandgetapplication)
 getDefaultName()|-|
 getDefinition()|getDefinition()|[Details](#commandgetdefinition)
 getDescription()|getDescription()|-
@@ -95,7 +95,7 @@ isHidden()|-|
 mergeApplicationDefinition($mergeArgs)|-|
 run($input, $output)|run()|[Details](#commandrun)
 setAliases($aliases)|-|
-setApplication($application)|setApplication($application)|[Details](#commandsetapplication)
+setApplication($application)|setApplication($application)|[Details](#commandsetapplication--commandgetapplication)
 setCode(callable $code)|-|
 setDefinition($definition)|-|
 setDescription($description)|setDescription($description)|-

@@ -143,6 +143,16 @@ abstract class Command
     }
 
     /**
+     * Getter for the Application instance
+     *
+     * @return Application
+     */
+    public function getApplication()
+    {
+        return $this->application;
+    }
+
+    /**
      * Getter for the command name
      *
      * @return string
