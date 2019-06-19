@@ -225,7 +225,7 @@ class Definition
             throw new DefinitionException($error);
         }
 
-        return $this->$register[$name];
+        return $this->{$register}[$name];
     }
 
     /**
