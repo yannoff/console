@@ -13,14 +13,13 @@
 
 namespace Yannoff\Component\Console\Exception;
 
-use Exception;
-
 /**
- * Class ResolverException
+ * Interface ResolverException
+ *
+ * Contract for exceptions raised by the argument resolver
  *
  * @package Yannoff\Component\Console\Exception
  */
-class ResolverException extends Exception
+interface ResolverException
 {
-
 }

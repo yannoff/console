@@ -50,11 +50,37 @@ abstract class Item
     protected $default;
 
     /**
+     * Flag indicating if default value was set
+     *
+     * @var bool
+     */
+    protected $hasDefault = false;
+
+    /**
      * Return the formatted help for the item
      *
      * @return string
      */
     abstract public function getSynopsis();
+
+    /**
+     * Give the authorized values for the type property
+     *
+     * @return array
+     */
+    abstract public static function getValidTypes();
+
+    /**
+     * Check whether the given type as a valid value
+     *
+     * @param int $type
+     *
+     * @return bool
+     */
+    public static function isValidType($type)
+    {
+        return in_array($type, static::getValidTypes());
+    }
 
     /**
      * Getter for the item name
@@ -94,5 +120,29 @@ abstract class Item
     public function getDefault()
     {
         return $this->default;
+    }
+
+    /**
+     * Getter for the hasDefault flag
+     *
+     * @return bool
+     */
+    public function hasDefault()
+    {
+        return $this->hasDefault;
+    }
+
+    /**
+     * Setter for the $hasDefault flag
+     *
+     * @param bool $hasDefault
+     *
+     * @return self
+     */
+    public function setHasDefault($hasDefault)
+    {
+        $this->hasDefault = $hasDefault;
+
+        return $this;
     }
 }

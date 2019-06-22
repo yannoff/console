@@ -13,6 +13,8 @@
 
 namespace Yannoff\Component\Console\Definition;
 
+use Yannoff\Component\Console\Exception\Definition\InvalidOptionTypeException;
+
 /**
  * Class Option
  * Option definition item
@@ -50,13 +52,23 @@ class Option extends Item
      * @param int    $type    Type of option: value or flag
      * @param string $help    Description text for the option
      * @param mixed  $default Optional default value for the option
+     *
+     * @throws InvalidOptionTypeException
      */
     public function __construct($name, $short = null, $type = self::FLAG, $help = '', $default = null)
     {
+        if (!Option::isValidType($type)) {
+            throw new InvalidOptionTypeException($name, $type);
+        }
+
         $this->name = $name;
         $this->short = $short;
         $this->type = $type;
         $this->help = $help;
+        // Override default value for flags => false
+        if (self::FLAG === $type) {
+            $default = false;
+        }
         $this->default = $default;
     }
 
@@ -71,9 +83,59 @@ class Option extends Item
     }
 
     /**
-     * @return string
+     * True if the option is typed as a flag
+     *
+     * @return bool
+     */
+    public function isFlag()
+    {
+        return (self::FLAG === $this->type);
+    }
+
+    /**
+     * True if the option is typed as a value
+     *
+     * @return bool
+     */
+    public function isValue()
+    {
+        return (self::VALUE === $this->type);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getValidTypes()
+    {
+        return [ self::VALUE, self::FLAG ];
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function getSynopsis()
+    {
+        $synopsis = implode(', ', $this->getNames());
+
+        if ($this->isValue()) {
+            $synopsis .= sprintf(' %s', 'VALUE');
+        }
+
+        $help = sprintf('\t%-18s %s', $synopsis, $this->help);
+
+        if ($this->hasDefault()) {
+            $help .= sprintf(' (default: <strong>%s</strong>)', $this->default);
+        }
+
+        return $help;
+    }
+
+    /**
+     * Get the option invocation names (short & long)
+     *
+     * @return array
+     */
+    protected function getNames()
     {
         $names = [];
 
@@ -83,12 +145,6 @@ class Option extends Item
 
         $names[] = sprintf('--%s', $this->name);
 
-        $synopsis = implode(', ', $names);
-
-        if (self::VALUE === $this->type) {
-            $synopsis .= sprintf(' %s', 'VALUE');
-        }
-
-        return sprintf('\t%-18s %s', $synopsis, $this->help);
+        return $names;
     }
 }

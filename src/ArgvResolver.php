@@ -15,10 +15,14 @@ namespace Yannoff\Component\Console;
 
 use Yannoff\Component\Console\Definition\Argument;
 use Yannoff\Component\Console\Definition\Option;
-use Yannoff\Component\Console\Exception\DefinitionException;
+use Yannoff\Component\Console\Exception\Definition\ArgumentNotSetException;
+use Yannoff\Component\Console\Exception\Definition\InvalidOptionTypeException;
+use Yannoff\Component\Console\Exception\Definition\UndefinedArgumentException;
+use Yannoff\Component\Console\Exception\Definition\UndefinedOptionException;
 use Yannoff\Component\Console\Exception\ResolverException;
 use Yannoff\Component\Console\Exception\Definition\TooManyArgumentsException;
 use Yannoff\Component\Console\Exception\Definition\UnknownOptionException;
+use Yannoff\Component\Console\Exception\LogicException;
 use Yannoff\Component\Console\IO\IOStreamHelperTrait;
 
 /**
@@ -129,7 +133,7 @@ class ArgvResolver
      * @param string $name
      *
      * @return Argument
-     * @throws DefinitionException
+     * @throws UndefinedArgumentException
      */
     public function getArgumentDefinition($name)
     {
@@ -142,8 +146,8 @@ class ArgvResolver
      * @param string $name
      *
      * @return mixed
-     * @throws DefinitionException
-     * @throws ResolverException
+     * @throws UndefinedArgumentException If no such argument found in the definition
+     * @throws ArgumentNotSetException    If argument not provided by user & don't have a default value set
      */
     public function getArgumentValue($name)
     {
@@ -151,12 +155,13 @@ class ArgvResolver
             return $this->arguments[$name];
         }
 
-        if ($this->hasArgumentDefinition($name)) {
-            return $this->getArgumentDefinition($name)->getDefault();
+        $definition = $this->getArgumentDefinition($name);
+
+        if ($definition->isRequired() && !$definition->hasDefault()) {
+            throw new ArgumentNotSetException($name);
         }
 
-        $error = sprintf('Argument "%s" is not set.', $name);
-        throw new ResolverException($error);
+        return $definition->getDefault();
     }
 
     /**
@@ -165,11 +170,15 @@ class ArgvResolver
      * @param string $name
      *
      * @return Option
-     * @throws DefinitionException
+     * @throws UnknownOptionException
      */
     public function getOptionDefinition($name)
     {
-        return $this->definition->getOption($name);
+        try {
+            return $this->definition->getOption($name);
+        } catch (UndefinedOptionException $e) {
+            throw new UnknownOptionException($name);
+        }
     }
 
     /**
@@ -178,8 +187,7 @@ class ArgvResolver
      * @param string $name
      *
      * @return mixed
-     * @throws DefinitionException
-     * @throws ResolverException
+     * @throws UnknownOptionException
      */
     public function getOptionValue($name)
     {
@@ -187,12 +195,7 @@ class ArgvResolver
             return $this->options[$name];
         }
 
-        if ($this->hasOptionDefinition($name)) {
-            return $this->getOptionDefinition($name)->getDefault();
-        }
-
-        $error = sprintf('Option "%s" is not set.', $name);
-        throw new ResolverException($error);
+        return $this->getOptionDefinition($name)->getDefault();
     }
 
     /**
@@ -200,6 +203,8 @@ class ArgvResolver
      * arguments & options values accordingly
      *
      * @param array $argv The command line arguments
+     *
+     * @throws LogicException
      */
     public function resolve($argv)
     {
@@ -217,11 +222,6 @@ class ArgvResolver
                         $size = (int)$type;
                         $name = substr($arg, $size);
 
-                        if (! $this->hasOptionDefinition($name)) {
-                            $error = sprintf('Undefined "%s" option, ignoring.', $name);
-                            throw new UnknownOptionException($error);
-                        }
-
                         $optionDefinition = $this->getOptionDefinition($name);
                         $optionType = $optionDefinition->getType();
                         $optionName = $optionDefinition->getName();
@@ -233,8 +233,7 @@ class ArgvResolver
                                 $value = true;
                                 break;
                             default:
-                                $error = sprintf('Unrecognized option type "%s".', $optionType);
-                                throw new DefinitionException($error);
+                                throw new InvalidOptionTypeException($optionName, $optionType);
                         endswitch;
                         $this->options[$optionName] = $value;
                         break;
@@ -247,16 +246,19 @@ class ArgvResolver
                         // FIXME: Tricky: Array indexing begins at 0
                         if ($argc > $max - 1) {
                             $argc++;
-                            $error = sprintf('Too many arguments (%s): max: %s, given: %s', $arg, $max, $argc);
-                            throw new TooManyArgumentsException($error);
+                            throw new TooManyArgumentsException($arg, $argc, $max);
                         }
                         $name = $this->definition->getNameByPosition('arguments', $argc);
                         $this->arguments[$name] = $arg;
                         $argc++;
                         break;
                 endswitch;
-            } catch (DefinitionException $e) {
-                $error = sprintf('%s: %s', 'Warning', $e->getMessage());
+            } catch (LogicException $e) {
+                // LogicExceptions MUST be re-thrown because they mean a need for a code fix
+                throw $e;
+            } catch (ResolverException $e) {
+                // Other ResolverException, on the other hand, should only raise a warning notice
+                $error = sprintf('%s: %s, ignoring.', 'Warning', $e->getMessage());
                 $this->err($error);
             }
             next($argv);

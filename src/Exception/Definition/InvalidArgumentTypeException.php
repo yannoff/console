@@ -14,30 +14,29 @@
 namespace Yannoff\Component\Console\Exception\Definition;
 
 use Exception;
-use Yannoff\Component\Console\Exception\ResolverException;
-use Yannoff\Component\Console\Exception\RuntimeException;
+use Yannoff\Component\Console\Exception\DefinitionException;
+use Yannoff\Component\Console\Exception\LogicException;
 
 /**
- * Class TooManyArgumentsException
+ * Class InvalidArgumentTypeException
  *
- * Thrown when the command is invoked with an excessive number of arguments
+ * Thrown by Argument constructor when an invalid value was supplied for the type property
  *
  * @package Yannoff\Component\Console\Exception\Definition
  */
-class TooManyArgumentsException extends RuntimeException implements ResolverException
+class InvalidArgumentTypeException extends LogicException implements DefinitionException
 {
     /**
-     * TooManyArgumentsException constructor.
+     * InvalidArgumentTypeException constructor.
      *
-     * @param mixed          $value    Overflowing argument value
-     * @param int            $pos      Overflowing argument position
-     * @param int            $max      Total number of defined arguments
+     * @param string         $name     Name of the argument with invalid type
+     * @param mixed          $value    Value of the invalid argument type
      * @param int            $code     Error status code to be sent to the terminal (defaults to 128)
      * @param Exception|null $previous Optional parent exception
      */
-    public function __construct($value, $pos, $max, $code = 128, Exception $previous = null)
+    public function __construct($name, $value = "", $code = 128, Exception $previous = null)
     {
-        $message = sprintf('Too many arguments (%s): max: %s, given: %s', $value, $max, $pos);
+        $message = sprintf('Invalid type "%s" for argument "%s". Should be either Argument::REQUIRED or Argument::OPTIONAL', $value, $name);
         parent::__construct($message, $code, $previous);
     }
 }

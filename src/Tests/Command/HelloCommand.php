@@ -36,7 +36,8 @@ class HelloCommand extends Command
             ->addArgument(
                 'name',
                 Argument::OPTIONAL,
-                'Optional name to greet'
+                'Optional name to greet',
+                'World'
             )
             // ...as well as for option type delaration
             ->addOption(
@@ -57,7 +58,7 @@ class HelloCommand extends Command
         // the same goes for the option getter
         $upper = $this->getOption('upper');
 
-        $message = 'Hello ' . (null === $name ? 'World' : $name);
+        $message = 'Hello ' . $name;
         if ($upper) {
             $message = strtoupper($message);
         }

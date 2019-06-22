@@ -13,8 +13,9 @@
 
 namespace Yannoff\Component\Console\Exception\Command;
 
-use Throwable;
+use Exception;
 use Yannoff\Component\Console\Exception\CommandException;
+use Yannoff\Component\Console\Exception\RuntimeException;
 
 /**
  * Class UnknownCommandException
@@ -23,16 +24,16 @@ use Yannoff\Component\Console\Exception\CommandException;
  *
  * @package Yannoff\Component\Console\Exception\Command
  */
-class UnknownCommandException extends CommandException
+class UnknownCommandException extends RuntimeException implements CommandException
 {
     /**
      * UnknownCommandException constructor.
      *
      * @param string         $name     Name of the queried command
      * @param int            $code     Error status code to be sent to the terminal (defaults to 127)
-     * @param Throwable|null $previous Optional parent exception
+     * @param Exception|null $previous Optional parent exception
      */
-    public function __construct($name = "", $code = 127, Throwable $previous = null)
+    public function __construct($name = "", $code = 127, Exception $previous = null)
     {
         $message = sprintf('Command with name "%s" not found by the application', $name);
         parent::__construct($message, $code, $previous);

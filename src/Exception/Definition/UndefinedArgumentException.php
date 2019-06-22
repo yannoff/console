@@ -14,30 +14,28 @@
 namespace Yannoff\Component\Console\Exception\Definition;
 
 use Exception;
-use Yannoff\Component\Console\Exception\ResolverException;
-use Yannoff\Component\Console\Exception\RuntimeException;
+use Yannoff\Component\Console\Exception\DefinitionException;
+use Yannoff\Component\Console\Exception\LogicException;
 
 /**
- * Class TooManyArgumentsException
+ * Class UndefinedArgumentException
  *
- * Thrown when the command is invoked with an excessive number of arguments
+ * Thrown when an undefined argument is queried via Definition::getArgument()
  *
  * @package Yannoff\Component\Console\Exception\Definition
  */
-class TooManyArgumentsException extends RuntimeException implements ResolverException
+class UndefinedArgumentException extends LogicException implements DefinitionException
 {
     /**
-     * TooManyArgumentsException constructor.
+     * UndefinedArgumentException constructor.
      *
-     * @param mixed          $value    Overflowing argument value
-     * @param int            $pos      Overflowing argument position
-     * @param int            $max      Total number of defined arguments
+     * @param string         $name     Name of the queried argument
      * @param int            $code     Error status code to be sent to the terminal (defaults to 128)
      * @param Exception|null $previous Optional parent exception
      */
-    public function __construct($value, $pos, $max, $code = 128, Exception $previous = null)
+    public function __construct($name = "", $code = 128, Exception $previous = null)
     {
-        $message = sprintf('Too many arguments (%s): max: %s, given: %s', $value, $max, $pos);
+        $message = sprintf('Queried argument "%s" is not defined', $name);
         parent::__construct($message, $code, $previous);
     }
 }

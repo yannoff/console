@@ -18,26 +18,24 @@ use Yannoff\Component\Console\Exception\ResolverException;
 use Yannoff\Component\Console\Exception\RuntimeException;
 
 /**
- * Class TooManyArgumentsException
+ * Class ArgumentNotSetException
  *
- * Thrown when the command is invoked with an excessive number of arguments
+ * Thrown by ArgvResolver when trying to get the value of an argument that was not supplied by the user and has no default value
  *
  * @package Yannoff\Component\Console\Exception\Definition
  */
-class TooManyArgumentsException extends RuntimeException implements ResolverException
+class ArgumentNotSetException extends RuntimeException implements ResolverException
 {
     /**
-     * TooManyArgumentsException constructor.
+     * ArgumentNotSetException constructor.
      *
-     * @param mixed          $value    Overflowing argument value
-     * @param int            $pos      Overflowing argument position
-     * @param int            $max      Total number of defined arguments
+     * @param string         $name     Name of the queried argument
      * @param int            $code     Error status code to be sent to the terminal (defaults to 128)
      * @param Exception|null $previous Optional parent exception
      */
-    public function __construct($value, $pos, $max, $code = 128, Exception $previous = null)
+    public function __construct($name = "", $code = 128, Exception $previous = null)
     {
-        $message = sprintf('Too many arguments (%s): max: %s, given: %s', $value, $max, $pos);
+        $message = sprintf('Argument "%s" was not supplied and has no default value', $name);
         parent::__construct($message, $code, $previous);
     }
 }
