@@ -13,6 +13,8 @@
 
 namespace Yannoff\Component\Console\Definition;
 
+use Yannoff\Component\Console\Exception\Definition\InvalidArgumentTypeException;
+
 /**
  * Class Argument
  * Argument definition item
@@ -40,9 +42,15 @@ class Argument extends Item
      * @param int    $type    The argument type: optional/required
      * @param string $help    The argument help message
      * @param mixed  $default Optional default value for the argument
+     *
+     * @throws InvalidArgumentTypeException
      */
     public function __construct($name, $type = self::OPTIONAL, $help = null, $default = null)
     {
+        if (!Argument::isValidType($type)) {
+            throw new InvalidArgumentTypeException($name, $type);
+        }
+
         $this->name = $name;
         $this->type = $type;
         $this->help = $help;
@@ -50,10 +58,44 @@ class Argument extends Item
     }
 
     /**
-     * @return string
+     * True if the argument is typed as "optional"
+     *
+     * @return bool
+     */
+    public function isOptionnal()
+    {
+        return (self::OPTIONAL === $this->type);
+    }
+
+    /**
+     * True if the argument is typed as required
+     *
+     * @return bool
+     */
+    public function isRequired()
+    {
+        return (self::REQUIRED === $this->type);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getValidTypes()
+    {
+        return [ self::REQUIRED, self::OPTIONAL ];
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function getSynopsis()
     {
-        return sprintf('\t%-18s %s', $this->name, $this->help);
+        $help = sprintf('\t%-18s %s', $this->name, $this->help);
+
+        if ($this->hasDefault()) {
+            $help .= sprintf(' (default: <strong>%s</strong>)', $this->default);
+        }
+
+        return $help;
     }
 }

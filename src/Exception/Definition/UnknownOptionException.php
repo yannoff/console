@@ -13,14 +13,30 @@
 
 namespace Yannoff\Component\Console\Exception\Definition;
 
-use Yannoff\Component\Console\Exception\DefinitionException;
+use Exception;
+use Yannoff\Component\Console\Exception\ResolverException;
+use Yannoff\Component\Console\Exception\RuntimeException;
 
 /**
  * Class UnknownOptionException
  *
+ * Thrown when the command is invoked with an unknown option
+ *
  * @package Yannoff\Component\Console\Exception\Definition
  */
-class UnknownOptionException extends DefinitionException
+class UnknownOptionException extends RuntimeException implements ResolverException
 {
+    /**
+     * UnknownOptionException constructor.
+     *
+     * @param string         $name     Name of the queried option
+     * @param int            $code     Error status code to be sent to the terminal (defaults to 128)
+     * @param Exception|null $previous Optional parent exception
+     */
+    public function __construct($name = "", $code = 128, Exception $previous = null)
+    {
+        $message = sprintf('Unrecognized "%s" option', $name);
+        parent::__construct($message, $code, $previous);
+    }
 
 }

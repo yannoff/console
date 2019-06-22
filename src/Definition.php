@@ -16,8 +16,9 @@ namespace Yannoff\Component\Console;
 use Yannoff\Component\Console\Definition\Argument;
 use Yannoff\Component\Console\Definition\Item;
 use Yannoff\Component\Console\Definition\Option;
-use Yannoff\Component\Console\Exception\DefinitionException;
-use Yannoff\Component\Console\Exception\Definition\UnknownOptionException;
+use Yannoff\Component\Console\Exception\Definition\UndefinedArgumentException;
+use Yannoff\Component\Console\Exception\Definition\UndefinedOptionException;
+use Yannoff\Component\Console\Exception\LogicException;
 
 /**
  * Class Definition
@@ -92,7 +93,7 @@ class Definition
      */
     public function hasArgument($name)
     {
-        return $this->has('arguments', $name);
+        return array_key_exists($name, $this->arguments);
     }
 
     /**
@@ -116,7 +117,7 @@ class Definition
      */
     public function hasLongOption($name)
     {
-        return $this->has('options', $name);
+        return array_key_exists($name, $this->options);
     }
 
     /**
@@ -128,7 +129,7 @@ class Definition
      */
     public function hasShortOption($name)
     {
-        return $this->has('aliases', $name);
+        return array_key_exists($name, $this->aliases);
     }
 
     /**
@@ -137,11 +138,10 @@ class Definition
      * @param string $name
      *
      * @return Option
-     * @throws DefinitionException
      */
     public function getLongOption($name)
     {
-        return $this->get('options', $name);
+        return $this->options[$name];
     }
 
     /**
@@ -150,13 +150,12 @@ class Definition
      * @param string $name
      *
      * @return Option
-     * @throws DefinitionException
      */
     public function getShortOption($name)
     {
         $longopt = $this->aliases[$name];
 
-        return $this->get('options', $longopt);
+        return $this->options[$longopt];
     }
 
     /**
@@ -165,20 +164,19 @@ class Definition
      * @param string $name
      *
      * @return Option
-     * @throws DefinitionException
+     * @throws UndefinedOptionException
      */
     public function getOption($name)
     {
-        if ($this->has('options', $name)) {
+        if ($this->hasLongOption($name)) {
             return $this->getLongOption($name);
         }
 
-        if ($this->has('aliases', $name)) {
+        if ($this->hasShortOption($name)) {
             return $this->getShortOption($name);
         }
 
-        $error = sprintf('Undefined "%s" option, ignoring.', $name);
-        throw new UnknownOptionException($error);
+        throw new UndefinedOptionException($name);
     }
 
     /**
@@ -187,11 +185,15 @@ class Definition
      * @param string $name
      *
      * @return Argument
-     * @throws DefinitionException
+     * @throws UndefinedArgumentException
      */
     public function getArgument($name)
     {
-        return $this->get('arguments', $name);
+        if ($this->hasArgument($name)){
+            return $this->arguments[$name];
+        }
+
+        throw new UndefinedArgumentException($name);
     }
 
     /**
@@ -204,43 +206,19 @@ class Definition
         return count($this->arguments);
     }
 
-    public function has($register, $name)
-    {
-        return array_key_exists($name, $this->{$register});
-    }
-
-    /**
-     * Get an item by name in the given registry
-     *
-     * @param string $register
-     * @param string $name
-     *
-     * @return Item
-     * @throws DefinitionException
-     */
-    public function get($register, $name)
-    {
-        if (!$this->has($register, $name)) {
-            $error = sprintf('"%s" not found in "%s" definition.', $name, $register);
-            throw new DefinitionException($error);
-        }
-
-        return $this->{$register}[$name];
-    }
-
     /**
      * Get all items array for the given registry name
      *
      * @param string $register
      *
      * @return Item[]
-     * @throws DefinitionException
+     * @throws LogicException
      */
     public function all($register)
     {
         if (!property_exists($this, $register)) {
             $error = sprintf('Register "%s" not found in command definition.', $register);
-            throw new DefinitionException($error);
+            throw new LogicException($error);
         }
 
         return $this->{$register};

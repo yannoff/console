@@ -13,14 +13,13 @@
 
 namespace Yannoff\Component\Console\Exception;
 
-use Exception;
-
 /**
- * Class DefinitionException
+ * Interface DefinitionException
+ *
+ * Contract for exceptions related to Definition issues
  *
  * @package Yannoff\Component\Console\Exception
  */
-class DefinitionException extends Exception
+interface DefinitionException
 {
-
 }

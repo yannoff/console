@@ -15,8 +15,11 @@ namespace Yannoff\Component\Console;
 
 use Yannoff\Component\Console\Definition\Argument;
 use Yannoff\Component\Console\Definition\Option;
-use Yannoff\Component\Console\Exception\DefinitionException;
-use Yannoff\Component\Console\Exception\ResolverException;
+use Yannoff\Component\Console\Exception\Definition\InvalidOptionTypeException;
+use Yannoff\Component\Console\Exception\Definition\UndefinedArgumentException;
+use Yannoff\Component\Console\Exception\Definition\UndefinedOptionException;
+use Yannoff\Component\Console\Exception\LogicException;
+use Yannoff\Component\Console\Exception\RuntimeException;
 use Yannoff\Component\Console\IO\IOStreamHelperTrait;
 
 /**
@@ -110,9 +113,7 @@ abstract class Command
      * @param array $args List of the arguments passed via the command-line
      *
      * @return int The command exit status code (O for success)
-     * @throws ResolverException
-     * @throws DefinitionException
-     *
+     * @throws LogicException
      */
     public function run($args)
     {
@@ -188,8 +189,7 @@ abstract class Command
      * @param string $name The name of the queried option
      *
      * @return mixed
-     * @throws ResolverException
-     * @throws DefinitionException
+     * @throws UndefinedOptionException
      */
     public function getOption($name)
     {
@@ -202,8 +202,8 @@ abstract class Command
      * @param string $name The name of the queried argument
      *
      * @return mixed
-     * @throws ResolverException
-     * @throws DefinitionException
+     * @throws UndefinedArgumentException
+     * @throws RuntimeException
      */
     public function getArgument($name)
     {
@@ -225,7 +225,7 @@ abstract class Command
                 foreach ($this->definition->all($bag) as $name => $item) {
                     $lines[] = $item->getSynopsis();
                 }
-            } catch (DefinitionException $e) {
+            } catch (LogicException $e) {
                 // DefinitionException should never raise in this context,
                 // but in any case the process must not be stopped
                 $error = sprintf("Warning: %s", $e->getMessage());
@@ -300,10 +300,12 @@ abstract class Command
      * @param mixed  $default Optional default value for the argument
      *
      * @return self
+     * @throws InvalidArgumentTypeException
      */
     protected function addArgument($name, $type = null, $help = null, $default = null)
     {
         $definition = new Argument($name, $type, $help, $default);
+        $definition->setHasDefault((4 === func_num_args()));
         $this->definition->addArgument($definition);
 
         return $this;
@@ -319,10 +321,12 @@ abstract class Command
      * @param mixed  $default Optional default value for the option
      *
      * @return self
+     * @throws InvalidOptionTypeException
      */
     protected function addOption($name, $short, $type, $help = null, $default = null)
     {
         $definition = new Option($name, $short, $type, $help, $default);
+        $definition->setHasDefault((5 === func_num_args()));
         $this->definition->addOption($definition);
 
         return $this;

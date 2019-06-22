@@ -13,16 +13,13 @@
 
 namespace Yannoff\Component\Console\Exception;
 
-use RuntimeException;
-
 /**
- * Class CommandException
+ * Interface CommandException
  *
- * Base class for command-related exceptions
+ * Contract for command-related exceptions
  *
  * @package Yannoff\Component\Console\Exception
  */
-class CommandException extends RuntimeException
+interface CommandException
 {
-
 }

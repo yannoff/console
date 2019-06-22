@@ -16,6 +16,7 @@ namespace Yannoff\Component\Console;
 use Yannoff\Component\Console\Command\HelpCommand;
 use Yannoff\Component\Console\Command\VersionCommand;
 use Yannoff\Component\Console\Exception\Command\UnknownCommandException;
+use Yannoff\Component\Console\Exception\LogicException;
 use Yannoff\Component\Console\IO\IOStreamHelperTrait;
 
 /**
@@ -103,12 +104,16 @@ class Application
      * Run the application
      * This is the entrypoint method.
      *
+     * @param array $args Optional invocation arguments (defaults to $_SERVER['argv'])
+     *
      * @return int The command exit status code
-     * @throws Exception\ResolverException
      */
-    public function run()
+    public function run($args = [])
     {
-        $args = $_SERVER['argv'];
+        if (empty($args)) {
+            $args = $_SERVER['argv'];
+        }
+
         $this->script = array_shift($args);
         $command = array_shift($args);
 
@@ -132,6 +137,9 @@ class Application
 
         try {
             return $this->get($command)->run($args);
+        } catch (LogicException $e) {
+            $this->out(sprintf('%s, exiting.', (string) $e));
+            return $e->getCode();
         } catch (UnknownCommandException $e) {
             $error = sprintf('%s: %s. Exiting.', $this->getScript(), $e->getMessage());
             $this->err($error);
