@@ -11,17 +11,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Yannoff\Component\Console\IO\Output;
-
-use Yannoff\Component\Console\IO\Output\OutputFormatter;
+namespace Yannoff\Component\Console\IO;
 
 /**
- * Class PosixOutputFormatter
- * POSIX flavored output formatter
+ * Class StreamAware
+ * The main purpose of this super class is to avoid using the trait directly
+ * Indeed stream properties should NEVER be accessed directly, as they
+ * may not have been instantiated yet
  *
- * @package Yannoff\Component\Console\IO\Output
+ * @package Yannoff\Component\Console\IO
  */
-class PosixOutputFormatter extends OutputFormatter
+class StreamAware
 {
-
+    use StreamAwareTrait;
 }

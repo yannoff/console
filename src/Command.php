@@ -15,12 +15,16 @@ namespace Yannoff\Component\Console;
 
 use Yannoff\Component\Console\Definition\Argument;
 use Yannoff\Component\Console\Definition\Option;
+use Yannoff\Component\Console\Exception\Definition\InvalidArgumentTypeException;
 use Yannoff\Component\Console\Exception\Definition\InvalidOptionTypeException;
 use Yannoff\Component\Console\Exception\Definition\UndefinedArgumentException;
 use Yannoff\Component\Console\Exception\Definition\UndefinedOptionException;
 use Yannoff\Component\Console\Exception\LogicException;
 use Yannoff\Component\Console\Exception\RuntimeException;
-use Yannoff\Component\Console\IO\IOStreamHelperTrait;
+use Yannoff\Component\Console\IO\StreamAware;
+use Yannoff\Component\Console\IO\Output\Formatter;
+use Yannoff\Component\Console\IO\Output\FormatterAware;
+use Yannoff\Component\Console\IO\Output\FormatterAwareTrait;
 
 /**
  * Class Command
@@ -28,9 +32,9 @@ use Yannoff\Component\Console\IO\IOStreamHelperTrait;
  *
  * @package Yannoff\Component\Console
  */
-abstract class Command
+abstract class Command extends StreamAware implements FormatterAware
 {
-    use IOStreamHelperTrait;
+    use FormatterAwareTrait;
 
     /**
      * The command name
@@ -103,6 +107,7 @@ abstract class Command
         $this->setName($name);
         $this->definition = new Definition();
         $this->resolver = new ArgvResolver($this->definition);
+
         $this->addCommonOptions();
         $this->configure();
     }
@@ -151,6 +156,21 @@ abstract class Command
     public function getApplication()
     {
         return $this->application;
+    }
+
+    /**
+     * Getter for the formatter instance
+     * If no formatter was set for the command, fallback to the global application-wide formatter
+     *
+     * @return Formatter
+     */
+    public function getFormatter()
+    {
+        if (null !== $this->formatter) {
+            return $this->formatter;
+        }
+
+        return $this->getApplication()->getFormatter();
     }
 
     /**
@@ -211,6 +231,36 @@ abstract class Command
     }
 
     /**
+     * Print text to STDOUT
+     *
+     * @param string $text    The text to print
+     * @param null   $options Kept for symfony BC, but ignored
+     *
+     * @return bool|int
+     */
+    public function writeln($text, $options = null)
+    {
+        $text = $this->getFormatter()->format($text);
+
+        return $this->iowrite($text, Formatter::LF);
+    }
+
+    /**
+     * Print text to STDERR
+     *
+     * @param string $text    The text to print
+     * @param null   $options Kept for symfony BC, but ignored
+     *
+     * @return bool|int
+     */
+    public function errorln($text, $options = null)
+    {
+        $text = $this->getFormatter()->format($text);
+
+        return $this->ioerror(text, Formatter::LF);
+    }
+
+    /**
      * Build the whole command usage/help message with all options/arguments documented
      *
      * @return string
@@ -229,7 +279,7 @@ abstract class Command
                 // DefinitionException should never raise in this context,
                 // but in any case the process must not be stopped
                 $error = sprintf("Warning: %s", $e->getMessage());
-                $this->err($error);
+                $this->errorln($error);
             }
         }
 

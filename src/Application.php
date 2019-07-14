@@ -17,16 +17,21 @@ use Yannoff\Component\Console\Command\HelpCommand;
 use Yannoff\Component\Console\Command\VersionCommand;
 use Yannoff\Component\Console\Exception\Command\UnknownCommandException;
 use Yannoff\Component\Console\Exception\LogicException;
-use Yannoff\Component\Console\IO\IOStreamHelperTrait;
+use Yannoff\Component\Console\IO\StreamAware;
+use Yannoff\Component\Console\IO\Output\Formatter;
+use Yannoff\Component\Console\IO\Output\FormatterAware;
+use Yannoff\Component\Console\IO\Output\FormatterAwareTrait;
+use Yannoff\Component\Console\IO\Output\FormatterFactory;
 
 /**
  * Class Application
  *
  * @package Yannoff\Component\Console
  */
-class Application
+class Application extends StreamAware implements FormatterAware
 {
-    use IOStreamHelperTrait;
+
+    use FormatterAwareTrait;
 
     /**
      * The application name
@@ -66,8 +71,19 @@ class Application
     {
         $this->name = $name;
         $this->version = $version;
+        $this->formatter = FormatterFactory::create();
 
         $this->init();
+    }
+
+    /**
+     * Getter for the formatter instance
+     *
+     * @return Formatter
+     */
+    public function getFormatter()
+    {
+        return $this->formatter;
     }
 
     /**
@@ -138,11 +154,12 @@ class Application
         try {
             return $this->get($command)->run($args);
         } catch (LogicException $e) {
-            $this->out(sprintf('%s, exiting.', (string) $e));
+            $error = sprintf('%s, exiting.', (string) $e);
+            $this->iowrite($error);
             return $e->getCode();
         } catch (UnknownCommandException $e) {
             $error = sprintf('%s: %s. Exiting.', $this->getScript(), $e->getMessage());
-            $this->err($error);
+            $this->ioerror($error);
             return $e->getCode();
         }
     }

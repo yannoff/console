@@ -13,28 +13,27 @@
 
 namespace Yannoff\Component\Console\IO\Output;
 
-use Yannoff\Component\Console\IO\Output\OutputFormatter;
-
 /**
- * Class DosOutputFormatter
- * The formatter used in case of non-compatible OS
- * Strip all tags and output raw text
+ * Interface FormatterAware
+ * Contract for classes having a Formatter instance injected
  *
  * @package Yannoff\Component\Console\IO\Output
  */
-class FlatOutputFormatter extends OutputFormatter
+interface FormatterAware
 {
+    /**
+     * Setter for the formatter instance property
+     *
+     * @param Formatter $formatter The formatter instance
+     *
+     * @return self The instance of the caller class
+     */
+    public function setFormatter(Formatter &$formatter);
 
     /**
-     * {@inheritdoc}
+     * Getter for the formatter instance property
+     *
+     * @return Formatter The formatter instance
      */
-    protected function render($text)
-    {
-        foreach ($this->tags as $tag => $modifiers) {
-            $text = $in = sprintf('/<%1$s>([^<]*)<\/%1$s>/', $tag);
-            $text = preg_replace($in, '', $text);
-        }
-
-        return $text;
-    }
+    public function getFormatter();
 }

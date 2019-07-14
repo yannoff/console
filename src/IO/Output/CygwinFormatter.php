@@ -13,15 +13,13 @@
 
 namespace Yannoff\Component\Console\IO\Output;
 
-use Yannoff\Component\Console\IO\Output\OutputFormatter;
-
 /**
- * Class DosOutputFormatter
- * MS-DOS Flavored terminal formatter
+ * Class CygwinFormatter
+ * Cygwin/GitBash Flavored terminal formatter (Not implemented yet)
  *
  * @package Yannoff\Component\Console\IO\Output
  */
-class DosOutputFormatter extends OutputFormatter
+class CygwinFormatter extends PosixFormatter
 {
-
+    // TODO Implement specific formatting logic
 }
