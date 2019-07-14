@@ -13,25 +13,14 @@
 
 namespace Yannoff\Component\Console\IO\Output;
 
-use Yannoff\Component\Console\IO\Output\DosOutputFormatter;
-use Yannoff\Component\Console\IO\Output\FlatOutputFormatter;
-use Yannoff\Component\Console\IO\Output\PosixOutputFormatter;
-
 /**
- * Class OutputFormatter
- * Helper class for console output rendering
+ * Class PosixFormatter
+ * POSIX flavored output formatter
  *
  * @package Yannoff\Component\Console\IO\Output
  */
-class OutputFormatter
+class PosixFormatter implements Formatter
 {
-    /**
-     * Store the singleton instance
-     *
-     * @var OutputFormatter
-     */
-    protected static $instance;
-
     /**
      * Mapping between pseudo-tags and terminal modifiers
      */
@@ -55,52 +44,11 @@ class OutputFormatter
     ];
 
     /**
-     * Render the given string into a terminal-compatible format
-     *
-     * @param string $text
-     *
-     * @return string
+     * {@inheritdoc}
      */
-    public static function format($text)
+    public function format($text)
     {
-        return self::getInstance()->render($text);
-    }
-
-    /**
-     * OutputFormatter factory method
-     *
-     * @param string $os The target Operating System
-     * Depending on the OS, a different output formatter may be instanciated
-     *
-     * @return OutputFormatter
-     */
-    protected static function create($os = 'Linux')
-    {
-        switch ($os):
-            case 'Linux':
-            case 'Darwin':
-                return new PosixOutputFormatter();
-
-            case 'Windows':
-                return new DosOutputFormatter();
-
-            default:
-                return new FlatOutputFormatter();
-        endswitch;
-    }
-
-    /**
-     * Static getter for the singleton instance
-     *
-     * @return self
-     */
-    protected static function getInstance()
-    {
-        if (null === self::$instance) {
-            self::$instance = self::create();
-        }
-
-        return self::$instance;
+        return $this->render($text);
     }
 
     /**
@@ -124,7 +72,7 @@ class OutputFormatter
     }
 
     /**
-     * Substitute all tag occurences by their modifiers counterparts
+     * Substitute all tag occurrences by their modifiers counterparts
      *
      * @param string $text  The text to format
      * @param string $tag   The tag to be replaced

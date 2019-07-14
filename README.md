@@ -111,7 +111,10 @@ class HelloCommand extends Command
 
 
 ```
+
+<!--
 Take a look at the [API Reference](doc/api/index.md) for a full overview of the component classes & methods.
+-->
 
 People willing to migrate from symfony/console may want to have a look at the [migration](doc/migrating.md) section of the documentation.
 

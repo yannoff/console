@@ -23,17 +23,15 @@ use Yannoff\Component\Console\Exception\ResolverException;
 use Yannoff\Component\Console\Exception\Definition\TooManyArgumentsException;
 use Yannoff\Component\Console\Exception\Definition\UnknownOptionException;
 use Yannoff\Component\Console\Exception\LogicException;
-use Yannoff\Component\Console\IO\IOStreamHelperTrait;
+use Yannoff\Component\Console\IO\StreamAware;
 
 /**
  * Class ArgvResolver
  *
  * @package Yannoff\Component\Console
  */
-class ArgvResolver
+class ArgvResolver extends StreamAware
 {
-    use IOStreamHelperTrait;
-
     /** @var int Argv type: long option */
     const TYPE_LONGOPT = 2;
 
@@ -259,7 +257,7 @@ class ArgvResolver
             } catch (ResolverException $e) {
                 // Other ResolverException, on the other hand, should only raise a warning notice
                 $error = sprintf('%s: %s, ignoring.', 'Warning', $e->getMessage());
-                $this->err($error);
+                $this->ioerror($error);
             }
             next($argv);
         }
