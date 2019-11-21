@@ -257,7 +257,7 @@ abstract class Command extends StreamAware implements FormatterAware
     {
         $text = $this->getFormatter()->format($text);
 
-        return $this->ioerror(text, Formatter::LF);
+        return $this->ioerror($text, Formatter::LF);
     }
 
     /**

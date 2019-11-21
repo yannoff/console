@@ -62,7 +62,7 @@ final class StreamInitializer
      *
      * @return mixed A reference to the queried stream property
      */
-    protected static function getStream($target, $stream)
+    protected static function &getStream($target, $stream)
     {
         if (null === self::$accessor) {
             self::$accessor = new PropertyAccessor();

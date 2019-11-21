@@ -281,7 +281,7 @@ class ArgvResolver extends StreamAware
             return self::TYPE_LONGOPT;
         }
 
-        if ('-' === substr($arg, 0, 1)) {
+        if ('-' === substr($arg, 0, 1) && strlen($arg) > 1) {
             return self::TYPE_SHORTOPT;
         }
 
