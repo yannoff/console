@@ -21,6 +21,9 @@ use Yannoff\Component\Console\IO\Stream\IOReader;
 /**
  * Class StreamInitializer
  * External initializer for classes using StreamAwareTrait
+ * The purpose of this class is to keep all stream initialization logic
+ * separated from the proper StreamAware classes code, avoiding to have
+ * initialization methods exposed in extending classes
  *
  * @package Yannoff\Component\Console\IO
  */

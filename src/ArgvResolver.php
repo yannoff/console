@@ -80,7 +80,7 @@ class ArgvResolver extends StreamAware
     /**
      * Check for the existence of the argument definition by name
      *
-     * @param string $name
+     * @param string $name The argument name
      *
      * @return bool
      */
@@ -92,7 +92,7 @@ class ArgvResolver extends StreamAware
     /**
      * Check for the existence of the argument value by name
      *
-     * @param string $name
+     * @param string $name The argument name
      *
      * @return bool
      */
@@ -104,7 +104,7 @@ class ArgvResolver extends StreamAware
     /**
      * Check for the existence of the option definition by name
      *
-     * @param string $name
+     * @param string $name The option name
      *
      * @return bool
      */
@@ -116,7 +116,7 @@ class ArgvResolver extends StreamAware
     /**
      * Check for the existence of the option value by name
      *
-     * @param string $name
+     * @param string $name The option name
      *
      * @return bool
      */
@@ -126,12 +126,12 @@ class ArgvResolver extends StreamAware
     }
 
     /**
-     * Get argument definition by name
+     * Get an argument definition by name
      *
-     * @param string $name
+     * @param string $name The argument name
      *
      * @return Argument
-     * @throws UndefinedArgumentException
+     * @throws UndefinedArgumentException If no such argument found in the definition ({@link /doc/api/Exception/LogicException.md LogicException})
      */
     public function getArgumentDefinition($name)
     {
@@ -139,13 +139,13 @@ class ArgvResolver extends StreamAware
     }
 
     /**
-     * Get argument value by name
+     * Get an argument value by name
      *
-     * @param string $name
+     * @param string $name The argument name
      *
      * @return mixed
-     * @throws UndefinedArgumentException If no such argument found in the definition
-     * @throws ArgumentNotSetException    If argument not provided by user & don't have a default value set
+     * @throws UndefinedArgumentException If no such argument found in the definition ({@link /doc/api/Exception/LogicException.md LogicException})
+     * @throws ArgumentNotSetException    If argument not provided by user & don't have a default value set ({@link /doc/api/Exception/RuntimeException.md RuntimeException})
      */
     public function getArgumentValue($name)
     {
@@ -163,12 +163,12 @@ class ArgvResolver extends StreamAware
     }
 
     /**
-     * Get option definition by name
+     * Get an option definition by name
      *
-     * @param string $name
+     * @param string $name The option name
      *
      * @return Option
-     * @throws UnknownOptionException
+     * @throws UnknownOptionException If no such option found in the definition ({@link /doc/api/Exception/LogicException.md LogicException})
      */
     public function getOptionDefinition($name)
     {
@@ -180,12 +180,12 @@ class ArgvResolver extends StreamAware
     }
 
     /**
-     * Get option value by name
+     * Get an option value by name
      *
-     * @param string $name
+     * @param string $name The option name
      *
      * @return mixed
-     * @throws UnknownOptionException
+     * @throws UnknownOptionException If no such option found in the definition ({@link /doc/api/Exception/LogicException.md LogicException})
      */
     public function getOptionValue($name)
     {
@@ -202,7 +202,9 @@ class ArgvResolver extends StreamAware
      *
      * @param array $argv The command line arguments
      *
-     * @throws LogicException
+     * @throws TooManyArgumentsException  If an extra argument is found when parsing ({@link /doc/api/Exception/RuntimeException.md RuntimeException})
+     * @throws InvalidOptionTypeException If the option type has an unexpected value ({@link /doc/api/Exception/LogicException.md LogicException})
+     * @throws UnknownOptionException     If an unknown option name is encountered during args parsing ({@link /doc/api/Exception/RuntimeException.md RuntimeException})
      */
     public function resolve($argv)
     {
@@ -267,9 +269,9 @@ class ArgvResolver extends StreamAware
      * Detect command-line argument type from its name:
      * long option, short option or argument
      *
-     * @param string $arg
+     * @param string $arg The raw argument from the command-line (eg: "--option" or "-o" or "argument")
      *
-     * @return int
+     * @return int One of the TYPE_* constants
      */
     protected function getType($arg)
     {

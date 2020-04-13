@@ -87,7 +87,7 @@ class Definition
     /**
      * Check for existence of the given argument in the registry
      *
-     * @param string $name
+     * @param string $name The argument name
      *
      * @return bool
      */
@@ -99,7 +99,7 @@ class Definition
     /**
      * Check for existence of the given option in the registry
      *
-     * @param string $name
+     * @param string $name The option name
      *
      * @return bool
      */
@@ -111,7 +111,7 @@ class Definition
     /**
      * Check for existence of the given option in the registry by its long name
      *
-     * @param string $name
+     * @param string $name The option name
      *
      * @return bool
      */
@@ -123,7 +123,7 @@ class Definition
     /**
      * Check for existence of the given option in the registry by its short name
      *
-     * @param string $name
+     * @param string $name The option name
      *
      * @return bool
      */
@@ -133,9 +133,9 @@ class Definition
     }
 
     /**
-     * Get option from the registry by its long name
+     * Get an option from the registry by its long name
      *
-     * @param string $name
+     * @param string $name The option name
      *
      * @return Option
      */
@@ -145,9 +145,9 @@ class Definition
     }
 
     /**
-     * Get option from the registry by its short name
+     * Get an option from the registry by its short name
      *
-     * @param string $name
+     * @param string $name The option name
      *
      * @return Option
      */
@@ -159,12 +159,12 @@ class Definition
     }
 
     /**
-     * Get option by its name, searching both long & short names
+     * Get an option by its name, searching both long & short names
      *
-     * @param string $name
+     * @param string $name The option name
      *
      * @return Option
-     * @throws UndefinedOptionException
+     * @throws UndefinedOptionException If not found either by short or long name
      */
     public function getOption($name)
     {
@@ -180,12 +180,12 @@ class Definition
     }
 
     /**
-     * Get argument from the registry by its name
+     * Get an argument from the registry by its name
      *
-     * @param string $name
+     * @param string $name The argument name
      *
      * @return Argument
-     * @throws UndefinedArgumentException
+     * @throws UndefinedArgumentException If not found in the registry
      */
     public function getArgument($name)
     {
@@ -271,31 +271,31 @@ class Definition
     /**
      * Get all items array for the given registry name
      *
-     * @param string $register
+     * @param string $registry The registry name
      *
      * @return Item[]
-     * @throws LogicException
+     * @throws LogicException If the queried registry does not exist
      */
-    public function all($register)
+    public function all($registry)
     {
-        if (!property_exists($this, $register)) {
-            $error = sprintf('Register "%s" not found in command definition.', $register);
+        if (!property_exists($this, $registry)) {
+            $error = sprintf('Register "%s" not found in command definition.', $registry);
             throw new LogicException($error);
         }
 
-        return $this->{$register};
+        return $this->{$registry};
     }
 
     /**
-     * Calculate the index of the queried item in the given registry
+     * Get the name of the item from its positional index in the given registry
      *
-     * @param string $register
-     * @param int    $idx
+     * @param string $registry The registry name
+     * @param int    $idx      The item position
      *
      * @return string
      */
-    public function getNameByPosition($register, $idx)
+    public function getNameByPosition($registry, $idx)
     {
-        return array_keys($this->{$register})[$idx];
+        return array_keys($this->{$registry})[$idx];
     }
 }

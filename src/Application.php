@@ -71,7 +71,7 @@ class Application extends StreamAware implements FormatterAware
     /**
      * Stored commands registry
      *
-     * @var array
+     * @var Command[]
      */
     protected $commands;
 
@@ -224,13 +224,13 @@ class Application extends StreamAware implements FormatterAware
 
 
     /**
-     * Proxy to Application::find() method
+     * Proxy to Application::get() method
      * Implemented for backward compatibility with Symfony inheriting applications
      *
      * @param string $name The requested command name
      *
      * @return Command
-     * @throws UnknownCommandException
+     * @throws UnknownCommandException If the queried command cannot be found
      */
     public function find($name)
     {
@@ -243,7 +243,7 @@ class Application extends StreamAware implements FormatterAware
      * @param string $name The requested command name
      *
      * @return Command
-     * @throws UnknownCommandException
+     * @throws UnknownCommandException If the queried command cannot be found
      */
     public function get($name)
     {

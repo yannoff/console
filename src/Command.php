@@ -15,6 +15,7 @@ namespace Yannoff\Component\Console;
 
 use Yannoff\Component\Console\Definition\Argument;
 use Yannoff\Component\Console\Definition\Option;
+use Yannoff\Component\Console\Exception\Definition\ArgumentNotSetException;
 use Yannoff\Component\Console\Exception\Definition\InvalidArgumentTypeException;
 use Yannoff\Component\Console\Exception\Definition\InvalidOptionTypeException;
 use Yannoff\Component\Console\Exception\Definition\UndefinedArgumentException;
@@ -219,7 +220,7 @@ abstract class Command extends StreamAware implements FormatterAware
      * @param string $name The name of the queried option
      *
      * @return mixed
-     * @throws UndefinedOptionException
+     * @throws UndefinedOptionException If no such option found in the definition ({@link /doc/api/Exception/LogicException.md LogicException})
      */
     public function getOption($name)
     {
@@ -232,8 +233,8 @@ abstract class Command extends StreamAware implements FormatterAware
      * @param string $name The name of the queried argument
      *
      * @return mixed
-     * @throws UndefinedArgumentException
-     * @throws RuntimeException
+     * @throws UndefinedArgumentException If no such argument found in the definition ({@link /doc/api/Exception/LogicException.md LogicException})
+     * @throws ArgumentNotSetException    If argument not provided by user & don't have a default value set ({@link /doc/api/Exception/RuntimeException.md RuntimeException})
      */
     public function getArgument($name)
     {
@@ -313,7 +314,7 @@ abstract class Command extends StreamAware implements FormatterAware
     /**
      * Setter for the command name
      *
-     * @param string $name
+     * @param string $name The command name
      *
      * @return self
      */
@@ -327,7 +328,7 @@ abstract class Command extends StreamAware implements FormatterAware
     /**
      * Setter for the command help
      *
-     * @param string $help
+     * @param string $help The help text
      *
      * @return self
      */
@@ -341,7 +342,7 @@ abstract class Command extends StreamAware implements FormatterAware
     /**
      * Setter for the command description
      *
-     * @param string $desc
+     * @param string $desc The description text
      *
      * @return self
      */
@@ -361,7 +362,7 @@ abstract class Command extends StreamAware implements FormatterAware
      * @param mixed  $default Optional default value for the argument
      *
      * @return self
-     * @throws InvalidArgumentTypeException
+     * @throws InvalidArgumentTypeException If the passed argument type is not recognized ({@link /doc/api/Exception/LogicException.md LogicException})
      */
     protected function addArgument($name, $type = null, $help = null, $default = null)
     {
@@ -382,7 +383,7 @@ abstract class Command extends StreamAware implements FormatterAware
      * @param mixed  $default Optional default value for the option
      *
      * @return self
-     * @throws InvalidOptionTypeException
+     * @throws InvalidOptionTypeException If the passed option type is not recognized ({@link /doc/api/Exception/LogicException.md LogicException})
      */
     protected function addOption($name, $short, $type, $help = null, $default = null)
     {

@@ -10,7 +10,7 @@ A simple, lightweight console implementation for command-line PHP applications.
 
 ## Why are we here ?
 
-This component was conceived as a replacement for the [symfony/console](https://github.com/symfony/console) component.
+This library was conceived as an alternative to the [symfony/console](https://github.com/symfony/console) component.
 
 
 After several years using the [symfony/console](https://github.com/symfony/console), it became more and more obvious: 
@@ -33,6 +33,12 @@ Via [composer](https://getcomposer.org/):
 
 ```bash
 $ composer require yannoff/console
+```
+
+or [offenbach](https://github.com/yannoff/offenbach):
+
+```bash
+$ offenbach require yannoff/console
 ```
 
 ## Usage
@@ -63,7 +69,7 @@ Then the command file:
 
 ```php
 <?php
-// src/Acme/Demo/
+// src/Acme/Demo/HelloCommand.php
 
 namespace Acme\Demo;
 
@@ -112,11 +118,11 @@ class HelloCommand extends Command
 
 ```
 
-<!--
-Take a look at the [API Reference](doc/api/index.md) for a full overview of the component classes & methods.
--->
 
-People willing to migrate from symfony/console may want to have a look at the [migration](doc/migrating.md) section of the documentation.
+Take a look at the [API Reference](doc/api/index.md) for a full overview of the component classes & methods.
+
+
+People willing to migrate from `symfony/console` may want to have a look at the [migration](doc/migrating.md) section of the documentation.
 
 ## Licence
 

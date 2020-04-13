@@ -3,12 +3,13 @@
 As stated in the [README](../README.md), this component was conceived as a replacement for the [symfony/console](https://github.com/symfony/console): many of the original facade methods signature have been kept _-as much as possible-_ unchanged.
 
 However, there are a few significant changes worth to be considered:
+- No support for the [symfony](https://github.com/symfony/symfony) ecosystem: no auto-registration or container tag support
 
 ## Changes listed by class & method
 
 In general, method signatures remain the same but with some light differences.
 
-List fo symfony/console (v3.4.x) methods and their equivalence, if any
+List of symfony/console (v3.4.x) methods and their equivalence, if any
 
 ### Application
 
@@ -138,15 +139,13 @@ Possible values for the `$type` argument have been kept identical _(OPTIONAL: 2,
 
 Anyway, be sure to replace all `InputArgument::OPTIONAL` / `InputArgument::REQUIRED` by their respective counterparts class constants defined in `Yannoff\Component\Console\Definition\Argument`.
 
-:warning: _NOTE: For now, only *OPTIONAL* arguments are supported, which means setting an argument type to `Argument::REQUIRED` will have no effect._
-
 #### Command::addOption()
 
 Option types are stored as class constants in `Yannoff\Component\Console\Definition\Option`. Beware to change all symfony `InputOption::XXX` constants in your code accordingly.
 
 Only 2 possible types are implemented:
 
-- `Option::FLAG` : A flag option, `true` if the command is invoked passing the option, `false` otherwise.
+- `Option::FLAG` : A flag option: The [Command::getOption()](https://github.com/yannoff/console-wip/blob/refactor/rewrite-documentation/doc/migrating.md#commandgetoption) will return `true` if the command is invoked passing the option, `false` otherwise.
 - `Option::VALUE`: An option expecting a value, will raise an exception if the option is passed without a value.
 
 #### Command::configure()
@@ -211,8 +210,6 @@ The verbosity argument placeholder have been kept for compatibility, but will be
 
 Indeed verbosity levels are not implemented in this component.
 
-A third argument has been added, allowing to choose between STDOUT (by default) or STDIN for the output.
-
 ## Full migration example
 
 Now, let's put it all together with a concrete example:
@@ -241,7 +238,7 @@ The command file however, is a little different:
 
 ```php
 <?php
-// src/Acme/Demo/
+// src/Acme/Demo/HelloCommand.php
 
 namespace Acme\Demo;
 
