@@ -295,8 +295,9 @@ abstract class Command extends StreamAware implements FormatterAware
      */
     protected function getSynopsis()
     {
-        $message = "<strong>Usage</strong>\n\t%s %s [<options>] -- [<arguments>]\n<strong>Description</strong>\n\t%s";
-        return sprintf($message, $this->application->getScript(), $this->name, $this->help);
+        $message = "<strong>Usage</strong>\n\t%s %s [options] [--] %s\n<strong>Description</strong>\n\t%s";
+
+        return sprintf($message, $this->application->getScript(), $this->name, $this->definition->getArgSynopsis(), $this->help);
     }
 
     /**

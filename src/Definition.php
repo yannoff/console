@@ -197,6 +197,60 @@ class Definition
     }
 
     /**
+     * Return the arguments list, optionally filtered by a custom callback
+     *
+     * @param callable|null $callback Optional filtering callback
+     *
+     * @return Argument[]
+     */
+    public function getArguments(callable $callback = null)
+    {
+        if (null === $callback) {
+            return $this->arguments;
+        }
+
+        return array_filter($this->arguments, $callback);
+    }
+
+    /**
+     * Return the mandatory arguments list
+     *
+     * @return Argument[]
+     */
+    public function getRequiredArgs()
+    {
+        return $this->getArguments(function (Argument $a){ return $a->isRequired(); });
+    }
+
+    /**
+     * Return the optional arguments list
+     *
+     * @return Argument[]
+     */
+    public function getOptionalArgs()
+    {
+        return $this->getArguments(function (Argument $a){ return $a->isOptional(); });
+    }
+
+    /**
+     * Return the list of arguments, pre-formatted for Command help
+     *
+     * @return string
+     */
+    public function getArgSynopsis()
+    {
+        $arguments = [];
+        foreach ($this->getRequiredArgs() as $argument) {
+            $arguments[] = sprintf('<%s>', $argument->getName());
+        }
+        foreach ($this->getOptionalArgs() as $argument) {
+            $arguments[] = sprintf('[<%s>]', $argument->getName());
+        }
+
+        return implode(' ', $arguments);
+    }
+
+    /**
      * Return the total number of defined arguments
      *
      * @return int

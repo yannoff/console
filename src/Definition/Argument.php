@@ -62,7 +62,7 @@ class Argument extends Item
      *
      * @return bool
      */
-    public function isOptionnal()
+    public function isOptional()
     {
         return (self::OPTIONAL === $this->type);
     }
