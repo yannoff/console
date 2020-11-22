@@ -390,6 +390,21 @@ abstract class Command extends StreamAware implements FormatterAware
      */
     protected function addCommonOptions()
     {
+        $this->addHelpOption();
+
+        return $this;
+    }
+
+    /**
+     * Base method to add the --help option
+     *
+     * This method might be overwritten in extending classes
+     * (for instance to avoid shortname collision between options)
+     *
+     * @return self
+     */
+    protected function addHelpOption()
+    {
         $this->addOption('help', 'h', Option::FLAG, 'Display this help message');
 
         return $this;
