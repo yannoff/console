@@ -78,6 +78,17 @@ class Argument extends Item
     }
 
     /**
+     * True if the argument is required AND has no default value set
+     * Indeed a required argument with its default value set is de facto not mandatory
+     *
+     * @return bool
+     */
+    public function isMandatory()
+    {
+        return ($this->isRequired() && ! $this->hasDefault());
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function getValidTypes()

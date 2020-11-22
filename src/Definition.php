@@ -217,6 +217,16 @@ class Definition
      *
      * @return Argument[]
      */
+    public function getMandatoryArgs()
+    {
+        return $this->getArguments(function (Argument $a){ return $a->isMandatory(); });
+    }
+
+    /**
+     * Return the required arguments list
+     *
+     * @return Argument[]
+     */
     public function getRequiredArgs()
     {
         return $this->getArguments(function (Argument $a){ return $a->isRequired(); });
@@ -240,11 +250,9 @@ class Definition
     public function getArgSynopsis()
     {
         $arguments = [];
-        foreach ($this->getRequiredArgs() as $argument) {
-            $arguments[] = sprintf('<%s>', $argument->getName());
-        }
-        foreach ($this->getOptionalArgs() as $argument) {
-            $arguments[] = sprintf('[<%s>]', $argument->getName());
+        foreach ($this->getArguments() as $arg) {
+            $format = $arg->isMandatory() ? '<%s>' : '[<%s>]';
+            $arguments[] = sprintf($format, $arg->getName());
         }
 
         return implode(' ', $arguments);
