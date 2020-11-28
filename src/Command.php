@@ -113,6 +113,16 @@ abstract class Command extends StreamAware implements FormatterAware
     }
 
     /**
+     * Return a string representation of a command: its name
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
      * Method running the command
      *
      * @param array $args List of the arguments passed via the command-line

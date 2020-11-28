@@ -34,6 +34,20 @@ class Application extends StreamAware implements FormatterAware
     use FormatterAwareTrait;
 
     /**
+     * Name used for the `help` command
+     *
+     * @var string
+     */
+    const COMMAND_HELP = 'help';
+
+    /**
+     * Name used for the `version` command
+     *
+     * @var string
+     */
+    const COMMAND_VERS = 'version';
+
+    /**
      * The application name
      *
      * @var string
@@ -60,6 +74,13 @@ class Application extends StreamAware implements FormatterAware
      * @var array
      */
     protected $commands;
+
+    /**
+     * Name of the default command to be used if none was supplied
+     *
+     * @var string
+     */
+    protected $default;
 
     /**
      * Application constructor.
@@ -136,15 +157,18 @@ class Application extends StreamAware implements FormatterAware
         // Invoke the appropriated command for special global options like --help, --version, etc
         switch ($command):
             case '--version':
-                $command = 'version';
+                $command = self::COMMAND_VERS;
                 break;
 
             case 'list':
             case '--help':
             case '-h':
             case '--usage':
+                $command = self::COMMAND_HELP;
+                break;
+
             case null:
-                $command = 'help';
+                $command = $this->getDefault();
                 break;
 
             default:
@@ -263,12 +287,54 @@ class Application extends StreamAware implements FormatterAware
     /**
      * Hook for initialization tasks, called at the end of the constructor:
      * - add common commands (help, version)
+     * - set default command name
      */
     protected function init()
     {
-        $this->addCommands([
-            new HelpCommand('help'),
-            new VersionCommand('version'),
-        ]);
+        $this
+            ->addBaseCommands()
+            ->setDefault(self::COMMAND_HELP);
     }
+
+    /**
+     * Add base common commands
+     *
+     * @return self
+     */
+    public function addBaseCommands()
+    {
+        $this->addCommands([
+            new HelpCommand(self::COMMAND_HELP),
+            new VersionCommand(self::COMMAND_VERS),
+        ]);
+
+        return $this;
+    }
+
+    /**
+     * Getter for the default command name
+     *
+     * @return string
+     */
+    public function getDefault()
+    {
+        return $this->default;
+    }
+
+    /**
+     * Setter for the default command name
+     * Allow easy configuration in user-defined applications
+     *
+     * @param string $name Name of the default command
+     *                     A command object may also be passed, thanks to force to-string type-casting
+     *
+     * @return self
+     */
+    public function setDefault($name)
+    {
+        $this->default = $name;
+
+        return $this;
+    }
+
 }
