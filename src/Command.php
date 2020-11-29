@@ -17,6 +17,7 @@ use Yannoff\Component\Console\Definition\Argument;
 use Yannoff\Component\Console\Definition\Option;
 use Yannoff\Component\Console\Exception\Definition\InvalidArgumentTypeException;
 use Yannoff\Component\Console\Exception\Definition\InvalidOptionTypeException;
+use Yannoff\Component\Console\Exception\Definition\MissingArgumentsException;
 use Yannoff\Component\Console\Exception\Definition\UndefinedArgumentException;
 use Yannoff\Component\Console\Exception\Definition\UndefinedOptionException;
 use Yannoff\Component\Console\Exception\LogicException;
@@ -132,12 +133,22 @@ abstract class Command extends StreamAware implements FormatterAware
      */
     public function run($args)
     {
-        $this->resolver->resolve($args);
+        $exception = null;
+
+        try {
+            $this->resolver->resolve($args);
+        } catch (MissingArgumentsException $e) {
+            $exception = $e;
+        }
 
         if ($this->getOption('help')) {
             $message = $this->getUsage();
             $this->writeln($message);
             return 0;
+        }
+
+        if ($exception) {
+            return $this->handleException($exception);
         }
 
         return $this->execute();
@@ -418,5 +429,24 @@ abstract class Command extends StreamAware implements FormatterAware
         $this->addOption('help', 'h', Option::FLAG, 'Display this help message');
 
         return $this;
+    }
+
+    /**
+     * Handler method for missing mandatory arg exception use-case
+     *
+     * @todo Implement generic runtime exception handler system
+     * @see https://github.com/yannoff/console/issues/11
+     *
+     * @param MissingArgumentsException $exception
+     *
+     * @return int
+     */
+    protected function handleException(MissingArgumentsException $exception)
+    {
+        foreach ($exception->getArguments() as $arg) {
+            $error = sprintf('%s: Missing argument "%s".', 'Error', $arg);
+            $this->errorln($error);
+        }
+        return $exception->getCode();
     }
 }
