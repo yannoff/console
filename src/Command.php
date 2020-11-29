@@ -20,6 +20,7 @@ use Yannoff\Component\Console\Definition\Argument;
 use Yannoff\Component\Console\Definition\Option;
 use Yannoff\Component\Console\Exception\Definition\InvalidArgumentTypeException;
 use Yannoff\Component\Console\Exception\Definition\InvalidOptionTypeException;
+use Yannoff\Component\Console\Exception\Definition\MissingArgumentsException;
 use Yannoff\Component\Console\Exception\Definition\UndefinedArgumentException;
 use Yannoff\Component\Console\Exception\Definition\UndefinedOptionException;
 use Yannoff\Component\Console\Exception\LogicException;
@@ -157,12 +158,23 @@ class Command
      */
     public function run($args = [])
     {
-        $this->resolver->resolve($args);
+        $exception = null;
 
+        try {
+            $this->resolver->resolve($args);
+        } catch (MissingArgumentsException $e) {
+            $exception = $e;
+        }
+
+        // TODO handle version option too
         if ($this->getOption('help')) {
             $message = $this->getUsage();
             $this->write($message);
             return 0;
+        }
+
+        if ($exception) {
+            return $this->handleException($exception);
         }
 
         return $this->execute();
@@ -429,6 +441,36 @@ class Command
         $this->addOption('help', 'h', Option::FLAG, 'Display this help message');
 
         return $this;
+    }
+
+    /**
+     * Handler method for runtime exceptions
+     *
+     * @param RuntimeException $exception
+     *
+     * @return int
+     * @todo Implement generic runtime exception handler system
+     * @see  https://github.com/yannoff/console/issues/11
+     */
+    protected function handleException(RuntimeException $exception)
+    {
+        $type = get_class($exception);
+
+        switch ($type):
+            case MissingArgumentsException::class:
+                /** @var MissingArgumentsException $exception */
+                foreach ($exception->getArguments() as $arg) {
+                    $error = sprintf('%s: Missing argument "%s".', 'Error', $arg);
+                    $this->errorln($error);
+                }
+                break;
+            default:
+                $error = sprintf('%s: %s.', 'Error', $exception->getMessage());
+                $this->errorln($error);
+                break;
+        endswitch;
+
+        return $exception->getCode();
     }
 }
 
