@@ -243,12 +243,12 @@ abstract class Command extends StreamAware implements FormatterAware
     /**
      * Print text to STDOUT
      *
-     * @param string $text    The text to print
+     * @param string $text    The text to print (defaults to empty string)
      * @param null   $options Kept for symfony BC, but ignored
      *
      * @return bool|int
      */
-    public function writeln($text, $options = null)
+    public function writeln($text = '', $options = null)
     {
         $text = $this->getFormatter()->format($text);
 
@@ -258,12 +258,12 @@ abstract class Command extends StreamAware implements FormatterAware
     /**
      * Print text to STDERR
      *
-     * @param string $text    The text to print
+     * @param string $text    The text to print (defaults to empty string)
      * @param null   $options Kept for symfony BC, but ignored
      *
      * @return bool|int
      */
-    public function errorln($text, $options = null)
+    public function errorln($text = '', $options = null)
     {
         $text = $this->getFormatter()->format($text);
 

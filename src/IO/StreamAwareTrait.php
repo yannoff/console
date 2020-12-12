@@ -41,12 +41,12 @@ trait StreamAwareTrait
     /**
      * Print a message to standard output with the given ending string
      *
-     * @param string $message The message to print
+     * @param string $message The message to print (defaults to empty string)
      * @param string $ending  The ending string (defaults to "\n")
      *
      * @return int|false Number of bytes written or **false** on error
      */
-    public function iowrite($message, $ending = Formatter::LF)
+    public function iowrite($message = '', $ending = Formatter::LF)
     {
         $writer = StreamInitializer::getWriter($this, IOStream::STDOUT);
 
@@ -56,12 +56,12 @@ trait StreamAwareTrait
     /**
      * Print a message to standard error with the given ending char
      *
-     * @param string $message The message to print
+     * @param string $message The message to print (defaults to empty string)
      * @param string $ending  The ending string (defaults to "\n")
      *
      * @return int|false Number of bytes written or **false** on error
      */
-    public function ioerror($message, $ending = Formatter::LF)
+    public function ioerror($message = '', $ending = Formatter::LF)
     {
         $writer = StreamInitializer::getWriter($this, IOStream::STDERR);
 
