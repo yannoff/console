@@ -14,7 +14,6 @@
 namespace Yannoff\Component\Console\Exception\IO;
 
 use Exception;
-use Yannoff\Component\Console\Exception\LogicException;
 
 /**
  * Class UnsupportedStreamException
@@ -23,7 +22,7 @@ use Yannoff\Component\Console\Exception\LogicException;
  *
  * @package Yannoff\Component\Console\Exception\IO
  */
-class UnsupportedStreamException extends LogicException
+class UnsupportedStreamException extends StreamLogicException
 {
     /**
      * UnsupportedStreamException constructor.
