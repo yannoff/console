@@ -15,23 +15,22 @@ namespace Yannoff\Component\Console\IO\Stream;
 
 /**
  * Class StandardError
+ *
  * Writer stream for standard error (STDERR)
  *
  * @package Yannoff\Component\Console\IO\Stream
  */
-class StandardError implements IOWriter
+class StandardError extends Wrapper implements IOWriter
 {
     /**
      * The stream short name
      */
-    const NAME = IOStream::STDERR;
+    const NAME = self::STDERR;
 
     /**
-     * Handle to the writable stream
-     *
-     * @var resource
+     * The stream open mode
      */
-    protected $handle = STDERR;
+    const MODE = self::APPEND;
 
     /**
      * {@inheritdoc}

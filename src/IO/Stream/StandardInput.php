@@ -15,23 +15,22 @@ namespace Yannoff\Component\Console\IO\Stream;
 
 /**
  * Class StandardInput
+ *
  * Reader stream for standard input (STDIN)
  *
  * @package Yannoff\Component\Console\IO\Stream
  */
-class StandardInput implements IOReader
+class StandardInput extends Wrapper implements IOReader
 {
     /**
      * The stream short name
      */
-    const NAME = IOStream::STDIN;
+    const NAME = self::STDIN;
 
     /**
-     * Handle to the stream to read from
-     *
-     * @var bool|resource
+     * The stream open mode
      */
-    protected $handle = STDIN;
+    const MODE = self::READONLY;
 
     /**
      * {@inheritdoc}

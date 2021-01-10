@@ -29,4 +29,12 @@ interface IOStream
     const STDIN = 'stdin';
     const STDOUT = 'stdout';
     const STDERR = 'stderr';
+
+    /**
+     * Available modes for fopen()
+     *
+     * @var string
+     */
+    const APPEND = 'a+';
+    const READONLY = 'r';
 }

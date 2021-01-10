@@ -15,23 +15,22 @@ namespace Yannoff\Component\Console\IO\Stream;
 
 /**
  * Class StandardOutput
+ *
  * Writer stream for standard output (STDOUT)
  *
  * @package Yannoff\Component\Console\IO\Stream
  */
-class StandardOutput implements IOWriter
+class StandardOutput extends Wrapper implements IOWriter
 {
     /**
      * The stream short name
      */
-    const NAME = IOStream::STDOUT;
+    const NAME = self::STDOUT;
 
     /**
-     * Handle to the writable stream
-     *
-     * @var resource
+     * The stream open mode
      */
-    protected $handle = STDOUT;
+    const MODE = self::APPEND;
 
     /**
      * {@inheritdoc}
