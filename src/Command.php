@@ -141,6 +141,7 @@ abstract class Command extends StreamAware implements FormatterAware
             $exception = $e;
         }
 
+        // TODO handle version option too
         if ($this->getOption('help')) {
             $message = $this->getUsage();
             $this->writeln($message);
