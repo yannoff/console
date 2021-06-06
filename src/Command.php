@@ -432,21 +432,32 @@ abstract class Command extends StreamAware implements FormatterAware
     }
 
     /**
-     * Handler method for missing mandatory arg exception use-case
+     * Handler method for runtime exceptions
      *
-     * @todo Implement generic runtime exception handler system
-     * @see https://github.com/yannoff/console/issues/11
-     *
-     * @param MissingArgumentsException $exception
+     * @param RuntimeException $exception
      *
      * @return int
+     * @todo Implement generic runtime exception handler system
+     * @see  https://github.com/yannoff/console/issues/11
      */
-    protected function handleException(MissingArgumentsException $exception)
+    protected function handleException(RuntimeException $exception)
     {
-        foreach ($exception->getArguments() as $arg) {
-            $error = sprintf('%s: Missing argument "%s".', 'Error', $arg);
-            $this->errorln($error);
-        }
+        $type = get_class($exception);
+
+        switch ($type):
+            case MissingArgumentsException::class:
+                /** @var MissingArgumentsException $exception */
+                foreach ($exception->getArguments() as $arg) {
+                    $error = sprintf('%s: Missing argument "%s".', 'Error', $arg);
+                    $this->errorln($error);
+                }
+                break;
+            default:
+                $error = sprintf('%s: %s.', 'Error', $exception->getMessage());
+                $this->errorln($error);
+                break;
+        endswitch;
+
         return $exception->getCode();
     }
 }
