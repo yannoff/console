@@ -144,10 +144,11 @@ Anyway, be sure to replace all `InputArgument::OPTIONAL` / `InputArgument::REQUI
 
 Option types are stored as class constants in `Yannoff\Component\Console\Definition\Option`. Beware to change all symfony `InputOption::XXX` constants in your code accordingly.
 
-Only 2 possible types are implemented:
+3 possible types are implemented:
 
 - `Option::FLAG` : A flag option, `true` if the command is invoked passing the option, `false` otherwise.
 - `Option::VALUE`: An option expecting a value, will raise an exception if the option is passed without a value.
+- `Option::MULTI`: An option supporting multiple values (eg: `-f file1 -f file2`), will be interpreted as an array.
 
 #### Command::configure()
 

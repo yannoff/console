@@ -230,6 +230,10 @@ class ArgvResolver extends StreamAware
                             case Option::FLAG:
                                 $value = true;
                                 break;
+                            case Option::MULTI:
+                                $value = array_key_exists($optionName, $this->options) ? $this->options[$optionName] : [];
+                                array_push($value, next($argv));
+                                break;
                             default:
                                 throw new InvalidOptionTypeException($optionName, $optionType);
                         endswitch;
