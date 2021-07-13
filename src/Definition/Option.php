@@ -38,6 +38,13 @@ class Option extends Item
     const FLAG = 20;
 
     /**
+     * Option type: array (ie: multiple values)
+     *
+     * @var int
+     */
+    const MULTI = 40;
+
+    /**
      * Optional short name for the option
      *
      * @var string|null
@@ -107,7 +114,7 @@ class Option extends Item
      */
     public static function getValidTypes()
     {
-        return [ self::VALUE, self::FLAG ];
+        return [ self::VALUE, self::FLAG, self::MULTI ];
     }
 
     /**
