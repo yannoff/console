@@ -152,28 +152,18 @@ class Application extends StreamAware implements FormatterAware
         }
 
         $this->script = array_shift($args);
-        $command = array_shift($args);
 
-        // Invoke the appropriated command for special global options like --help, --version, etc
-        switch ($command):
-            case '--version':
-                $command = self::COMMAND_VERS;
-                break;
+        // Try to guess the command name from the first argument
+        $arg = count($args) > 0 ? $args[0] : null;
+        $command = $this->resolve($arg);
 
-            case 'list':
-            case '--help':
-            case '-h':
-            case '--usage':
-                $command = self::COMMAND_HELP;
-                break;
-
-            case null:
-                $command = $this->getDefault();
-                break;
-
-            default:
-                break;
-        endswitch;
+        // If the first argument is an existing command, use it for command name and shift the arguments stack
+        // If not, either use the default command if the user defined one, or fallback to the help command
+        if (null !== $command && $this->has($command)) {
+            array_shift($args);
+        } else {
+            $command = (null !== $this->default) ? $this->default : self::COMMAND_HELP;
+        }
 
         try {
             return $this->get($command)->run($args);
@@ -287,13 +277,11 @@ class Application extends StreamAware implements FormatterAware
     /**
      * Hook for initialization tasks, called at the end of the constructor:
      * - add common commands (help, version)
-     * - set default command name
      */
     protected function init()
     {
         $this
-            ->addBaseCommands()
-            ->setDefault(self::COMMAND_HELP);
+            ->addBaseCommands();
     }
 
     /**
@@ -325,16 +313,44 @@ class Application extends StreamAware implements FormatterAware
      * Setter for the default command name
      * Allow easy configuration in user-defined applications
      *
-     * @param string $name Name of the default command
-     *                     A command object may also be passed, thanks to force to-string type-casting
+     * @param string|Command $name Name of the default command
+     * NOTE: A command object may also be passed, thanks to force to-string type-casting
      *
      * @return self
      */
     public function setDefault($name)
     {
-        $this->default = $name;
+        $this->default = (string) $name;
 
         return $this;
     }
 
+    /**
+     * Resolve the given CLI argument (be it a command alias or an option) to an existing command name
+     * Allow to invoke the appropriated command for special global options like --help, --version, etc
+     *
+     * @param string $name The command or option name
+     *
+     * @return string|null
+     */
+    protected function resolve($name)
+    {
+        switch ($name):
+            case '--version':
+                return self::COMMAND_VERS;
+
+            case 'list':
+            case '--help':
+            case '-h':
+            case '--usage':
+                return self::COMMAND_HELP;
+
+            // Null name must return null in order to be appropriately detected in the next processing step
+            case null:
+                return null;
+
+            default:
+                return $name;
+        endswitch;
+    }
 }
