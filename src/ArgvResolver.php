@@ -206,7 +206,7 @@ class ArgvResolver extends StreamAware
      *
      * @throws LogicException
      */
-    public function resolve($argv)
+    public function resolve($argv = [])
     {
         $argc = 0;
 

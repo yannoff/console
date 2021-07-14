@@ -132,7 +132,7 @@ abstract class Command extends StreamAware implements FormatterAware
      * @return int The command exit status code (O for success)
      * @throws LogicException
      */
-    public function run($args)
+    public function run($args = [])
     {
         $this->resolver->resolve($args);
 
