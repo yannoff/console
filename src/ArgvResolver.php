@@ -17,6 +17,7 @@ use Yannoff\Component\Console\Definition\Argument;
 use Yannoff\Component\Console\Definition\Option;
 use Yannoff\Component\Console\Exception\Definition\ArgumentNotSetException;
 use Yannoff\Component\Console\Exception\Definition\InvalidOptionTypeException;
+use Yannoff\Component\Console\Exception\Definition\MissingArgumentsException;
 use Yannoff\Component\Console\Exception\Definition\UndefinedArgumentException;
 use Yannoff\Component\Console\Exception\Definition\UndefinedOptionException;
 use Yannoff\Component\Console\Exception\ResolverException;
@@ -207,6 +208,7 @@ class ArgvResolver extends StreamAware
     public function resolve($argv)
     {
         $argc = 0;
+        $expectedArgs = $this->definition->getMandatoryArgs();
 
         // Iterate over command-line arguments and populate options/arguments accordingly
         while (null !== ($pos = key($argv))) {
@@ -252,6 +254,7 @@ class ArgvResolver extends StreamAware
                         }
                         $name = $this->definition->getNameByPosition('arguments', $argc);
                         $this->arguments[$name] = $arg;
+                        unset($expectedArgs[$name]);
                         $argc++;
                         break;
                 endswitch;
@@ -264,6 +267,11 @@ class ArgvResolver extends StreamAware
                 $this->ioerror($error);
             }
             next($argv);
+        }
+
+        // If some mandatory arguments are missing from command invocation, raise fatal exception
+        if (count($expectedArgs) > 0) {
+            throw new MissingArgumentsException($expectedArgs);
         }
     }
 
