@@ -336,5 +336,4 @@ class Application extends StreamAware implements FormatterAware
 
         return $this;
     }
-
 }

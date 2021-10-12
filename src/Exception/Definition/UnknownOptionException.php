@@ -38,5 +38,4 @@ class UnknownOptionException extends RuntimeException implements ResolverExcepti
         $message = sprintf('Unrecognized "%s" option', $name);
         parent::__construct($message, $code, $previous);
     }
-
 }
