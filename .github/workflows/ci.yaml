@@ -1,0 +1,29 @@
+# GitHub Actions Documentation: https://docs.github.com/en/actions
+
+name: "build"
+
+on: ["pull_request", "push"]
+
+env:
+  COMPOSER_ROOT_VERSION: "2.1.9"
+
+jobs:
+  coding-standards:
+    name: "Coding standards"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout repository"
+        uses: "actions/checkout@v2"
+
+      - name: "Install PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "latest"
+          coverage: "none"
+
+      - name: "Install dependencies (Composer)"
+        uses: "ramsey/composer-install@v1"
+
+      - name: "Check coding standards (PHP_CodeSniffer)"
+        run: "vendor/bin/phpcs ./src"
+
