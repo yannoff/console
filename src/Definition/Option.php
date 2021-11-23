@@ -128,7 +128,7 @@ class Option extends Item
             $synopsis .= sprintf(' %s', 'VALUE');
         }
 
-        $help = sprintf('\t%-18s %s', $synopsis, $this->help);
+        $help = sprintf("\t%-18s %s", $synopsis, $this->help);
 
         if ($this->hasDefault()) {
             $help .= sprintf(' (default: <strong>%s</strong>)', $this->default);

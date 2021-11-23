@@ -101,7 +101,7 @@ class Argument extends Item
      */
     public function getSynopsis()
     {
-        $help = sprintf('\t%-18s %s', $this->name, $this->help);
+        $help = sprintf("\t%-18s %s", $this->name, $this->help);
 
         if ($this->hasDefault()) {
             $help .= sprintf(' (default: <strong>%s</strong>)', $this->default);
