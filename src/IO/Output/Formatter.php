@@ -40,6 +40,20 @@ interface Formatter
     const CRLF = "\r\n";
 
     /**
+     * Tabulation character
+     *
+     * @var string
+     */
+    const TAB = "\t";
+
+    /**
+     * Soft-tab string: 4 spaces
+     *
+     * @var string
+     */
+    const STAB = "    ";
+
+    /**
      * Render the given markup text into a terminal-compatible format
      *
      * @param string $text The pre-formatted text to be rendered
