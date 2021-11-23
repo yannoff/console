@@ -65,9 +65,6 @@ class PosixFormatter implements Formatter
             $text = $this->replace($text, $tag, $modifiers['open'], $modifiers['close']);
         }
 
-        // Hack to remove extra backslashes added accidentally
-        $text = stripcslashes($text);
-
         return $text;
     }
 
@@ -85,7 +82,7 @@ class PosixFormatter implements Formatter
     protected function replace($text, $tag, $open, $close)
     {
         $in = sprintf('/<%1$s>([^<]*)<\/%1$s>/', $tag);
-        $out = sprintf("\\\033[%s$1\\\033[%s", $open, $close);
+        $out = sprintf("\033[%s$1\033[%s", $open, $close);
         $text = preg_replace($in, $out, $text);
 
         return $text;
