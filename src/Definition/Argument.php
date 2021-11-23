@@ -14,6 +14,7 @@
 namespace Yannoff\Component\Console\Definition;
 
 use Yannoff\Component\Console\Exception\Definition\InvalidArgumentTypeException;
+use Yannoff\Component\Console\IO\Output\Formatter;
 
 /**
  * Class Argument
@@ -101,7 +102,7 @@ class Argument extends Item
      */
     public function getSynopsis()
     {
-        $help = sprintf("\t%-18s %s", $this->name, $this->help);
+        $help = sprintf("%s%-18s %s", Formatter::TAB, $this->name, $this->help);
 
         if ($this->hasDefault()) {
             $help .= sprintf(' (default: <strong>%s</strong>)', $this->default);

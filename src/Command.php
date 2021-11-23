@@ -280,10 +280,13 @@ abstract class Command extends StreamAware implements FormatterAware
         $lines = [];
         $lines[] = $this->getSynopsis();
         foreach (['arguments', 'options'] as $bag) {
-            $lines[] = sprintf("<strong>%s</strong>", ucfirst($bag));
             try {
-                foreach ($this->definition->all($bag) as $name => $item) {
-                    $lines[] = $item->getSynopsis();
+                $definitions = $this->definition->all($bag);
+                if (count($definitions) > 0) {
+                    $lines[] = sprintf("<strong>%s</strong>", ucfirst($bag));
+                    foreach ($definitions as $name => $item) {
+                        $lines[] = $item->getSynopsis();
+                    }
                 }
             } catch (LogicException $e) {
                 // DefinitionException should never raise in this context,
@@ -293,7 +296,7 @@ abstract class Command extends StreamAware implements FormatterAware
             }
         }
 
-        $out = implode("\n", $lines) . "\n";
+        $out = implode(Formatter::LF, $lines) . Formatter::LF;
 
         return $out;
     }
@@ -305,7 +308,9 @@ abstract class Command extends StreamAware implements FormatterAware
      */
     protected function getSynopsis()
     {
-        $message = "<strong>Usage</strong>\n\t%s %s [options] [--] %s\n<strong>Description</strong>\n\t%s";
+        $nl = Formatter::LF;
+        $sep = $nl . Formatter::TAB;
+        $message = "<strong>Usage</strong>" . $sep . "%s %s [options] [--] %s" . $nl . "<strong>Description</strong>" . $sep . "%s";
 
         return sprintf($message, $this->application->getScript(), $this->name, $this->definition->getArgSynopsis(), $this->help);
     }
