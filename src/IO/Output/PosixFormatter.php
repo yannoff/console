@@ -27,6 +27,7 @@ class PosixFormatter implements Formatter
     protected $tags = [
         'strong' => [ 'open' => '01m', 'close' => '00m' ],
         'black' => ['open' => '00;30m', 'close' => '00m'],
+        'grey' => ['open' => '01;30m', 'close' => '00m'],
         'red' => ['open' => '00;31m', 'close' => '00m'],
         'green' => ['open' => '00;32m', 'close' => '00m'],
         'yellow' => ['open' => '00;33m', 'close' => '00m'],
