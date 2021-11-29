@@ -63,7 +63,7 @@ class PosixFormatter implements Formatter
     protected function render($text)
     {
         foreach ($this->tags as $tag => $modifiers) {
-            $text = $this->replace($text, $tag, $modifiers['open'], $modifiers['close']);
+            $text = $this->replace($text, new Tag($tag, $modifiers['open']));
         }
 
         return $text;
@@ -72,20 +72,17 @@ class PosixFormatter implements Formatter
     /**
      * Substitute all tag occurrences by their modifiers counterparts
      *
-     * @param string $text  The text to format
-     * @param string $tag   The tag to be replaced
-     * @param string $open  The opening tag substitution
-     * @param string $close The closing tag substitution
+     * @param string $text The text to format
+     * @param Tag    $tag  The tag to be replaced
      *
      * @return string
      * @internal
      */
-    protected function replace($text, $tag, $open, $close)
+    protected function replace($text, $tag)
     {
-        $in = sprintf('/<%1$s>([^<]*)<\/%1$s>/', $tag);
-        $out = sprintf("\033[%s$1\033[%s", $open, $close);
-        $text = preg_replace($in, $out, $text);
+        $in = [$tag->open(), $tag->close()];
+        $out = [$tag->tput(), $tag->reset()];
 
-        return $text;
+        return str_replace($in, $out, $text);
     }
 }
