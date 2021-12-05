@@ -325,14 +325,21 @@ class Application extends StreamAware implements FormatterAware
      * Setter for the default command name
      * Allow easy configuration in user-defined applications
      *
-     * @param string $name Name of the default command
-     *                     A command object may also be passed, thanks to force to-string type-casting
+     * @param string|Command $command Name of the default command
+     *                                A command object may also be passed, thanks to force to-string type-casting
      *
      * @return self
+     * @throws UnknownCommandException
      */
-    public function setDefault($name)
+    public function setDefault($command)
     {
-        $this->default = $name;
+        $command = (string) $command;
+
+        if (!$this->has($command)) {
+            throw new UnknownCommandException($command);
+        }
+
+        $this->default = $command;
 
         return $this;
     }
