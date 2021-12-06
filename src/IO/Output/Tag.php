@@ -1,6 +1,8 @@
 <?php
+
 /**
  * This file is part of the yannoff/console library
+ *
  * (c) Yannoff (https://github.com/yannoff)
  *
  * @project   yannoff/console

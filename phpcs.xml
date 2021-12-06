@@ -1,10 +1,12 @@
 <ruleset>
-    <rule ref="PSR2">
+    <rule ref="PSR12">
         <exclude name="Squiz" />
         <exclude name="Generic.Files.LineLength" />
         <exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingAfterOpen" />
         <exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingBeforeClose" />
         <exclude name="PSR2.Methods.MethodDeclaration.Underscore" />
+        <!-- To keep compatibility with PHP < 7.1, this rule can't apply -->
+        <exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
     </rule>
     <rule ref="Generic.Files.LineLength">
         <properties>
