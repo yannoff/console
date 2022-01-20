@@ -26,5 +26,4 @@ use Yannoff\Component\Console\Exception\LogicException;
  */
 class StreamLogicException extends LogicException
 {
-
 }
