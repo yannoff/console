@@ -56,6 +56,11 @@ interface Formatter
     const STAB = "    ";
 
     /**
+     * Minimal left-padding width for the name columns in help
+     */
+    const PAD = 18;
+
+    /**
      * Render the given markup text into a terminal-compatible format
      *
      * @param string $text The pre-formatted text to be rendered

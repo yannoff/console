@@ -270,19 +270,24 @@ class Application extends StreamAware implements FormatterAware
     /**
      * Build application usage/help message upon the registered commands and return it
      *
+     * @param string $tab   The tabulation string (defaults to `\n`)
+     * @param int    $width Minimum width for the command names column (defaults to `18`)
+     *
      * @return string
      */
-    public function getUsage()
+    public function getUsage($tab = Formatter::TAB, $width = Formatter::PAD)
     {
         $lines = [];
+
         $lines[] = "<strong>Usage</strong>";
-        $lines[] = sprintf("\t%s <command> [<options>] -- [<arguments>]", $this->script);
+        $lines[] = sprintf("${tab}%s <command> [<options>] -- [<arguments>]", $this->script);
         $lines[] = "<strong>Commands</strong>";
+
         foreach ($this->commands as $name => $command) {
-            $lines[] = sprintf("\t%-18s  %s", $name, $command->getHelp());
+            $lines[] = sprintf("${tab}%-{$width}s  %s", $name, $command->getHelp());
         }
 
-        return implode("\n", $lines);
+        return implode(Formatter::LF, $lines);
     }
 
     /**
