@@ -15,6 +15,8 @@
 
 namespace Yannoff\Component\Console\Definition;
 
+use Yannoff\Component\Console\IO\Output\Formatter;
+
 /**
  * Class Item
  * Super-class for both Option & Argument
@@ -61,9 +63,12 @@ abstract class Item
     /**
      * Return the formatted help for the item
      *
+     * @param string $tab The tabulation string (defaults to `\n`)
+     * @param int    $width Minimum width for the names column (defaults to `18`)
+     *
      * @return string
      */
-    abstract public function getSynopsis();
+    abstract public function getSynopsis($tab = Formatter::TAB, $width = Formatter::PAD);
 
     /**
      * Give the authorized values for the type property

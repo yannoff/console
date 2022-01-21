@@ -123,7 +123,7 @@ class Option extends Item
     /**
      * {@inheritdoc}
      */
-    public function getSynopsis()
+    public function getSynopsis($tab = Formatter::TAB, $width = Formatter::PAD)
     {
         $synopsis = implode(', ', $this->getNames());
 
@@ -131,7 +131,7 @@ class Option extends Item
             $synopsis .= sprintf(' %s', 'VALUE');
         }
 
-        $help = sprintf("%s%-18s %s", Formatter::TAB, $synopsis, $this->help);
+        $help = sprintf("%s%-${width}s %s", $tab, $synopsis, $this->help);
 
         if ($this->hasDefault()) {
             $help .= sprintf(' (default: <strong>%s</strong>)', $this->default);

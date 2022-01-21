@@ -275,19 +275,27 @@ abstract class Command extends StreamAware implements FormatterAware
     /**
      * Build the whole command usage/help message with all options/arguments documented
      *
+     * @param string $tab   The tabulation string (defaults to `\n`)
+     * @param int    $width Minimum width for the option/argument names column (defaults to `18`)
+     *
      * @return string
      */
-    public function getUsage()
+    public function getUsage($tab = Formatter::TAB, $width = Formatter::PAD)
     {
         $lines = [];
-        $lines[] = $this->getSynopsis();
+
+        $lines[] = "<strong>Usage</strong>";
+        $lines[] = $this->getSynopsis($tab);
+        $lines[] = "<strong>Description</strong>";
+        $lines[] = $tab . $this->help;
+
         foreach (['arguments', 'options'] as $bag) {
             try {
                 $definitions = $this->definition->all($bag);
                 if (count($definitions) > 0) {
                     $lines[] = sprintf("<strong>%s</strong>", ucfirst($bag));
                     foreach ($definitions as $name => $item) {
-                        $lines[] = $item->getSynopsis();
+                        $lines[] = $item->getSynopsis($tab, $width);
                     }
                 }
             } catch (LogicException $e) {
@@ -298,23 +306,21 @@ abstract class Command extends StreamAware implements FormatterAware
             }
         }
 
-        $out = implode(Formatter::LF, $lines) . Formatter::LF;
-
-        return $out;
+        return implode(Formatter::LF, $lines) . Formatter::LF;
     }
 
     /**
      * Get the command synopsis
      *
+     * @param string $tab The tabulation string (defaults to `\n`)
+     *
      * @return string
      */
-    protected function getSynopsis()
+    protected function getSynopsis($tab = Formatter::TAB)
     {
-        $nl = Formatter::LF;
-        $sep = $nl . Formatter::TAB;
-        $message = "<strong>Usage</strong>" . $sep . "%s %s [options] [--] %s" . $nl . "<strong>Description</strong>" . $sep . "%s";
+        $format = "{$tab}%s %s [options] [--] %s";
 
-        return sprintf($message, $this->application->getScript(), $this->name, $this->definition->getArgSynopsis(), $this->help);
+        return sprintf($format, $this->application->getScript(), $this->name, $this->definition->getArgSynopsis());
     }
 
     /**
