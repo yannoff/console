@@ -212,6 +212,7 @@ class ArgvResolver extends StreamAware
 
         // Iterate over command-line arguments and populate options/arguments accordingly
         while (null !== ($pos = key($argv))) {
+
             $arg = current($argv);
             $type = $this->getType($arg);
 
@@ -219,6 +220,15 @@ class ArgvResolver extends StreamAware
                 switch ($type):
                     case self::TYPE_LONGOPT:
                     case self::TYPE_SHORTOPT:
+                        // Options of the form "--name=value" are appended as ["--name", "value"]
+                        // to the arguments stack so they can be be processed as normal options
+                        if (strpos($arg, '=')) {
+                            list($option, $value) = explode('=', $arg);
+                            $argv[] = $option;
+                            $argv[] = $value;
+                            break;
+                        }
+
                         $size = (int)$type;
                         $name = substr($arg, $size);
 
