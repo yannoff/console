@@ -62,10 +62,12 @@ interface Formatter
 
     /**
      * Render the given markup text into a terminal-compatible format
+     * If the output file descriptor does not refer to a TTY, a raw text must be returned
      *
      * @param string $text The pre-formatted text to be rendered
+     * @param mixed  $fd   The output resource or int file descriptor
      *
      * @return string
      */
-    public function format($text);
+    public function format($text, $fd);
 }
