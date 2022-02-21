@@ -27,7 +27,7 @@ class FlatFormatter implements Formatter
     /**
      * {@inheritdoc}
      */
-    public function format($text)
+    public function format($text, $fd)
     {
         return strip_tags($text);
     }

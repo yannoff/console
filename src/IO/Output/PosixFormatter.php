@@ -49,8 +49,13 @@ class PosixFormatter implements Formatter
     /**
      * {@inheritdoc}
      */
-    public function format($text)
+    public function format($text, $fd)
     {
+        // In case of a piped output, return a raw text
+        if (! posix_isatty($fd)) {
+            return strip_tags($text);
+        }
+
         return $this->render($text);
     }
 

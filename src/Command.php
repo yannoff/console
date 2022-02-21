@@ -252,7 +252,7 @@ abstract class Command extends StreamAware implements FormatterAware
      */
     public function writeln($text = '', $options = null)
     {
-        $text = $this->getFormatter()->format($text);
+        $text = $this->getFormatter()->format($text, STDOUT);
 
         return $this->iowrite($text, Formatter::LF);
     }
@@ -267,7 +267,7 @@ abstract class Command extends StreamAware implements FormatterAware
      */
     public function errorln($text = '', $options = null)
     {
-        $text = $this->getFormatter()->format($text);
+        $text = $this->getFormatter()->format($text, STDERR);
 
         return $this->ioerror($text, Formatter::LF);
     }
