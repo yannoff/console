@@ -69,5 +69,5 @@ interface Formatter
      *
      * @return string
      */
-    public function format($text, $fd);
+    public function format($text, $fd = null);
 }

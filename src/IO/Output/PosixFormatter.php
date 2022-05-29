@@ -49,7 +49,7 @@ class PosixFormatter implements Formatter
     /**
      * {@inheritdoc}
      */
-    public function format($text, $fd)
+    public function format($text, $fd = null)
     {
         // In case of a piped output, return a raw text
         if (! posix_isatty($fd)) {
