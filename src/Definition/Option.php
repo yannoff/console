@@ -131,7 +131,7 @@ class Option extends Item
             $synopsis .= sprintf(' %s', 'VALUE');
         }
 
-        $help = sprintf("%s%-${width}s %s", $tab, $synopsis, $this->help);
+        $help = sprintf("%s%-{$width}s %s", $tab, $synopsis, $this->help);
 
         if ($this->hasDefault()) {
             $help .= sprintf(' (default: <strong>%s</strong>)', $this->default);

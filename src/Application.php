@@ -267,11 +267,11 @@ class Application extends StreamAware implements FormatterAware
         $lines = [];
 
         $lines[] = "<strong>Usage</strong>";
-        $lines[] = sprintf("${tab}%s <command> [<options>] -- [<arguments>]", $this->script);
+        $lines[] = sprintf("{$tab}%s <command> [<options>] -- [<arguments>]", $this->script);
         $lines[] = "<strong>Commands</strong>";
 
         foreach ($this->getUserCommands() as $name => $command) {
-            $lines[] = sprintf("${tab}%-{$width}s  %s", $name, $command->getHelp());
+            $lines[] = sprintf("{$tab}%-{$width}s  %s", $name, $command->getHelp());
         }
 
         return implode(Formatter::LF, $lines);
