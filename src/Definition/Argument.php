@@ -104,7 +104,7 @@ class Argument extends Item
      */
     public function getSynopsis($tab = Formatter::TAB, $width = Formatter::PAD)
     {
-        $help = sprintf("%s%-${width}s %s", $tab, $this->name, $this->help);
+        $help = sprintf("%s%-{$width}s %s", $tab, $this->name, $this->help);
 
         if ($this->hasDefault()) {
             $help .= sprintf(' (default: <strong>%s</strong>)', $this->default);

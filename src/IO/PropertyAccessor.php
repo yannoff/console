@@ -40,10 +40,10 @@ class PropertyAccessor
      *
      * @return mixed The property, by reference
      */
-    public function & get ($object, $property)
+    public function & get (StreamAware $object, $property)
     {
         $value = & Closure::bind(function & () use ($property) {
-            return $this->$property;
+            return $this->{$property};
         }, $object, $object)->__invoke();
 
         return $value;
