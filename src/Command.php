@@ -23,6 +23,7 @@ use Yannoff\Component\Console\Exception\Definition\UndefinedArgumentException;
 use Yannoff\Component\Console\Exception\Definition\UndefinedOptionException;
 use Yannoff\Component\Console\Exception\LogicException;
 use Yannoff\Component\Console\Exception\RuntimeException;
+use Yannoff\Component\Console\IO\Output\Verbosity;
 use Yannoff\Component\Console\IO\StreamAware;
 use Yannoff\Component\Console\IO\Output\Formatter;
 use Yannoff\Component\Console\IO\Output\FormatterAware;
@@ -58,6 +59,13 @@ abstract class Command extends StreamAware implements FormatterAware
      * @var string
      */
     protected $desc;
+
+    /**
+     * The main command verbosity level
+     *
+     * @var int
+     */
+    protected $verbosity = 0;
 
     /**
      * Pointer to the main Application instance
@@ -273,6 +281,20 @@ abstract class Command extends StreamAware implements FormatterAware
     }
 
     /**
+     * Print a message on stderr if priority is relevant compared to the command verbosity level
+     *
+     * @param string $message
+     * @param int    $level
+     */
+    protected function dmesg($message, $level = Verbosity::ERROR)
+    {
+        if ($level <= $this->verbosity) {
+            $message = \sprintf("[%s] %s", $this->application->getName(), $message);
+            $this->errorln($message);
+        }
+    }
+
+    /**
      * Build the whole command usage/help message with all options/arguments documented
      *
      * @param string $tab   The tabulation string (defaults to `\n`)
@@ -433,3 +455,4 @@ abstract class Command extends StreamAware implements FormatterAware
         return $this;
     }
 }
+
