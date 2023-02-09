@@ -12,6 +12,9 @@
  * file that was distributed with this source code.
  */
 
+// Mute PHP deprecation warnings & notices
+error_reporting(E_ERROR);
+
 require __DIR__ . '/../vendor/autoload.php';
 
 use Yannoff\Component\Console\Application;

@@ -45,6 +45,10 @@ First the application script, the script that will be invoked using `php bin/app
 #!/usr/bin/env php
 <?php
 // bin/app.php
+
+// Mute PHP deprecation warnings & notices
+error_reporting(E_ERROR);
+
 require __DIR__ . '/../vendor/autoload.php';
 
 use Yannoff\Component\Console\Application;
