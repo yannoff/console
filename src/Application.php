@@ -284,6 +284,11 @@ class Application extends StreamAware implements FormatterAware
         $lines[] = "<strong>Commands</strong>";
 
         foreach ($this->commands as $name => $command) {
+            // Don't display help or version commands
+            if (in_array($name, [self::COMMAND_HELP, self::COMMAND_VERS])) {
+                continue;
+            }
+
             $lines[] = sprintf("${tab}%-{$width}s  %s", $name, $command->getHelp());
         }
 
