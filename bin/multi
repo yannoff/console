@@ -20,8 +20,11 @@ require __DIR__ . '/../vendor/autoload.php';
 use Yannoff\Component\Console\Application;
 use Yannoff\Component\Console\Tests\Command\HelloCommand;
 
-$application = new Application('greeting', '0.0.0');
+$application = new Application('greeting - multi', '0.0.0');
 
-$application
-    ->add(new HelloCommand('hello'))
-    ->run();
+$application->addCommands([
+    new HelloCommand('ciao'),
+    new HelloCommand('coucou'),
+]);
+
+$application->run();

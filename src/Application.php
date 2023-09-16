@@ -77,23 +77,31 @@ class Application extends StreamAware implements FormatterAware
     protected $commands;
 
     /**
-     * Name of the default command to be used if none was supplied
+     * Is this application a Mono-Command Application ?
      *
-     * @var string
+     * @var bool
      */
-    protected $default;
+    protected $mono = false;
 
     /**
      * Application constructor.
      *
-     * @param string $name    The application name
-     * @param string $version The application version
+     * @param string       $name    The application name
+     * @param string       $version The application version
+     * @param Command|null $main    Main command (only for MCA)
      */
-    public function __construct($name, $version)
+    public function __construct($name, $version, Command $main = null)
     {
         $this->name = $name;
         $this->version = $version;
         $this->formatter = FormatterFactory::create();
+
+        // For Mono-Command Applications, the command can be passed as a 3rd constructor arg
+        if ($main instanceof Command) {
+            $this
+                ->add($main)
+                ->mono = true;
+        }
 
         $this->init();
     }
@@ -153,31 +161,10 @@ class Application extends StreamAware implements FormatterAware
         }
 
         $this->script = array_shift($args);
-        $command = array_shift($args);
-
-        // Invoke the appropriated command for special global options like --help, --version, etc
-        switch ($command):
-            case '--version':
-                $command = self::COMMAND_VERS;
-                break;
-
-            case 'list':
-            case '--help':
-            case '-h':
-            case '--usage':
-                $command = self::COMMAND_HELP;
-                break;
-
-            case null:
-                $command = $this->getDefault();
-                break;
-
-            default:
-                break;
-        endswitch;
 
         try {
-            return $this->get($command)->run($args);
+            $info = $this->parse($args);
+            return $this->get($info['command'])->run($info['args']);
         } catch (LogicException $e) {
             $error = sprintf('%s, exiting.', (string) $e);
             $this->iowrite($error);
@@ -283,12 +270,7 @@ class Application extends StreamAware implements FormatterAware
         $lines[] = sprintf("${tab}%s <command> [<options>] -- [<arguments>]", $this->script);
         $lines[] = "<strong>Commands</strong>";
 
-        foreach ($this->commands as $name => $command) {
-            // Don't display help or version commands
-            if (in_array($name, [self::COMMAND_HELP, self::COMMAND_VERS])) {
-                continue;
-            }
-
+        foreach ($this->getUserCommands() as $name => $command) {
             $lines[] = sprintf("${tab}%-{$width}s  %s", $name, $command->getHelp());
         }
 
@@ -296,15 +278,82 @@ class Application extends StreamAware implements FormatterAware
     }
 
     /**
+     * Find command name and arguments from the command-line invocation
+     *
+     * @param array $args The command-line parameters list
+     *
+     * @return array An associative array of the form ['command' => '...', 'args' => array(...)]
+     */
+    public function parse($args)
+    {
+        if (in_array('--version', $args)) {
+            return [
+                'command' => self::COMMAND_VERS,
+                'args' => array_filter($args, function ($a) { return $a !== '--version'; })
+            ];
+        }
+
+        if ($this->isMono()) {
+            return ['command' => $this->getDefault(), 'args' => $args];
+        }
+
+        $command = array_shift($args);
+
+        switch ($command):
+            case 'list':
+            case '--help':
+            case '-h':
+            case null:
+                $command = self::COMMAND_HELP;
+                break;
+
+            default:
+                break;
+        endswitch;
+
+        return ['command' => $command, 'args' => $args];
+    }
+
+    /**
+     * Setter for the mono-command application flag
+     *
+     * @param bool $mono
+     *
+     * @return self
+     */
+    public function setMono($mono)
+    {
+        $this->mono = $mono;
+
+        return $this;
+    }
+
+    /**
+     * Getter for the mono-command application flag
+     *
+     * @return bool
+     */
+    public function isMono()
+    {
+        return $this->mono;
+    }
+
+    /**
+     * @return Command[]
+     */
+    public function getUserCommands()
+    {
+        return array_filter($this->commands, function (Command $command) { return (!$command->isSystem()); });
+    }
+
+    /**
      * Hook for initialization tasks, called at the end of the constructor:
      * - add common commands (help, version)
-     * - set default command name
      */
     protected function init()
     {
         $this
-            ->addBaseCommands()
-            ->setDefault(self::COMMAND_HELP);
+            ->addBaseCommands();
     }
 
     /**
@@ -326,32 +375,16 @@ class Application extends StreamAware implements FormatterAware
      * Getter for the default command name
      *
      * @return string
+     * @throws LogicException If the application has no user-defined command
      */
     public function getDefault()
     {
-        return $this->default;
-    }
+        $commands = $this->getUserCommands();
 
-    /**
-     * Setter for the default command name
-     * Allow easy configuration in user-defined applications
-     *
-     * @param string|Command $command Name of the default command
-     *                                A command object may also be passed, thanks to force to-string type-casting
-     *
-     * @return self
-     * @throws UnknownCommandException
-     */
-    public function setDefault($command)
-    {
-        $command = (string) $command;
-
-        if (!$this->has($command)) {
-            throw new UnknownCommandException($command);
+        if (0 === count($commands)) {
+            throw new LogicException('Mono-command applications need at least 1 command defined');
         }
 
-        $this->default = $command;
-
-        return $this;
+        return $commands[0]->getName();
     }
 }

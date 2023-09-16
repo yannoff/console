@@ -31,7 +31,6 @@ class HelloCommand extends Command
     {
         // the content of the configure method is almost identical...
         $this
-            ->setName('hello')
             ->setHelp('Hello world')
             ->setDescription('Hello world demo application')
             // ...except for argument type delaration
@@ -60,7 +59,7 @@ class HelloCommand extends Command
         // the same goes for the option getter
         $upper = $this->getOption('upper');
 
-        $message = 'Hello ' . $name;
+        $message = ucfirst($this->name) . ' ' . $name;
         if ($upper) {
             $message = strtoupper($message);
         }
