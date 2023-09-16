@@ -3,8 +3,6 @@
 name: Run checks
 
 on:
-    - pull_request
-    # TODO: Save the planet, only trigger on "pull-request"
     - push
 
 env:
