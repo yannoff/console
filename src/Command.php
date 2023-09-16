@@ -332,17 +332,36 @@ abstract class Command extends StreamAware implements FormatterAware
     }
 
     /**
+     * Discriminate user-defined vs built-in commands
+     *
+     * @return bool
+     */
+    public function isSystem()
+    {
+        return false;
+    }
+
+    /**
      * Get the command synopsis
      *
-     * @param string $tab The tabulation string (defaults to `\n`)
+     * @param string $tab The tabulation string (defaults to `\t`)
      *
      * @return string
      */
     protected function getSynopsis($tab = Formatter::TAB)
     {
-        $format = "{$tab}%s %s [options] [--] %s";
+        $help = [];
 
-        return sprintf($format, $this->application->getScript(), $this->name, $this->definition->getArgSynopsis());
+        $help[] = sprintf('%s%s', $tab, $this->application->getScript());
+
+        if (! $this->getApplication()->isMono()) {
+            $help[] = $this->name;
+        }
+
+        $help[] = '[options] [--]';
+        $help[] = $this->definition->getArgSynopsis();
+
+        return implode(' ', $help);
     }
 
     /**

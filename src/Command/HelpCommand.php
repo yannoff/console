@@ -30,6 +30,14 @@ class HelpCommand extends Command
     /**
      * {@inheritdoc}
      */
+    public function isSystem()
+    {
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function configure()
     {
         $this
