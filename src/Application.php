@@ -385,6 +385,6 @@ class Application extends StreamAware implements FormatterAware
             throw new LogicException('Mono-command applications need at least 1 command defined');
         }
 
-        return $commands[0]->getName();
+        return current($commands)->getName();
     }
 }
