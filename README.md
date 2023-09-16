@@ -10,17 +10,9 @@ A simple, lightweight console implementation for command-line PHP applications.
 
 ## Why are we here ?
 
-This component was conceived as a replacement for the [symfony/console](https://github.com/symfony/console) component.
+This library was conceived as an alternative to the [symfony/console](https://github.com/symfony/console) component.
 
-
-After several years using the [symfony/console](https://github.com/symfony/console), it became more and more obvious: 
-for most cases, the component was not fitting the needs.
-
-Such a [Swiss Army Knife](https://sourcemaking.com/antipatterns/swiss-army-knife) component may be perfect for who 
-has a rapid-development, short term objective, or for a proof-of-concept. 
-But in most cases, only a few among the plenty of available features are necessary.
-
-This is like sending a whole [leathernecks squadron](https://en.wikipedia.org/wiki/Leatherneck) to kill a harmless fly.
+Truth is, the symfony component may be good for rapid-application-development or for a proof-of-concept, but on the other hand doesn't seem to be the best option for most use-cases, since only a few among the plenty of available features are necessary.
 
 So here came the need for the [yannoff/console](https://github.com/yannoff/console) component.
 
