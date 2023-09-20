@@ -27,6 +27,7 @@ use Yannoff\Component\Console\Exception\LogicException;
 use Yannoff\Component\Console\Exception\RuntimeException;
 use Yannoff\Component\Console\IO\ASCII;
 use Yannoff\Component\Console\IO\IOHelper;
+use Yannoff\Component\Console\IO\StreamAware;
 
 /**
  * Class Command
@@ -34,7 +35,7 @@ use Yannoff\Component\Console\IO\IOHelper;
  *
  * @package Yannoff\Component\Console
  */
-class Command
+class Command implements StreamAware
 {
     use IOHelper;
 
@@ -163,10 +164,10 @@ class Command
         try {
             $this->resolver->resolve($args);
         } catch (MissingArgumentsException $e) {
+            // FIXME Shouldn't we catch ALL exceptions here ?
             $exception = $e;
         }
 
-        // TODO handle version option too
         if ($this->getOption('help')) {
             $message = $this->getUsage();
             $this->write($message);
@@ -449,28 +450,10 @@ class Command
      * @param RuntimeException $exception
      *
      * @return int
-     * @todo Implement generic runtime exception handler system
-     * @see  https://github.com/yannoff/console/issues/11
      */
     protected function handleException(RuntimeException $exception)
     {
-        $type = get_class($exception);
-
-        switch ($type):
-            case MissingArgumentsException::class:
-                /** @var MissingArgumentsException $exception */
-                foreach ($exception->getArguments() as $arg) {
-                    $error = sprintf('%s: Missing argument "%s".', 'Error', $arg);
-                    $this->errorln($error);
-                }
-                break;
-            default:
-                $error = sprintf('%s: %s.', 'Error', $exception->getMessage());
-                $this->errorln($error);
-                break;
-        endswitch;
-
-        return $exception->getCode();
+        return ExceptionHandler::process($exception, $this);
     }
 }
 
