@@ -18,6 +18,7 @@ namespace Yannoff\Component\Console\IO\Stream;
 use Yannoff\Component\Console\Exception\IO\StreamLogicException;
 use Yannoff\Component\Console\Exception\UndefinedConstantException;
 use Yannoff\Component\Console\IO\ConstantAccessor;
+use Yannoff\Component\Console\IO\FStat;
 
 /**
  * Class Wrapper
@@ -88,6 +89,26 @@ class Wrapper
     public function getOpenMode()
     {
         return $this->constant('MODE');
+    }
+
+    /**
+     * Check whether the stream is a FIFO
+     *
+     * @return bool
+     */
+    public function isPiped()
+    {
+        return FStat::isFifo($this->handle);
+    }
+
+    /**
+     * Check whether the stream is a regular file redirect
+     *
+     * @return bool
+     */
+    public function isFile()
+    {
+        return FStat::isRegularFile($this->handle);
     }
 
     /**

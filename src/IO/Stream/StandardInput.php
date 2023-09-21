@@ -37,8 +37,15 @@ class StandardInput extends Wrapper implements IOReader
     /**
      * {@inheritdoc}
      */
-    public function read()
+    public function read($interactive = false)
     {
-        return stream_get_contents($this->handle);
+        // Unless explicitly forced using the $interactive parameter,
+        // assume we only want to read from stdin when it's a piped
+        // input or a regular file redirect
+        if ($interactive || $this->isPiped() || $this->isFile()) {
+            return stream_get_contents($this->handle);
+        }
+
+        return '';
     }
 }

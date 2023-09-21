@@ -73,12 +73,14 @@ trait StreamAwareTrait
     /**
      * Read contents from the standard input
      *
+     * @param bool $interactive Whether to accept user input
+     *
      * @return string|false The contents or **false** in case of failure
      */
-    public function ioread()
+    public function ioread($interactive = false)
     {
         $reader = StreamInitializer::getReader($this, IOStream::STDIN);
 
-        return $reader->read();
+        return $reader->read($interactive);
     }
 }
