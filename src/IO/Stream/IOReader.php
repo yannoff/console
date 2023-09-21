@@ -26,7 +26,11 @@ interface IOReader extends IOStream
     /**
      * Fetch contents from the input stream
      *
+     * @param bool $interactive Whether to accept contents from user input or not
+     * If no contents are provided via a pipe or a regular file redirect, controls whether
+     * the terminal should wait for user input - until a terminating sequence is emitted
+     *
      * @return string|false The contents or **false** in case of failure
      */
-    public function read();
+    public function read($interactive = false);
 }
