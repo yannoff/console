@@ -59,7 +59,7 @@ class VersionCommand extends Command
         $version = $this->getApplication()->getVersion();
         $name = $this->getApplication()->getName();
         $message = $raw ? $version : sprintf('<strong>%s</strong> version <strong>%s</strong>', $name, $version);
-        $this->writeln($message);
+        $this->write($message);
 
         return 0;
     }

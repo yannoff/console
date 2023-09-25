@@ -15,15 +15,41 @@
 
 namespace Yannoff\Component\Console\IO;
 
+use Yannoff\Component\Console\IO\Stream\StandardError;
+use Yannoff\Component\Console\IO\Stream\StandardInput;
+use Yannoff\Component\Console\IO\Stream\StandardOutput;
+use Yannoff\Component\Console\IO\Stream\Wrapper;
+
 /**
  * Class StreamAware
- * The main purpose of this super class is to avoid using the trait directly
- * Indeed stream properties should NEVER be accessed directly, as they
- * may not have been instantiated yet
+ * Provide access to IO Stream Readers & Writers
+ *
+ * @property-read StandardInput  $stdin
+ * @property-read StandardError  $stderr
+ * @property-read StandardOutput $stdout
  *
  * @package Yannoff\Component\Console\IO
  */
 class StreamAware
 {
-    use StreamAwareTrait;
+    /** @var StandardInput */
+    private $stdin;
+
+    /** @var StandardError */
+    private $stderr;
+
+    /** @var StandardOutput */
+    private $stdout;
+
+    /**
+     * Magic getter method for the input/output streams
+     *
+     * @param string $name The stream name: stdin, stdout or stderr
+     *
+     * @return Wrapper
+     */
+    public function __get($name)
+    {
+        return StreamInitializer::get($this, $name);
+    }
 }

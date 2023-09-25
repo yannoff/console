@@ -19,20 +19,18 @@ use Yannoff\Component\Console\Command\HelpCommand;
 use Yannoff\Component\Console\Command\VersionCommand;
 use Yannoff\Component\Console\Exception\Command\UnknownCommandException;
 use Yannoff\Component\Console\Exception\LogicException;
+use Yannoff\Component\Console\IO\IOHelper;
 use Yannoff\Component\Console\IO\StreamAware;
 use Yannoff\Component\Console\IO\Output\Formatter;
-use Yannoff\Component\Console\IO\Output\FormatterAware;
-use Yannoff\Component\Console\IO\Output\FormatterAwareTrait;
-use Yannoff\Component\Console\IO\Output\FormatterFactory;
 
 /**
  * Class Application
  *
  * @package Yannoff\Component\Console
  */
-class Application extends StreamAware implements FormatterAware
+class Application extends StreamAware
 {
-    use FormatterAwareTrait;
+    use IOHelper;
 
     /**
      * Name used for the `help` command
@@ -94,7 +92,6 @@ class Application extends StreamAware implements FormatterAware
     {
         $this->name = $name;
         $this->version = $version;
-        $this->formatter = FormatterFactory::create();
 
         // For Mono-Command Applications, the command can be passed as a 3rd constructor arg
         if ($main instanceof Command) {
@@ -104,16 +101,6 @@ class Application extends StreamAware implements FormatterAware
         }
 
         $this->init();
-    }
-
-    /**
-     * Getter for the formatter instance
-     *
-     * @return Formatter
-     */
-    public function getFormatter()
-    {
-        return $this->formatter;
     }
 
     /**
@@ -167,11 +154,11 @@ class Application extends StreamAware implements FormatterAware
             return $this->get($info['command'])->run($info['args']);
         } catch (LogicException $e) {
             $error = sprintf('%s, exiting.', (string) $e);
-            $this->iowrite($error);
+            $this->write($error);
             return $e->getCode();
         } catch (UnknownCommandException $e) {
             $error = sprintf('%s: %s. Exiting.', $this->getScript(), $e->getMessage());
-            $this->ioerror($error);
+            $this->error($error);
             return $e->getCode();
         }
     }

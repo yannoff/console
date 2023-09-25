@@ -49,34 +49,12 @@ class StreamFactory
      */
     public static function create($name)
     {
-        if (! self::supports($name)){
+        if (! StreamInitializer::supports($name)){
             throw new UnsupportedStreamException($name);
         }
 
         $class = self::$streams[$name];
 
         return new $class();
-    }
-
-    /**
-     * Check that the factory can create the queried stream
-     *
-     * @param string $name Short name of the stream
-     *
-     * @return bool
-     */
-    public static function supports($name)
-    {
-        return in_array($name, self::available());
-    }
-
-    /**
-     * List all supported streams short names
-     *
-     * @return array
-     */
-    public static function available()
-    {
-        return array_keys(self::$streams);
     }
 }

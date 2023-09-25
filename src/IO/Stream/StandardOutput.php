@@ -15,6 +15,8 @@
 
 namespace Yannoff\Component\Console\IO\Stream;
 
+use Yannoff\Component\Console\IO\Output\Formatter;
+
 /**
  * Class StandardOutput
  *
@@ -37,8 +39,8 @@ class StandardOutput extends Wrapper implements IOWriter
     /**
      * {@inheritdoc}
      */
-    public function write($contents)
+    public function write($contents, $ending = Formatter::LF)
     {
-        return fwrite($this->handle, $contents);
+        return fwrite($this->handle, $contents . $ending);
     }
 }
