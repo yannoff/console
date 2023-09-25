@@ -273,7 +273,7 @@ class ArgvResolver extends StreamAware
             } catch (ResolverException $e) {
                 // Other ResolverException, on the other hand, should only raise a warning notice
                 $error = sprintf('%s: %s, ignoring.', 'Warning', $e->getMessage());
-                $this->ioerror($error);
+                $this->stderr->write($error);
             }
             next($argv);
         }

@@ -56,7 +56,7 @@ class HelpCommand extends Command
 
         $usage = null === $command ? $this->application->getUsage() : $this->application->get($command)->getUsage();
 
-        $this->writeln($usage);
+        $this->write($usage);
 
         return 0;
     }

@@ -133,4 +133,16 @@ class FStat
     {
         return self::imode($handle) == self::S_IFSOCK;
     }
+
+    /**
+     * Check whether the handle is a TTY
+     *
+     * @param resource $handle
+     *
+     * @return bool
+     */
+    public static function isTTY($handle)
+    {
+        return in_array(self::imode($handle), [self::S_IFIFO, self::S_IFREG]);
+    }
 }

@@ -22,7 +22,7 @@ use Yannoff\Component\Console\IO\Stream\IOReader;
 
 /**
  * Class StreamInitializer
- * External initializer for classes using StreamAwareTrait
+ * External initializer for Stream Aware classes
  *
  * @package Yannoff\Component\Console\IO
  */
@@ -45,8 +45,12 @@ final class StreamInitializer
      *
      * @return IOReader|IOWriter
      */
-    protected static function &get($target, $stream)
+    public static function &get($target, $stream)
     {
+        if (!self::supports($stream)) {
+            throw new UnsupportedStreamException($stream);
+        }
+
         $member = & self::getStream($target, $stream);
 
         if (null === $member) {
@@ -74,62 +78,14 @@ final class StreamInitializer
     }
 
     /**
-     * Lazy IO reader getter & initializer method
-     * Initialize the given reader (if necessary) and return it by reference
+     * Validate the queried IO stream short name
      *
-     * @param object $target The object owning the reader property
-     * @param string $stream The IO reader short name
-     *
-     * @return IOReader
-     */
-    public static function &getReader($target, $stream)
-    {
-        if (! self::supportsReader($stream)) {
-            throw new UnsupportedStreamException($stream);
-        }
-
-        return self::get($target, $stream);
-    }
-
-    /**
-     * Lazy IO writer getter & initializer method
-     * Initialize the given writer (if necessary) and return it by reference
-     *
-     * @param object $target The object owning the writer property
-     * @param string $stream The IO writer short name
-     *
-     * @return IOWriter
-     */
-    public static function &getWriter($target, $stream)
-    {
-        if (! self::supportsWriter($stream)) {
-            throw new UnsupportedStreamException($stream);
-        }
-
-        return self::get($target, $stream);
-    }
-
-    /**
-     * Validate the queried IO reader short name
-     *
-     * @param string $stream The reader's short name
+     * @param string $stream The stream short name
      *
      * @return bool
      */
-    public static function supportsReader($stream)
+    public static function supports($stream)
     {
-        return in_array($stream, [ IOStream::STDIN ]);
-    }
-
-    /**
-     * Validate the queried IO writer short name
-     *
-     * @param string $stream The writer's short name
-     *
-     * @return bool
-     */
-    public static function supportsWriter($stream)
-    {
-        return in_array($stream, [ IOStream::STDOUT, IOStream::STDERR ]);
+        return in_array($stream, [IOStream::STDIN, IOStream::STDOUT, IOStream::STDERR]);
     }
 }

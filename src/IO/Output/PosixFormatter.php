@@ -49,25 +49,7 @@ class PosixFormatter implements Formatter
     /**
      * {@inheritdoc}
      */
-    public function format($text, $fd = null)
-    {
-        // In case of a piped output, return a raw text
-        if (! posix_isatty($fd)) {
-            return strip_tags($text);
-        }
-
-        return $this->render($text);
-    }
-
-    /**
-     * Render the given string into a terminal-compatible format
-     *
-     * @param string $text The pre-formatted text to be rendered
-     *
-     * @return string
-     * @internal
-     */
-    protected function render($text)
+    public function format($text)
     {
         foreach ($this->tags as $tag => $modifiers) {
             $text = $this->replace($text, new Tag($tag, $modifiers['open']));
@@ -90,6 +72,6 @@ class PosixFormatter implements Formatter
         $in = [$tag->open(), $tag->close()];
         $out = [$tag->tput(), $tag->reset()];
 
-        return str_replace($in, $out, $text);
+        return \str_replace($in, $out, $text);
     }
 }

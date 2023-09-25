@@ -15,6 +15,8 @@
 
 namespace Yannoff\Component\Console\IO\Stream;
 
+use Yannoff\Component\Console\IO\Output\Formatter;
+
 /**
  * Interface IOWriter
  * Contract for I/O writer streams
@@ -27,8 +29,9 @@ interface IOWriter extends IOStream
      * Write contents to the output stream
      *
      * @param string $contents The contents to write
+     * @param string $ending   Character or text to be appended (defaults to "\n")
      *
      * @return int|false Number of bytes written or **false** on error
      */
-    public function write($contents);
+    public function write($contents, $ending = Formatter::LF);
 }

@@ -112,7 +112,7 @@ validateName($name)|-|
 |---------------|---------------
 |InputInterface::getArgument($name)|Moved to [Command::getArgument($name)](#commandgetargument)
 |InputInterface::getOption($name)|Moved to [Command::getOption($name)](#commandgetoption)
-|OutputInterface::writeln($message, $options)|Moved to [Command::writeln($message, $options)](#commandwriteln)
+|OutputInterface::writeln($message, $options)|Moved to [Command::write($message, $ending)](#commandwrite)
 
 ### Application methods
 
@@ -206,13 +206,9 @@ The advantages are twice:
 - saves memory by avoiding the creation of a new `Application` object
 - command is always _aware_ of any state change of the application instance
 
-#### Command::writeln()
+#### Command::write()
 
-The verbosity argument placeholder have been kept for compatibility, but will be ignored.
-
-Indeed verbosity levels are not implemented in this component.
-
-A third argument has been added, allowing to choose between STDOUT (by default) or STDIN for the output.
+A second argument allow to control the ending text, defaulting to `\n`
 
 ## Full migration example
 
@@ -289,8 +285,8 @@ class HelloCommand extends Command
             $message = strtoupper($message);
         }
 
-        // the writeln() method is implemented in the Command as well
-        $this->writeln($message);
+        // the writeln() method is replaced by write() in the Command
+        $this->write($message);
 
         return 0;
     }

@@ -17,7 +17,7 @@ namespace Yannoff\Component\Console\IO\Output;
 
 /**
  * Class Verbosity
- * Home for verbosity level constants
+ * Handle application-wide verbosity level
  *
  * @package Yannoff\Component\Console\IO\Output
  */
@@ -45,5 +45,32 @@ class Verbosity
      * @var int
      */
     const DEBUG = 32;
+
+    /**
+     * Current verbosity level
+     *
+     * @var int
+     */
+    public static $level = 0;
+
+    /**
+     * Getter for the current verbosity level
+     *
+     * @return int
+     */
+    public static function get()
+    {
+        return self::$level;
+    }
+
+    /**
+     * Setter for the current verbosity level
+     *
+     * @param int $level
+     */
+    public static function set($level)
+    {
+        self::$level = $level;
+    }
 }
 

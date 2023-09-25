@@ -99,7 +99,7 @@ class HelloCommand extends Command
             $message = strtoupper($message);
         }
 
-        $this->writeln($message);
+        $this->write($message);
 
         return 0;
     }

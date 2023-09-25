@@ -64,7 +64,7 @@ class HelloCommand extends Command
             $message = strtoupper($message);
         }
 
-        $this->writeln($message);
+        $this->write("<blue>$message</blue>");
 
         return 0;
     }

@@ -23,11 +23,9 @@ use Yannoff\Component\Console\Exception\Definition\UndefinedArgumentException;
 use Yannoff\Component\Console\Exception\Definition\UndefinedOptionException;
 use Yannoff\Component\Console\Exception\LogicException;
 use Yannoff\Component\Console\Exception\RuntimeException;
-use Yannoff\Component\Console\IO\Output\Verbosity;
+use Yannoff\Component\Console\IO\IOHelper;
 use Yannoff\Component\Console\IO\StreamAware;
 use Yannoff\Component\Console\IO\Output\Formatter;
-use Yannoff\Component\Console\IO\Output\FormatterAware;
-use Yannoff\Component\Console\IO\Output\FormatterAwareTrait;
 
 /**
  * Class Command
@@ -35,9 +33,9 @@ use Yannoff\Component\Console\IO\Output\FormatterAwareTrait;
  *
  * @package Yannoff\Component\Console
  */
-abstract class Command extends StreamAware implements FormatterAware
+abstract class Command extends StreamAware
 {
-    use FormatterAwareTrait;
+    use IOHelper;
 
     /**
      * The command name
@@ -59,13 +57,6 @@ abstract class Command extends StreamAware implements FormatterAware
      * @var string
      */
     protected $desc;
-
-    /**
-     * The main command verbosity level
-     *
-     * @var int
-     */
-    protected $verbosity = 0;
 
     /**
      * Pointer to the main Application instance
@@ -146,7 +137,7 @@ abstract class Command extends StreamAware implements FormatterAware
 
         if ($this->getOption('help')) {
             $message = $this->getUsage();
-            $this->writeln($message);
+            $this->write($message);
             return 0;
         }
 
@@ -176,21 +167,6 @@ abstract class Command extends StreamAware implements FormatterAware
     public function getApplication()
     {
         return $this->application;
-    }
-
-    /**
-     * Getter for the formatter instance
-     * If no formatter was set for the command, fallback to the global application-wide formatter
-     *
-     * @return Formatter
-     */
-    public function getFormatter()
-    {
-        if (null !== $this->formatter) {
-            return $this->formatter;
-        }
-
-        return $this->getApplication()->getFormatter();
     }
 
     /**
@@ -250,57 +226,6 @@ abstract class Command extends StreamAware implements FormatterAware
         return $this->resolver->getArgumentValue($name);
     }
 
-    /**
-     * Print text to STDOUT
-     *
-     * @param string $text    The text to print (defaults to empty string)
-     * @param null   $options Kept for symfony BC, but ignored
-     *
-     * @return bool|int
-     *
-     * @deprecated Support will be removed in version 2.0.0
-     */
-    public function writeln($text = '', $options = null)
-    {
-        $this->deprecate(__METHOD__);
-
-        $text = $this->getFormatter()->format($text, STDOUT);
-
-        return $this->iowrite($text, Formatter::LF);
-    }
-
-    /**
-     * Print text to STDERR
-     *
-     * @param string $text    The text to print (defaults to empty string)
-     * @param null   $options Kept for symfony BC, but ignored
-     *
-     * @return bool|int
-     *
-     * @deprecated Support will be removed in version 2.0.0
-     */
-    public function errorln($text = '', $options = null)
-    {
-        $this->deprecate(__METHOD__);
-
-        $text = $this->getFormatter()->format($text, STDERR);
-
-        return $this->ioerror($text, Formatter::LF);
-    }
-
-    /**
-     * Print a message on stderr if priority is relevant compared to the command verbosity level
-     *
-     * @param string $message
-     * @param int    $level
-     */
-    protected function dmesg($message, $level = Verbosity::ERROR)
-    {
-        if ($level <= $this->verbosity) {
-            $message = \sprintf("[%s] %s", $this->application->getName(), $message);
-            $this->errorln($message);
-        }
-    }
 
     /**
      * Build the whole command usage/help message with all options/arguments documented
@@ -332,7 +257,7 @@ abstract class Command extends StreamAware implements FormatterAware
                 // DefinitionException should never raise in this context,
                 // but in any case the process must not be stopped
                 $error = sprintf("Warning: %s", $e->getMessage());
-                $this->errorln($error);
+                $this->error($error);
             }
         }
 
