@@ -48,7 +48,7 @@ trait StreamAwareTrait
      *
      * @return int|false Number of bytes written or **false** on error
      */
-    public function iowrite($message = '', $ending = Formatter::LF)
+    public function write($message = '', $ending = Formatter::LF)
     {
         $writer = StreamInitializer::getWriter($this, IOStream::STDOUT);
 
@@ -63,7 +63,7 @@ trait StreamAwareTrait
      *
      * @return int|false Number of bytes written or **false** on error
      */
-    public function ioerror($message = '', $ending = Formatter::LF)
+    public function error($message = '', $ending = Formatter::LF)
     {
         $writer = StreamInitializer::getWriter($this, IOStream::STDERR);
 
@@ -77,10 +77,78 @@ trait StreamAwareTrait
      *
      * @return string|false The contents or **false** in case of failure
      */
-    public function ioread($interactive = false)
+    public function read($interactive = false)
     {
         $reader = StreamInitializer::getReader($this, IOStream::STDIN);
 
         return $reader->read($interactive);
+    }
+
+    /**
+     * Trigger a deprecation error message
+     *
+     * @param string The deprecated method name
+     */
+    private function deprecate($method)
+    {
+        list(, $name) = explode('::', $method);
+        $replacement = substr($name, 2);
+        $error = sprintf(
+            'Method "%s::%s()" will be removed in version 2.0.0, use "%s()" instead.',
+            get_parent_class(static::class),
+            $name,
+            $replacement
+        );
+        trigger_error($error, \E_USER_DEPRECATED);
+    }
+
+    /**
+     * Print a message to standard output with the given ending string
+     *
+     * @param string $message The message to print (defaults to empty string)
+     * @param string $ending  The ending string (defaults to "\n")
+     *
+     * @return int|false Number of bytes written or **false** on error
+     *
+     * @deprecated Support will be removed in version 2.0.0
+     */
+    public function iowrite($message = '', $ending = Formatter::LF)
+    {
+        $this->deprecate(__METHOD__);
+
+        return $this->write($message, $ending);
+    }
+
+    /**
+     * Print a message to standard error with the given ending char
+     *
+     * @param string $message The message to print (defaults to empty string)
+     * @param string $ending  The ending string (defaults to "\n")
+     *
+     * @return int|false Number of bytes written or **false** on error
+     *
+     * @deprecated Support will be removed in version 2.0.0
+     */
+    public function ioerror($message = '', $ending = Formatter::LF)
+    {
+        $this->deprecate(__METHOD__);
+
+        return $this->error($message, $ending);
+    }
+
+    /**
+     * Read contents from the standard input
+     *
+     * @param bool $interactive Whether to accept user input
+     *
+     * @return string|false The contents or **false** in case of failure
+     *
+     * @deprecated Support will be removed in version 2.0.0
+     */
+    public function ioread($interactive = false)
+    {
+        $this->deprecate(__METHOD__);
+
+        return $this->read($interactive);
     }
 }

@@ -257,9 +257,13 @@ abstract class Command extends StreamAware implements FormatterAware
      * @param null   $options Kept for symfony BC, but ignored
      *
      * @return bool|int
+     *
+     * @deprecated Support will be removed in version 2.0.0
      */
     public function writeln($text = '', $options = null)
     {
+        $this->deprecate(__METHOD__);
+
         $text = $this->getFormatter()->format($text, STDOUT);
 
         return $this->iowrite($text, Formatter::LF);
@@ -272,9 +276,13 @@ abstract class Command extends StreamAware implements FormatterAware
      * @param null   $options Kept for symfony BC, but ignored
      *
      * @return bool|int
+     *
+     * @deprecated Support will be removed in version 2.0.0
      */
     public function errorln($text = '', $options = null)
     {
+        $this->deprecate(__METHOD__);
+
         $text = $this->getFormatter()->format($text, STDERR);
 
         return $this->ioerror($text, Formatter::LF);
@@ -472,6 +480,19 @@ abstract class Command extends StreamAware implements FormatterAware
         $this->addOption('help', 'h', Option::FLAG, 'Display this help message');
 
         return $this;
+    }
+
+    /**
+     * Trigger a deprecation error message
+     *
+     * @param string The deprecated method name
+     */
+    private function deprecate($method)
+    {
+        list(, $name) = explode('::', $method);
+        $replacement = substr($name, 0, -2);
+        $error = sprintf('Method "%s()" will be removed in version 2.0.0, use "%s()" instead.', $method, $replacement);
+        trigger_error($error, \E_USER_DEPRECATED);
     }
 }
 
