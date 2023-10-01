@@ -127,10 +127,10 @@ trait IOHelper
      *
      * @throws LogicException
      */
-    final private function check()
+    private function check()
     {
         if (!$this instanceof StreamAware) {
-            throw new LogicException('Classes using IOHelperTrait must inherit from StreamAware');
+            throw new LogicException('Classes using trait IOHelper must inherit from StreamAware');
         }
     }
 }
