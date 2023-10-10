@@ -101,8 +101,7 @@ trait IOHelper
     protected function dmesg($message, $level = Verbosity::ERROR)
     {
         if ($level <= Verbosity::$level) {
-            $message = \sprintf("[%s] %s", $this->application->getName(), $message);
-            $this->error($message);
+            $this->output($this->stderr, $message);
         }
     }
 
