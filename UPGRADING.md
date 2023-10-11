@@ -2,7 +2,7 @@
 
 ### Upgrading from 1.x to 2.x
 
-#### `StreamAwareTrait` have been removed, in favor of [`IOHelper`](src/IO/IOHelper.php)
+#### `StreamAwareTrait` have been removed, in favor of [`IOHelper`](../../tree/2.0.0/src/IO/IOHelper.php)
 
 - `StreamAwareTrait::ioread()` is replaced by `IOHelper::read()`
 - `StreamAwareTrait::iowrite()` is replaced by `IOHelper::write()`
@@ -15,7 +15,7 @@
 
 ### `Formatter` classes are not anymore injected in `Application` & `Command`
 
-- Now formatters are stored in an application-wide [`FormatterRegistry`](src/IO/Output/FormatterRegistry.php)
+- Now formatters are stored in an application-wide [`FormatterRegistry`](../../tree/2.0.0/src/IO/Output/FormatterRegistry.php)
 - The formatter is picked by output methods at each call, allowing for a better context detection (pipe, reg file, tty...)
 
 ### Verbosity level is now stored in the main `$level` publicly accessible static property
