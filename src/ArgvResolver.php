@@ -25,15 +25,17 @@ use Yannoff\Component\Console\Exception\ResolverException;
 use Yannoff\Component\Console\Exception\Definition\TooManyArgumentsException;
 use Yannoff\Component\Console\Exception\Definition\UnknownOptionException;
 use Yannoff\Component\Console\Exception\LogicException;
-use Yannoff\Component\Console\IO\StreamAware;
+use Yannoff\Component\Console\IO\IOHelper;
 
 /**
  * Class ArgvResolver
  *
  * @package Yannoff\Component\Console
  */
-class ArgvResolver extends StreamAware
+class ArgvResolver
 {
+    use IOHelper;
+
     /** @var int Argv type: long option */
     const TYPE_LONGOPT = 2;
 

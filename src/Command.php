@@ -24,7 +24,6 @@ use Yannoff\Component\Console\Exception\Definition\UndefinedOptionException;
 use Yannoff\Component\Console\Exception\LogicException;
 use Yannoff\Component\Console\Exception\RuntimeException;
 use Yannoff\Component\Console\IO\IOHelper;
-use Yannoff\Component\Console\IO\StreamAware;
 use Yannoff\Component\Console\IO\Output\Formatter;
 
 /**
@@ -33,7 +32,7 @@ use Yannoff\Component\Console\IO\Output\Formatter;
  *
  * @package Yannoff\Component\Console
  */
-abstract class Command extends StreamAware
+abstract class Command
 {
     use IOHelper;
 

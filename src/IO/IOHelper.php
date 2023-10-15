@@ -15,10 +15,11 @@
 
 namespace Yannoff\Component\Console\IO;
 
-use Yannoff\Component\Console\Exception\LogicException;
+use Yannoff\Component\Console\Exception\IO\UnsupportedStreamException;
 use Yannoff\Component\Console\IO\Output\Formatter;
 use Yannoff\Component\Console\IO\Output\FormatterRegistry;
 use Yannoff\Component\Console\IO\Output\Verbosity;
+use Yannoff\Component\Console\IO\Stream\IOStream;
 use Yannoff\Component\Console\IO\Stream\IOWriter;
 use Yannoff\Component\Console\IO\Stream\StandardError;
 use Yannoff\Component\Console\IO\Stream\StandardInput;
@@ -31,9 +32,47 @@ use Yannoff\Component\Console\IO\Stream\StandardOutput;
  * @property-read StandardInput  $stdin
  * @property-read StandardError  $stderr
  * @property-read StandardOutput $stdout
+ *
+ * @package Yannoff\Component\Console\IO
  */
 trait IOHelper
 {
+    /**
+     * Magic getter method for the input/output streams pseudo-properties
+     *
+     * In case one may need to define a proper magic getter in the class using IOHelper,
+     * this method should be imported as an alias, and called by the final __get() implementation
+     * Ex:
+     * 
+     * class AcmeClass {
+     *
+     *     // Import method as an alias
+     *     use IOHelper {
+     *         __get as __stream_get;
+     *     }
+     *
+     *     // Implement proper magic getter
+     *     public function __get($name)
+     *     {
+     *         // Put user-defined logic here
+     *         // ...
+     *
+     *         // Finally call the trait method
+     *         return $this->__stream_get($name);
+     *     }
+     * }
+     *
+     * @param string $name The stream name: stdin, stdout or stderr
+     *
+     * @return IOStream
+     *
+     * @throws UnsupportedStreamException If the requested stream is not stdin, stdout or stderr
+     */
+    final public function __get($name)
+    {
+        return StreamRegistry::get($name);
+    }
+
     /**
      * Change the main application verbosity level
      *
@@ -57,8 +96,6 @@ trait IOHelper
      */
     public function read($interactive = false)
     {
-        $this->check();
-
         return $this->stdin->read($interactive);
     }
 
@@ -72,8 +109,6 @@ trait IOHelper
      */
     public function error($text = '', $ending = Formatter::LF)
     {
-        $this->check();
-
         return $this->output($this->stderr, $text, $ending);
     }
 
@@ -87,8 +122,6 @@ trait IOHelper
      */
     public function write($text = '', $ending = Formatter::LF)
     {
-        $this->check();
-
         return $this->output($this->stdout, $text, $ending);
     }
 
@@ -119,17 +152,5 @@ trait IOHelper
         $contents = FormatterRegistry::get($stream)->format($contents);
 
         return $stream->write($contents, $ending);
-    }
-
-    /**
-     * Check that the class using this trait meet the requirements
-     *
-     * @throws LogicException
-     */
-    private function check()
-    {
-        if (!$this instanceof StreamAware) {
-            throw new LogicException('Classes using trait IOHelper must inherit from StreamAware');
-        }
     }
 }

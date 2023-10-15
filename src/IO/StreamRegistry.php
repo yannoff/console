@@ -17,64 +17,52 @@ namespace Yannoff\Component\Console\IO;
 
 use Yannoff\Component\Console\Exception\IO\UnsupportedStreamException;
 use Yannoff\Component\Console\IO\Stream\IOStream;
-use Yannoff\Component\Console\IO\Stream\IOWriter;
-use Yannoff\Component\Console\IO\Stream\IOReader;
 
 /**
- * Class StreamInitializer
- * External initializer for Stream Aware classes
+ * Class StreamRegistry
+ * Registry for I/O writers & readers
  *
  * @package Yannoff\Component\Console\IO
  */
-final class StreamInitializer
+class StreamRegistry
 {
     /**
-     * Singleton instance to the property accessor
-     * Avoid creating a new instance each time initialize() is invoked
-     *
-     * @var PropertyAccessor
+     * @var IOStream[]
      */
-    protected static $accessor;
+    protected static $streams = [];
 
     /**
      * Lazy stream getter & initializer method
-     * Initialize the given stream (if necessary) and return it by reference
      *
-     * @param object $target The object owning the stream property
      * @param string $stream The stream short name
      *
-     * @return IOReader|IOWriter
+     * @return IOStream
      */
-    public static function &get($target, $stream)
+    public static function get($stream)
     {
         if (!self::supports($stream)) {
             throw new UnsupportedStreamException($stream);
         }
 
-        $member = & self::getStream($target, $stream);
-
-        if (null === $member) {
-            $member = StreamFactory::create($stream);
+        if (\array_key_exists($stream, self::$streams)) {
+            return self::$streams[$stream];
         }
 
-        return $member;
+        return self::add($stream);
     }
 
     /**
-     * Accessor method for any given object's stream property
+     * Create a new stream wrapper instance and store it in the registry
      *
-     * @param object $target
-     * @param string $stream
+     * @param string $stream The stream short name
      *
-     * @return mixed A reference to the queried stream property
+     * @return IOStream
      */
-    protected static function &getStream($target, $stream)
+    public static function add($stream)
     {
-        if (null === self::$accessor) {
-            self::$accessor = new PropertyAccessor();
-        }
+        $member = StreamFactory::create($stream);
 
-        return self::$accessor->get($target, $stream);
+        return self::$streams[$stream] = $member;
     }
 
     /**
