@@ -20,7 +20,6 @@ use Yannoff\Component\Console\Command\VersionCommand;
 use Yannoff\Component\Console\Exception\Command\UnknownCommandException;
 use Yannoff\Component\Console\Exception\LogicException;
 use Yannoff\Component\Console\IO\IOHelper;
-use Yannoff\Component\Console\IO\StreamAware;
 use Yannoff\Component\Console\IO\Output\Formatter;
 
 /**
@@ -28,7 +27,7 @@ use Yannoff\Component\Console\IO\Output\Formatter;
  *
  * @package Yannoff\Component\Console
  */
-class Application extends StreamAware
+class Application
 {
     use IOHelper;
 
