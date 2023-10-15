@@ -2,7 +2,7 @@
 
 ### Upgrading from 2.0 to 2.1
 
-#### The whole stream handling methods have been rehomed in [`IOHelper`](../../2.1.0/src/IO/IOHelper.php)
+#### The whole stream handling methods have been rehomed in [`IOHelper`](../../tree/2.1.0/src/IO/IOHelper.php)
 
 - The `StreamAware` super class have been removed
 - The stream pseudo-properties are now handled by the trait's `__get()` method
