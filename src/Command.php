@@ -23,8 +23,8 @@ use Yannoff\Component\Console\Exception\Definition\UndefinedArgumentException;
 use Yannoff\Component\Console\Exception\Definition\UndefinedOptionException;
 use Yannoff\Component\Console\Exception\LogicException;
 use Yannoff\Component\Console\Exception\RuntimeException;
+use Yannoff\Component\Console\IO\ASCII;
 use Yannoff\Component\Console\IO\IOHelper;
-use Yannoff\Component\Console\IO\Output\Formatter;
 
 /**
  * Class Command
@@ -229,12 +229,12 @@ abstract class Command
     /**
      * Build the whole command usage/help message with all options/arguments documented
      *
-     * @param string $tab   The tabulation string (defaults to `\n`)
+     * @param string $tab   The tabulation string (defaults to `\t`)
      * @param int    $width Minimum width for the option/argument names column (defaults to `18`)
      *
      * @return string
      */
-    public function getUsage($tab = Formatter::TAB, $width = Formatter::PAD)
+    public function getUsage($tab = ASCII::TAB, $width = Application::PAD)
     {
         $lines = [];
 
@@ -260,7 +260,7 @@ abstract class Command
             }
         }
 
-        return implode(Formatter::LF, $lines) . Formatter::LF;
+        return implode(ASCII::LF, $lines) . ASCII::LF;
     }
 
     /**
@@ -280,7 +280,7 @@ abstract class Command
      *
      * @return string
      */
-    protected function getSynopsis($tab = Formatter::TAB)
+    protected function getSynopsis($tab = ASCII::TAB)
     {
         $help = [];
 

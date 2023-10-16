@@ -16,7 +16,6 @@
 namespace Yannoff\Component\Console\IO;
 
 use Yannoff\Component\Console\Exception\IO\UnsupportedStreamException;
-use Yannoff\Component\Console\IO\Output\Formatter;
 use Yannoff\Component\Console\IO\Output\FormatterRegistry;
 use Yannoff\Component\Console\IO\Output\Verbosity;
 use Yannoff\Component\Console\IO\Stream\IOStream;
@@ -107,7 +106,7 @@ trait IOHelper
      *
      * @return bool|int
      */
-    public function error($text = '', $ending = Formatter::LF)
+    public function error($text = '', $ending = ASCII::LF)
     {
         return $this->output($this->stderr, $text, $ending);
     }
@@ -120,7 +119,7 @@ trait IOHelper
      *
      * @return bool|int
      */
-    public function write($text = '', $ending = Formatter::LF)
+    public function write($text = '', $ending = ASCII::LF)
     {
         return $this->output($this->stdout, $text, $ending);
     }
@@ -147,7 +146,7 @@ trait IOHelper
      *
      * @return bool|int
      */
-    private function output(IOWriter $stream, $contents = '', $ending = Formatter::LF)
+    private function output(IOWriter $stream, $contents = '', $ending = ASCII::LF)
     {
         $contents = FormatterRegistry::get($stream)->format($contents);
 

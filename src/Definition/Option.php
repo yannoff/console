@@ -15,8 +15,9 @@
 
 namespace Yannoff\Component\Console\Definition;
 
+use Yannoff\Component\Console\Application;
 use Yannoff\Component\Console\Exception\Definition\InvalidOptionTypeException;
-use Yannoff\Component\Console\IO\Output\Formatter;
+use Yannoff\Component\Console\IO\ASCII;
 
 /**
  * Class Option
@@ -123,7 +124,7 @@ class Option extends Item
     /**
      * {@inheritdoc}
      */
-    public function getSynopsis($tab = Formatter::TAB, $width = Formatter::PAD)
+    public function getSynopsis($tab = ASCII::TAB, $width = Application::PAD)
     {
         $synopsis = implode(', ', $this->getNames());
 
