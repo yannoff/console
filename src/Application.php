@@ -19,8 +19,8 @@ use Yannoff\Component\Console\Command\HelpCommand;
 use Yannoff\Component\Console\Command\VersionCommand;
 use Yannoff\Component\Console\Exception\Command\UnknownCommandException;
 use Yannoff\Component\Console\Exception\LogicException;
+use Yannoff\Component\Console\IO\ASCII;
 use Yannoff\Component\Console\IO\IOHelper;
-use Yannoff\Component\Console\IO\Output\Formatter;
 
 /**
  * Class Application
@@ -30,6 +30,13 @@ use Yannoff\Component\Console\IO\Output\Formatter;
 class Application
 {
     use IOHelper;
+
+    /**
+     * Default width for the name columns in help
+     *
+     * @var int
+     */
+    const PAD = 18;
 
     /**
      * Name used for the `help` command
@@ -243,12 +250,12 @@ class Application
     /**
      * Build application usage/help message upon the registered commands and return it
      *
-     * @param string $tab   The tabulation string (defaults to `\n`)
+     * @param string $tab   The tabulation string (defaults to `\t`)
      * @param int    $width Minimum width for the command names column (defaults to `18`)
      *
      * @return string
      */
-    public function getUsage($tab = Formatter::TAB, $width = Formatter::PAD)
+    public function getUsage($tab = ASCII::TAB, $width = self::PAD)
     {
         $lines = [];
 
@@ -260,7 +267,7 @@ class Application
             $lines[] = sprintf("{$tab}%-{$width}s  %s", $name, $command->getHelp());
         }
 
-        return implode(Formatter::LF, $lines);
+        return implode(ASCII::LF, $lines);
     }
 
     /**

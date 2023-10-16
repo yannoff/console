@@ -15,7 +15,8 @@
 
 namespace Yannoff\Component\Console\Definition;
 
-use Yannoff\Component\Console\IO\Output\Formatter;
+use Yannoff\Component\Console\Application;
+use Yannoff\Component\Console\IO\ASCII;
 
 /**
  * Class Item
@@ -63,12 +64,12 @@ abstract class Item
     /**
      * Return the formatted help for the item
      *
-     * @param string $tab The tabulation string (defaults to `\n`)
+     * @param string $tab   The tabulation string (defaults to `\t`)
      * @param int    $width Minimum width for the names column (defaults to `18`)
      *
      * @return string
      */
-    abstract public function getSynopsis($tab = Formatter::TAB, $width = Formatter::PAD);
+    abstract public function getSynopsis($tab = ASCII::TAB, $width = Application::PAD);
 
     /**
      * Give the authorized values for the type property

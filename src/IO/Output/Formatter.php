@@ -15,6 +15,9 @@
 
 namespace Yannoff\Component\Console\IO\Output;
 
+use Yannoff\Component\Console\Application;
+use Yannoff\Component\Console\IO\ASCII;
+
 /**
  * Interface Formatter
  * Contract for console output formatters
@@ -33,32 +36,42 @@ interface Formatter
     const OS_CYGWIN = 'Cygwin';
 
     /**
-     * Line feed characters or strings
+     * New line characters or strings
+     *
+     * @deprecated Use ASCII constants instead
      *
      * @var string
      */
-    const LF = "\n";
-    const CR = "\r";
-    const CRLF = "\r\n";
+    const LF = ASCII::LF;
+    const CR = ASCII::CR;
+    const CRLF = ASCII::CRLF;
 
     /**
      * Tabulation character
      *
+     * @deprecated Use ASCII constant instead
+     *
      * @var string
      */
-    const TAB = "\t";
+    const TAB = ASCII::TAB;
 
     /**
      * Soft-tab string: 4 spaces
      *
+     * @deprecated Use ASCII constant instead
+     *
      * @var string
      */
-    const STAB = "    ";
+    const STAB = ASCII::STAB;
 
     /**
      * Minimal left-padding width for the name columns in help
+     *
+     * @deprecated Use Application constant instead
+     *
+     * @var string
      */
-    const PAD = 18;
+    const PAD = Application::PAD;
 
     /**
      * Render the given markup text into a terminal-compatible format
