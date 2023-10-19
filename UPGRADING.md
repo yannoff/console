@@ -44,6 +44,10 @@ class Acme
 - Use `error()` instead of `errorln()`
 - Use `write()` instead of `writeln()`
 
+### `FormatterFactory` have been removed
+- Use `Registry::get()` if `IOHelper` stream properties are available
+- Use `new PosixFormatter()` otherwise (eg. when in a static context)
+
 ### `Formatter` classes are not anymore injected in `Application` & `Command`
 
 - Now formatters are stored in an application-wide [`FormatterRegistry`](../../tree/2.0.0/src/IO/Output/FormatterRegistry.php)
