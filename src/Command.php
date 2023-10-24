@@ -405,18 +405,5 @@ abstract class Command
 
         return $this;
     }
-
-    /**
-     * Trigger a deprecation error message
-     *
-     * @param string The deprecated method name
-     */
-    private function deprecate($method)
-    {
-        list(, $name) = explode('::', $method);
-        $replacement = substr($name, 0, -2);
-        $error = sprintf('Method "%s()" will be removed in version 2.0.0, use "%s()" instead.', $method, $replacement);
-        trigger_error($error, \E_USER_DEPRECATED);
-    }
 }
 
