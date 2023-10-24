@@ -15,6 +15,7 @@
 
 namespace Yannoff\Component\Console;
 
+use Closure;
 use Yannoff\Component\Console\Definition\Argument;
 use Yannoff\Component\Console\Definition\Option;
 use Yannoff\Component\Console\Exception\Definition\InvalidArgumentTypeException;
@@ -32,7 +33,7 @@ use Yannoff\Component\Console\IO\IOHelper;
  *
  * @package Yannoff\Component\Console
  */
-abstract class Command
+class Command
 {
     use IOHelper;
 
@@ -58,6 +59,13 @@ abstract class Command
     protected $desc;
 
     /**
+     * Optional closure to be launch by the execute method
+     *
+     * @var Closure
+     */
+    protected $closure;
+
+    /**
      * Pointer to the main Application instance
      *
      * @var Application
@@ -81,9 +89,24 @@ abstract class Command
     /**
      * Placeholder for the main command code
      *
+     * This method is to be overriden in child command classes
+     *
+     * However, if a closure was passed to the constructor it
+     * will be executed here
+     *
      * @return int The command exit status code
      */
-    abstract protected function execute();
+    protected function execute()
+    {
+        if (null === $this->closure) {
+            throw new LogicException('No code to execute. Either pass a closure to the constructor or implement a proper execute() method.');
+        }
+        
+        $closure = Closure::bind($this->closure, $this, $this);
+
+        return \call_user_func($closure);
+    }
+
 
     /**
      * The command initialization method
@@ -100,11 +123,13 @@ abstract class Command
     /**
      * Command constructor.
      *
-     * @param string|null $name The command name
+     * @param string|null  $name    The command name
+     * @param Closure|null $closure Optional executable code (anonymous function or closure) to be run by execute()
      */
-    public function __construct($name = null)
+    public function __construct($name = null, Closure $closure = null)
     {
         $this->setName($name);
+        $this->closure = $closure;
         $this->definition = new Definition();
         $this->resolver = new ArgvResolver($this->definition);
 
