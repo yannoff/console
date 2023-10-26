@@ -1,4 +1,17 @@
-## Upgrading
+## Upgrade notes
+
+### Upgrading from 2.1 to 2.2
+
+#### Deprecation notes
+
+The [`Formatter`](../../tree/2.2.0/src/IO/Output/Formatter.php) character sequences constants will soon be removed, in favor of the [`ASCII`](../../tree/2.2.0/src/IO/ASCII.php) class constants
+
+- Use `ASCII::CR` instead of `Formatter::CR`
+- Use `ASCII::LF` instead of `Formatter::LF`
+- Use `ASCII::CRLF` instead of `Formatter::CRLF`
+- Use `ASCII::TAB` instead of `Formatter::TAB`
+- Use `ASCII::STAB` instead of `Formatter::STAB`
+- Use `Application::PAD` instead of `Formatter::PAD`
 
 ### Upgrading from 2.0 to 2.1
 
