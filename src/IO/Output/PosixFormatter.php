@@ -15,8 +15,13 @@
 
 namespace Yannoff\Component\Console\IO\Output;
 
+use Yannoff\Component\Console\Exception\IO\BadTagChainException;
+use Yannoff\Component\Console\Exception\IO\TagMismatchException;
+use Yannoff\Component\Console\IO\Output\Posix\AtomicTag;
+
 /**
  * Class PosixFormatter
+ *
  * POSIX flavored output formatter
  *
  * @package Yannoff\Component\Console\IO\Output
@@ -24,54 +29,92 @@ namespace Yannoff\Component\Console\IO\Output;
 class PosixFormatter implements Formatter
 {
     /**
-     * Mapping between pseudo-tags and terminal modifiers
+     * Stack used for tag processing
+     *
+     * @var TagStack
      */
-    protected $tags = [
-        'strong' => [ 'open' => '01m', 'close' => '00m' ],
-        'black' => ['open' => '00;30m', 'close' => '00m'],
-        'grey' => ['open' => '01;30m', 'close' => '00m'],
-        'red' => ['open' => '00;31m', 'close' => '00m'],
-        'green' => ['open' => '00;32m', 'close' => '00m'],
-        'yellow' => ['open' => '00;33m', 'close' => '00m'],
-        'blue' => ['open' => '00;34m', 'close' => '00m'],
-        'magenta' => ['open' => '00;35m', 'close' => '00m'],
-        'cyan' => ['open' => '00;36m', 'close' => '00m'],
-        'white' => ['open' => '00;37m', 'close' => '00m'],
-        'default' => ['open' => '00m', 'close' => '00m'],
-        // A few Symfony Console formatter compatible tags
-        'bold' => [ 'open' => '01m', 'close' => '00m' ],
-        'error' => ['open' => '00;31m', 'close' => '00m'],
-        'info' => ['open' => '00;32m', 'close' => '00m'],
-        'comment' => ['open' => '00;33m', 'close' => '00m'],
-        'question' => ['open' => '00;36m', 'close' => '00m'],
-    ];
+    protected $stack;
+
+    /**
+     * PosixFormatter constructor.
+     */
+    public function __construct()
+    {
+        $this->stack = new TagStack();
+    }
 
     /**
      * {@inheritdoc}
      */
     public function format($text)
     {
-        foreach ($this->tags as $tag => $modifiers) {
-            $text = $this->replace($text, new Tag($tag, $modifiers['open']));
+        $output = [];
+
+        $this->stack->clear();
+
+        foreach ($this->tokenize($text) as $token) {
+
+            // CASE 1: Token is a regular text (not a tag)
+            if ($token->isText()) {
+                // Add the raw token without processing
+                $output[] = (string) $token;
+                // Process next token
+                continue;
+            }
+
+            $tag = new AtomicTag((string) $token);
+
+            // CASE 2: Token is an opening tag
+            if ($tag->type == 'open') {
+                // If a tag was previously opened, reset before applying the new modifier
+                if ($this->stack->count() > 0) {
+                    $output[] = $this->stack->last()->close();
+                }
+                // Add current tag to the opened tags stack
+                $this->stack->push($tag);
+                // Send current modifier to the terminal
+                $output[] = $tag->open();
+                // Process next token
+                continue;
+            } 
+
+            // CASE 3: Token is a closing tag
+            if ($this->stack->count() == 0) {
+                throw new TagMismatchException(sprintf('Tag open/close mismatch (closing "%s" that was never opened)', $tag->name));
+            }
+            
+            $previous = $this->stack->last();
+            
+            if ($tag->name != $previous->name) {
+                throw new BadTagChainException('Tags precedence was not respected (wrongly nested closing tag)');
+            }
+
+            // Close the tag and remove it from the stack
+            $output[] = $this->stack->pop()->close();
+
+            // If a tag was previously opened, re-apply its modifier
+            if ($this->stack->count() > 0) {
+                $output[] = $this->stack->last()->open();
+            }
         }
 
-        return $text;
+        return implode("", $output);
     }
 
     /**
-     * Substitute all tag occurrences by their modifiers counterparts
+     * Tokenize the given markup text
      *
-     * @param string $text The text to format
-     * @param Tag    $tag  The tag to be replaced
+     * @param string $text The pre-formatted text
      *
-     * @return string
-     * @internal
+     * @return Token[]
      */
-    protected function replace($text, $tag)
+    public function tokenize($text)
     {
-        $in = [$tag->open(), $tag->close()];
-        $out = [$tag->tput(), $tag->reset()];
+        // Use the ASCII bell character to prevent collision with text contents
+        $text = preg_replace('/>(.)/', ">\b\$1", $text);
+        $text = preg_replace('/(.)</', "\$1\b<", $text);
+        $lines = explode("\b",  $text);
 
-        return \str_replace($in, $out, $text);
+        return array_map(function ($line) { return new Token($line); }, $lines);
     }
 }
