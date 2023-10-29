@@ -14,5 +14,8 @@
         "psr-4": {
             "Yannoff\\Component\\Console\\": "src/"
         }
+    },
+    "require": {
+        "php": ">=5.5"
     }
 }
