@@ -25,29 +25,6 @@ namespace Yannoff\Component\Console\IO\Output\Posix;
 class AtomicTag
 {
     /**
-     * Mapping between pseudo-tags and terminal modifiers
-     */
-    protected $tags = [
-        'strong'   => '01m',
-        'black'    => '00;30m',
-        'grey'     => '01;30m',
-        'red'      => '00;31m',
-        'green'    => '00;32m',
-        'yellow'   => '00;33m',
-        'blue'     => '00;34m',
-        'magenta'  => '00;35m',
-        'cyan'     => '00;36m',
-        'white'    => '00;37m',
-        'default'  => '00m',
-        // A few Symfony Console formatter compatible tags
-        'bold'     => '01m',
-        'error'    => '00;31m',
-        'info'     => '00;32m',
-        'comment'  => '00;33m',
-        'question' => '00;36m',
-    ];
-
-    /**
      * The tag name
      *
      * @var string
@@ -86,7 +63,7 @@ class AtomicTag
         
         $this->type = ($tag[0] == '/')  ? 'close' : 'open';
         $this->name = \trim($tag, '/');
-        $this->modifier = $this->tags[$this->name];
+        $this->modifier = TagMap::get($this->name);
     }
 
     /**

@@ -260,7 +260,7 @@ class Application
         $lines = [];
 
         $lines[] = "<strong>Usage</strong>";
-        $lines[] = sprintf("{$tab}%s <command> [<options>] -- [<arguments>]", $this->script);
+        $lines[] = sprintf("{$tab}%s <command> [options] [--] [arguments]", $this->script);
         $lines[] = "<strong>Commands</strong>";
 
         foreach ($this->getUserCommands() as $name => $command) {
