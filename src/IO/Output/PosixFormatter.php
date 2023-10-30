@@ -113,6 +113,8 @@ class PosixFormatter implements Formatter
         // Use the ASCII bell character to prevent collision with text contents
         $text = preg_replace('/>(.)/', ">\b\$1", $text);
         $text = preg_replace('/(.)</', "\$1\b<", $text);
+        // New lines must be considered as separate tokens
+        $text = preg_replace("/\n/", "\b\n\b", $text);
         $lines = explode("\b",  $text);
 
         return array_map(function ($line) { return new Token($line); }, $lines);

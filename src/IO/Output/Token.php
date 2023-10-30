@@ -15,6 +15,8 @@
 
 namespace Yannoff\Component\Console\IO\Output;
 
+use Yannoff\Component\Console\IO\Output\Posix\TagMap;
+
 /**
  * Class Token
  *
@@ -52,7 +54,10 @@ class Token
      */
     public function isTag()
     {
-        return \preg_match('/^</', \ltrim($this->raw));
+        $spaceless = \ltrim($this->raw);
+        $trimmed = \trim($spaceless, '></');
+
+        return \preg_match('/^</', $spaceless) && TagMap::has($trimmed);
     }
 
     /**
