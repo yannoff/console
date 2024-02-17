@@ -46,6 +46,6 @@ class RuntimeException extends BaseRuntimeException
      */
     public function __toString()
     {
-        return sprintf('Warning: %s (code: %s)', $this->message, $this->code);
+        return sprintf('Error: %s (code: %s)', $this->message, $this->code);
     }
 }

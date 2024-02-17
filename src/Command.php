@@ -20,12 +20,14 @@ use Yannoff\Component\Console\Definition\Argument;
 use Yannoff\Component\Console\Definition\Option;
 use Yannoff\Component\Console\Exception\Definition\InvalidArgumentTypeException;
 use Yannoff\Component\Console\Exception\Definition\InvalidOptionTypeException;
+use Yannoff\Component\Console\Exception\Definition\MissingArgumentsException;
 use Yannoff\Component\Console\Exception\Definition\UndefinedArgumentException;
 use Yannoff\Component\Console\Exception\Definition\UndefinedOptionException;
 use Yannoff\Component\Console\Exception\LogicException;
 use Yannoff\Component\Console\Exception\RuntimeException;
 use Yannoff\Component\Console\IO\ASCII;
 use Yannoff\Component\Console\IO\IOHelper;
+use Yannoff\Component\Console\IO\StreamAware;
 
 /**
  * Class Command
@@ -33,7 +35,7 @@ use Yannoff\Component\Console\IO\IOHelper;
  *
  * @package Yannoff\Component\Console
  */
-class Command
+class Command implements StreamAware
 {
     use IOHelper;
 
@@ -153,16 +155,32 @@ class Command
      * @param array $args List of the arguments passed via the command-line
      *
      * @return int The command exit status code (O for success)
+     *
      * @throws LogicException
+     * @throws MissingArgumentsException
      */
     public function run($args = [])
     {
-        $this->resolver->resolve($args);
+        // Raising an arguments exception has no sense
+        // when the --help option is invoked, hence we
+        // must ensure it's not before re-throwing the
+        // exception
+        $argsException = null;
+
+        try {
+            $this->resolver->resolve($args);
+        } catch (MissingArgumentsException $e) {
+            $argsException = $e;
+        }
 
         if ($this->getOption('help')) {
             $message = $this->getUsage();
             $this->write($message);
             return 0;
+        }
+
+        if ($argsException) {
+            throw $argsException;
         }
 
         return $this->execute();
