@@ -25,7 +25,7 @@ use RuntimeException as BaseRuntimeException;
  *
  * @package Yannoff\Component\Console\Exception
  */
-class RuntimeException extends BaseRuntimeException
+class RuntimeException extends BaseRuntimeException implements ExecutionBreakingException
 {
     /**
      * RuntimeException constructor.

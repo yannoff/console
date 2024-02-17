@@ -25,7 +25,7 @@ use Exception;
  *
  * @package Yannoff\Component\Console\Exception
  */
-class LogicException extends BaseLogicException
+class LogicException extends BaseLogicException implements ExecutionBreakingException
 {
     /**
      * LogicException constructor.
