@@ -15,19 +15,21 @@
 
 namespace Yannoff\Component\Console;
 
+use Exception;
 use Yannoff\Component\Console\Command\HelpCommand;
 use Yannoff\Component\Console\Command\VersionCommand;
 use Yannoff\Component\Console\Exception\Command\UnknownCommandException;
 use Yannoff\Component\Console\Exception\LogicException;
 use Yannoff\Component\Console\IO\ASCII;
 use Yannoff\Component\Console\IO\IOHelper;
+use Yannoff\Component\Console\IO\StreamAware;
 
 /**
  * Class Application
  *
  * @package Yannoff\Component\Console
  */
-class Application
+class Application implements StreamAware
 {
     use IOHelper;
 
@@ -158,14 +160,8 @@ class Application
         try {
             $info = $this->parse($args);
             return $this->get($info['command'])->run($info['args']);
-        } catch (LogicException $e) {
-            $error = sprintf('%s, exiting.', (string) $e);
-            $this->write($error);
-            return $e->getCode();
-        } catch (UnknownCommandException $e) {
-            $error = sprintf('%s: %s. Exiting.', $this->getScript(), $e->getMessage());
-            $this->error($error);
-            return $e->getCode();
+        } catch (Exception $e) {
+            return ExceptionHandler::process($e, $this);
         }
     }
 

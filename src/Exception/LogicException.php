@@ -15,7 +15,6 @@
 
 namespace Yannoff\Component\Console\Exception;
 
-use LogicException as BaseLogicException;
 use Exception;
 
 /**
@@ -25,7 +24,7 @@ use Exception;
  *
  * @package Yannoff\Component\Console\Exception
  */
-class LogicException extends BaseLogicException
+class LogicException extends FatalException
 {
     /**
      * LogicException constructor.
@@ -37,15 +36,5 @@ class LogicException extends BaseLogicException
     public function __construct($message = "", $code = 1, Exception $previous = null)
     {
         parent::__construct($message, $code, $previous);
-    }
-
-    /**
-     * Default string cast-type formatter for LogicExceptions
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return sprintf('Fatal: %s (code: %s)', $this->message, $this->code);
     }
 }

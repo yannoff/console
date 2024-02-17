@@ -79,6 +79,16 @@ abstract class Item
     abstract public static function getValidTypes();
 
     /**
+     * Default to-string type-cast conversion for Item objects
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
      * Check whether the given type as a valid value
      *
      * @param int $type
