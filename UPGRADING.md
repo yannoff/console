@@ -1,5 +1,11 @@
 ## Upgrade notes
 
+### Upgrading to 2.3
+
+#### Breaking changes
+
+The new [`StreamAware`](src/IO/StreamAware.php) interface may conflict with version 2.0 [`StreamAware`](../../tree/2.0.0/src/IO/StreamAware.php) abstract class.
+
 ### Upgrading from 2.1 to 2.2
 
 #### Deprecation notes
