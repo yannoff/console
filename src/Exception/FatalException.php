@@ -23,7 +23,7 @@ namespace Yannoff\Component\Console\Exception;
 class FatalException extends RuntimeException
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function __toString()
     {

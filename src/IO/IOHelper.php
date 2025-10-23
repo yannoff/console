@@ -43,6 +43,7 @@ trait IOHelper
      * this method should be imported as an alias, and called by the final __get() implementation
      * Ex:
      * 
+     * {code}
      * class AcmeClass {
      *
      *     // Import method as an alias
@@ -60,6 +61,7 @@ trait IOHelper
      *         return $this->__stream_get($name);
      *     }
      * }
+     * {/code}
      *
      * @param string $name The stream name: stdin, stdout or stderr
      *

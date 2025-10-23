@@ -28,28 +28,53 @@ interface Formatter
 {
     /**
      * Supported Operating Systems
-     *
-     * @var string
      */
+
+    /** @var string Short name for Linux OS */
     const OS_LINUX = 'Linux';
+
+    /** @var string Short name for Darwin OS */
     const OS_DARWIN = 'Darwin';
+
+    /** @var string Short name for Cygwin OS */
     const OS_CYGWIN = 'Cygwin';
 
     /**
      * New line characters or strings
      *
-     * @deprecated Use ASCII constants instead
+     */
+
+    /**
+     * String representation for line-feed
+     *
+     * @deprecated Use `ASCII::LF` constant instead
      *
      * @var string
      */
     const LF = ASCII::LF;
+
+    /**
+     * String representation for carriage return
+     *
+     * @deprecated Use `ASCII::CR` constant instead
+     *
+     * @var string
+     */
     const CR = ASCII::CR;
+
+    /**
+     * String representation for windows new lines
+     *
+     * @deprecated Use `ASCII::CRLF` constant instead
+     *
+     * @var string
+     */
     const CRLF = ASCII::CRLF;
 
     /**
      * Tabulation character
      *
-     * @deprecated Use ASCII constant instead
+     * @deprecated Use `ASCII::TAB` constant instead
      *
      * @var string
      */
@@ -58,7 +83,7 @@ interface Formatter
     /**
      * Soft-tab string: 4 spaces
      *
-     * @deprecated Use ASCII constant instead
+     * @deprecated Use `ASCII::STAB` constant instead
      *
      * @var string
      */
@@ -67,7 +92,7 @@ interface Formatter
     /**
      * Minimal left-padding width for the name columns in help
      *
-     * @deprecated Use Application constant instead
+     * @deprecated Use `Application::PAD` constant instead
      *
      * @var string
      */

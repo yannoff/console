@@ -28,13 +28,62 @@ class FStat
     /**
      * Octal mode values from libc headers
      */
+
+    /**
+     * Octal formatting value
+     * (used to build FStat::imode() method result)
+     *
+     * @var octal
+     */
     const S_IFMT   = 0170000;
+
+    /**
+     * Octal mode value for FIFO
+     *
+     * @var octal
+     */
     const S_IFIFO  = 0010000;
+
+    /**
+     * Octal mode value for character device
+     *
+     * @var octal
+     */
     const S_IFCHR  = 0020000;
+
+    /**
+     * Octal mode value for directory
+     *
+     * @var octal
+     */
     const S_IFDIR  = 0040000;
+
+    /**
+     * Octal mode value for block device
+     *
+     * @var octal
+     */
     const S_IFBLK  = 0060000;
+
+    /**
+     * Octal mode value for regular file redirect
+     *
+     * @var octal
+     */
     const S_IFREG  = 0100000;
+
+    /**
+     * Octal mode value for symlink
+     *
+     * @var octal
+     */
     const S_IFLNK  = 0120000;
+
+    /**
+     * Octal mode value for socket
+     *
+     * @var octal
+     */
     const S_IFSOCK = 0140000;
 
     /**

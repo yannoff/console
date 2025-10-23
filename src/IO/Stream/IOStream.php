@@ -25,18 +25,24 @@ interface IOStream
 {
     /**
      * Supported streams short names
-     *
-     * @var string
      */
+
+    /** @var string Short name for standard input stream */
     const STDIN = 'stdin';
+
+    /** @var string Short name for standard output stream */
     const STDOUT = 'stdout';
+
+    /** @var string Short name for standard error stream */
     const STDERR = 'stderr';
 
     /**
      * Available modes for fopen()
-     *
-     * @var string
      */
+
+    /** @var string fopen() mode: append */
     const APPEND = 'a+';
+
+    /** @var string fopen() mode: read */
     const READONLY = 'r';
 }
