@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+# This file is part of the yannoff/console library
+#
+# (c) Yannoff (https://github.com/yannoff)
+#
+# @project   yannoff/console
+# @link      https://github.com/yannoff/console
+# @license   https://github.com/yannoff/console/blob/master/LICENSE
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
+#
+
+DOC_ROOT=${1:-doc/api}
+
+# Build classes documentation
+env PHP_VERSION=7.1 phpdoc-gen gen:pages --docs-root ${DOC_ROOT} --template class.md.twig --namespace Yannoff\\Component\\Console --exclude Yannoff\\Component\\Console\\Tests\\Command\\HelloCommand --exclude Yannoff\\Component\\Console\\Internal\\Version
+
+# Build table of contents
+env PHP_VERSION=7.1 phpdoc-gen gen:index --docs-root ${DOC_ROOT} --template index.md.twig --namespace Yannoff\\Component\\Console --exclude Yannoff\\Component\\Console\\Tests\\Command\\HelloCommand --exclude Yannoff\\Component\\Console\\Internal\\Version
