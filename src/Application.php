@@ -78,7 +78,7 @@ class Application implements StreamAware
     /**
      * Stored commands registry
      *
-     * @var array
+     * @var Command[]
      */
     protected $commands;
 

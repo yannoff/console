@@ -40,7 +40,7 @@ class RuntimeException extends BaseRuntimeException
     }
 
     /**
-     * Default string cast-type formatter for RuntimeExceptions
+     * Default string cast-type formatting method for the exception
      *
      * @return string
      */
