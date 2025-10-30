@@ -29,6 +29,12 @@ $ composer require yannoff/console
 
 ## Usage
 
+### API Reference
+
+A detailed API Reference can be found in the [documentation section](doc/api/index.md).
+
+### Example
+
 Here is a _Hello World_ command example:
 
 First the application script, the script that will be invoked using `php bin/app.php`
