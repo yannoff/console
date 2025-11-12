@@ -262,6 +262,7 @@ Argument::getSynopsis($tab, $width)
 
 
 > access: public <br/>
+> overridden from: [Item](/doc/api/Definition/Item.md#itemgetSynopsis) <br/>
 
 #### Arguments
 
@@ -312,6 +313,7 @@ Argument::getValidTypes()
 
 
 > access: public <br/>
+> overridden from: [Item](/doc/api/Definition/Item.md#itemgetValidTypes) <br/>
 
 #### Arguments
 
@@ -508,4 +510,4 @@ $hasDefault|[bool][php:bool]|
 
 [&laquo; Back to Table Of Contents](/doc/api/index.md)
 
-<!-- Generated: 2025-05-11 14:17:53 +01:00 -->
+<!-- Generated: 2025-11-12 11:41:42 +01:00 -->

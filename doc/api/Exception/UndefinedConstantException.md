@@ -101,6 +101,7 @@ UndefinedConstantException::__construct($name, $target, $code, $previous)
 
 
 > access: public <br/>
+> overridden from: [LogicException](/doc/api/Exception/LogicException.md#logicexception__construct) <br/>
 
 #### Arguments
 
@@ -225,4 +226,4 @@ UndefinedConstantException::getName()
 
 [&laquo; Back to Table Of Contents](/doc/api/index.md)
 
-<!-- Generated: 2025-05-11 14:17:53 +01:00 -->
+<!-- Generated: 2025-11-12 11:41:42 +01:00 -->
