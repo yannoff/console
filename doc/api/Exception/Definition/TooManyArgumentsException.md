@@ -77,6 +77,7 @@ TooManyArgumentsException::__construct($value, $pos, $max, $code, $previous)
 
 
 > access: public <br/>
+> overridden from: [RuntimeException](/doc/api/Exception/RuntimeException.md#runtimeexception__construct) <br/>
 
 #### Arguments
 
@@ -156,4 +157,4 @@ TooManyArgumentsException::__toString()
 
 [&laquo; Back to Table Of Contents](/doc/api/index.md)
 
-<!-- Generated: 2025-05-11 14:17:53 +01:00 -->
+<!-- Generated: 2025-11-12 11:41:42 +01:00 -->

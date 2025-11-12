@@ -378,6 +378,7 @@ VersionCommand::configure()
 *This method is intended to be overridden in extending classes*</br>
 
 > access: public <br/>
+> overridden from: [Command](/doc/api/Command.md#commandconfigure) <br/>
 
 #### Arguments
 
@@ -458,6 +459,7 @@ VersionCommand::execute()
 
 
 > access: public <br/>
+> overridden from: [Command](/doc/api/Command.md#commandexecute) <br/>
 
 #### Arguments
 
@@ -696,6 +698,7 @@ VersionCommand::isSystem()
 
 
 > access: public <br/>
+> overridden from: [Command](/doc/api/Command.md#commandisSystem) <br/>
 
 #### Arguments
 
@@ -994,4 +997,4 @@ $ending|[string][php:string]|Ending character or text
 
 [&laquo; Back to Table Of Contents](/doc/api/index.md)
 
-<!-- Generated: 2025-05-11 14:17:53 +01:00 -->
+<!-- Generated: 2025-11-12 11:41:42 +01:00 -->
