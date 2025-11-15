@@ -179,6 +179,12 @@ class Command implements StreamAware
             return 0;
         }
 
+        if ($this->getOption('bash-comp')) {
+            $message = $this->getBashComp();
+            $this->write($message, null);
+            return 0;
+        }
+
         if ($argsException) {
             throw $argsException;
         }
@@ -268,6 +274,28 @@ class Command implements StreamAware
         return $this->resolver->getArgumentValue($name);
     }
 
+    /**
+     * Build a bash completion formatted list of all options
+     *
+     * @param string $glue The string used to join options items
+     *
+     * @return string
+     */
+    public function getBashComp($glue = ' ')
+    {
+        $lines = [];
+
+        $options = $this->definition->all('options');
+        foreach ($options as $option) {
+            $words[] = "--{$option->getName()}";
+            $short = $option->getShortcut();
+            if (!empty($short)) {
+                $words[] = "-{$short}";
+            }
+        }
+
+        return implode($glue, $words);
+    }
 
     /**
      * Build the whole command usage/help message with all options/arguments documented
@@ -435,7 +463,7 @@ class Command implements StreamAware
     }
 
     /**
-     * Base method to add the --help option
+     * Base method to add the --help and --bash-comp options
      *
      * This method might be overwritten in extending classes
      * (for instance to avoid shortname collision between options)
@@ -444,6 +472,7 @@ class Command implements StreamAware
      */
     protected function addHelpOption()
     {
+        $this->addOption('bash-comp', '', Option::FLAG, 'List options in a bash-completion flavor');
         $this->addOption('help', 'h', Option::FLAG, 'Display this help message');
 
         return $this;
