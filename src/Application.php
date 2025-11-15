@@ -16,6 +16,7 @@
 namespace Yannoff\Component\Console;
 
 use Exception;
+use Yannoff\Component\Console\Command\BashCompCommand;
 use Yannoff\Component\Console\Command\HelpCommand;
 use Yannoff\Component\Console\Command\VersionCommand;
 use Yannoff\Component\Console\Exception\Command\UnknownCommandException;
@@ -275,6 +276,10 @@ class Application implements StreamAware
      */
     public function parse($args)
     {
+        /*if (in_array('--bash-comp', $args)) {
+            return ['command' => 'bash-comp', 'args' => []];
+        }*/
+
         if (in_array('--version', $args)) {
             return [
                 'command' => self::COMMAND_VERS,
@@ -294,6 +299,11 @@ class Application implements StreamAware
             case '-h':
             case null:
                 $command = self::COMMAND_HELP;
+                break;
+
+            case '--bash-comp':
+                $command = 'bash-comp';
+                $args = [];
                 break;
 
             default:
@@ -337,7 +347,7 @@ class Application implements StreamAware
 
     /**
      * Hook for initialization tasks, called at the end of the constructor:
-     * - add common commands (help, version)
+     * - add common commands (bash completion, help, version)
      */
     protected function init()
     {
@@ -353,6 +363,7 @@ class Application implements StreamAware
     public function addBaseCommands()
     {
         $this->addCommands([
+            new BashCompCommand('bash-comp'),
             new HelpCommand(self::COMMAND_HELP),
             new VersionCommand(self::COMMAND_VERS),
         ]);
