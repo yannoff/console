@@ -23,6 +23,7 @@
 ### Methods
 
 - [__toString()](#item__toString)
+- [escape()](#itemescape)
 - [getDefault()](#itemgetDefault)
 - [getHelp()](#itemgetHelp)
 - [getName()](#itemgetName)
@@ -43,7 +44,7 @@
 *Optional default value for the item*</br>
 
 
-> type: mixed <br/>
+> type: [mixed][php:mixed] <br/>
 > access: protected <br/>
 
 <br/>
@@ -115,10 +116,35 @@ Item::__toString()
 
 <br/><br/>
 
+### <a name="escape">`Item::escape()`</a>
+
+```php
+Item::escape($value)
+```
+
+*Escape special chars in value for rendering*</br>
+
+
+> access: public <br/>
+
+#### Arguments
+
+Name|Type|Description
+----|----|-----------
+$value|[string][php:string]|
+
+#### Return value
+
+
+> type: [string][php:string]
+
+
+<br/><br/>
+
 ### <a name="getDefault">`Item::getDefault()`</a>
 
 ```php
-Item::getDefault()
+Item::getDefault($escape)
 ```
 
 *Getter for the item default value*</br>
@@ -128,12 +154,14 @@ Item::getDefault()
 
 #### Arguments
 
->_No arguments._
+Name|Type|Description
+----|----|-----------
+$escape|[bool][php:bool]|Whether the special chars should be escaped<br/>
 
 #### Return value
 
 
-> type: mixed
+> type: [mixed][php:mixed]
 
 
 <br/><br/>
@@ -339,6 +367,7 @@ $hasDefault|[bool][php:bool]|
 [php:float]: https://www.php.net/manual/language.types.float.php "PHP Built-in: float"
 [php:int]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: int"
 [php:integer]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: integer"
+[php:mixed]: https://www.php.net/manual/language.types.mixed.php "PHP Built-in: mixed"
 [php:null]: https://www.php.net/manual/language.types.null.php "PHP Built-in: null"
 [php:object]: https://www.php.net/manual/language.types.object.php "PHP Built-in: object"
 [php:resource]: https://www.php.net/manual/language.types.resource.php "PHP Built-in: resource"
@@ -366,4 +395,4 @@ $hasDefault|[bool][php:bool]|
 
 [&laquo; Back to Table Of Contents](/doc/api/index.md)
 
-<!-- Generated: 2025-05-11 14:17:53 +01:00 -->
+<!-- Generated: 2025-11-17 17:34:10 +01:00 -->

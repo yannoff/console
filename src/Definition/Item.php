@@ -133,11 +133,14 @@ abstract class Item
     /**
      * Getter for the item default value
      *
+     * @param bool $escape Whether the special chars should be escaped
+     *
      * @return mixed
      */
-    public function getDefault()
+    public function getDefault($escape = false)
     {
-        return $this->default;
+        $default = $this->default;
+        return $escape ? $this->escape($default) : $default;
     }
 
     /**
@@ -162,5 +165,21 @@ abstract class Item
         $this->hasDefault = $hasDefault;
 
         return $this;
+    }
+
+    /**
+     * Escape special chars in value for rendering
+     *
+     * @param string $value
+     *
+     * @return string
+     */
+    public function escape($value)
+    {
+        return str_replace(
+            ["\r", "\n", "\t"],
+            ['"\r"', '"\n"', '"\t"'],
+            $value
+        );
     }
 }
