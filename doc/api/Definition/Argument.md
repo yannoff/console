@@ -30,6 +30,7 @@ _**extends** [Item](/doc/api/Definition/Item.md)_
 
 - [__construct()](#argument__construct)
 - [__toString()](#argument__toString)
+- [escape()](#argumentescape)
 - [getDefault()](#argumentgetDefault)
 - [getHelp()](#argumentgetHelp)
 - [getName()](#argumentgetName)
@@ -74,7 +75,7 @@ _**extends** [Item](/doc/api/Definition/Item.md)_
 *Optional default value for the item*</br>
 
 
-> type: mixed <br/>
+> type: [mixed][php:mixed] <br/>
 > access: protected <br/>
 > inherited from: [Item](/doc/api/Definition/Item.md#itemdefault)<br/>
 <br/>
@@ -141,7 +142,7 @@ Name|Type|Description
 $name|[string][php:string]|The argument name<br/>
 $type|[int][php:int]|The argument type: optional/required
 $help|[string][php:string]|The argument help message
-$default|mixed|Optional default value for the argument
+$default|[mixed][php:mixed]|Optional default value for the argument
 
 #### Return value
 
@@ -180,10 +181,36 @@ Argument::__toString()
 
 <br/><br/>
 
+### <a name="escape">`Argument::escape()`</a>
+
+```php
+Argument::escape($value)
+```
+
+*Escape special chars in value for rendering*</br>
+
+
+> access: public <br/>
+> inherited from: [Item](/doc/api/Definition/Item.md#itemescape) <br/>
+
+#### Arguments
+
+Name|Type|Description
+----|----|-----------
+$value|[string][php:string]|
+
+#### Return value
+
+
+> type: [string][php:string]
+
+
+<br/><br/>
+
 ### <a name="getDefault">`Argument::getDefault()`</a>
 
 ```php
-Argument::getDefault()
+Argument::getDefault($escape)
 ```
 
 *Getter for the item default value*</br>
@@ -194,12 +221,14 @@ Argument::getDefault()
 
 #### Arguments
 
->_No arguments._
+Name|Type|Description
+----|----|-----------
+$escape|[bool][php:bool]|Whether the special chars should be escaped<br/>
 
 #### Return value
 
 
-> type: mixed
+> type: [mixed][php:mixed]
 
 
 <br/><br/>
@@ -483,6 +512,7 @@ $hasDefault|[bool][php:bool]|
 [php:float]: https://www.php.net/manual/language.types.float.php "PHP Built-in: float"
 [php:int]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: int"
 [php:integer]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: integer"
+[php:mixed]: https://www.php.net/manual/language.types.mixed.php "PHP Built-in: mixed"
 [php:null]: https://www.php.net/manual/language.types.null.php "PHP Built-in: null"
 [php:object]: https://www.php.net/manual/language.types.object.php "PHP Built-in: object"
 [php:resource]: https://www.php.net/manual/language.types.resource.php "PHP Built-in: resource"
@@ -510,4 +540,4 @@ $hasDefault|[bool][php:bool]|
 
 [&laquo; Back to Table Of Contents](/doc/api/index.md)
 
-<!-- Generated: 2025-11-12 11:41:42 +01:00 -->
+<!-- Generated: 2025-11-17 17:34:24 +01:00 -->

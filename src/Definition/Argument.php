@@ -108,7 +108,7 @@ class Argument extends Item
         $help = sprintf("%s%-{$width}s %s", $tab, $this->name, $this->help);
 
         if ($this->hasDefault()) {
-            $help .= sprintf(' (default: <strong>%s</strong>)', $this->default);
+            $help .= sprintf(' (default: <strong>%s</strong>)', $this->getDefault(true));
         }
 
         return $help;
