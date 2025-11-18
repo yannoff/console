@@ -156,10 +156,11 @@ Item::getDefault($escape)
 
 Name|Type|Description
 ----|----|-----------
-$escape|[bool][php:bool]|Whether the special chars should be escaped<br/>
+$escape|[bool][php:bool]|Whether the special chars should be escaped (default: `false`)<br/>
 
 #### Return value
 
+_Either the escaped or raw value_
 
 > type: [mixed][php:mixed]
 
@@ -395,4 +396,4 @@ $hasDefault|[bool][php:bool]|
 
 [&laquo; Back to Table Of Contents](/doc/api/index.md)
 
-<!-- Generated: 2025-11-17 17:34:10 +01:00 -->
+<!-- Generated: 2025-11-18 12:05:19 +01:00 -->

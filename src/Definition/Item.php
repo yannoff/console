@@ -133,13 +133,14 @@ abstract class Item
     /**
      * Getter for the item default value
      *
-     * @param bool $escape Whether the special chars should be escaped
+     * @param bool $escape Whether the special chars should be escaped (default: `false`)
      *
-     * @return mixed
+     * @return mixed Either the escaped or raw value
      */
     public function getDefault($escape = false)
     {
         $default = $this->default;
+
         return $escape ? $this->escape($default) : $default;
     }
 
@@ -176,6 +177,11 @@ abstract class Item
      */
     public function escape($value)
     {
+        // Special use-case: handle backslash character
+        if ($value == '\\') {
+            return '"\\\\"';
+        }
+
         return str_replace(
             ["\r", "\n", "\t"],
             ['"\r"', '"\n"', '"\t"'],
