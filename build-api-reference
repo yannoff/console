@@ -15,7 +15,7 @@
 DOC_ROOT=${1:-doc/api}
 
 # Build classes documentation
-env PHP_VERSION=7.1 phpdoc gen:pages --docs-root ${DOC_ROOT} --template class.md.twig --namespace Yannoff\\Component\\Console --exclude Yannoff\\Component\\Console\\Tests\\Command\\HelloCommand --exclude Yannoff\\Component\\Console\\Internal\\Version
+env PHP_VERSION=7.2 phpdoc gen:pages --docs-root ${DOC_ROOT} --template class.md.twig --namespace Yannoff\\Component\\Console --exclude Yannoff\\Component\\Console\\Tests\\Command\\HelloCommand --exclude Yannoff\\Component\\Console\\Internal\\Version
 
 # Build table of contents
-env PHP_VERSION=7.1 phpdoc gen:index --docs-root ${DOC_ROOT} --template index.md.twig --namespace Yannoff\\Component\\Console --exclude Yannoff\\Component\\Console\\Tests\\Command\\HelloCommand --exclude Yannoff\\Component\\Console\\Internal\\Version
+env PHP_VERSION=7.2 phpdoc gen:index --docs-root ${DOC_ROOT} --template index.md.twig --namespace Yannoff\\Component\\Console --exclude Yannoff\\Component\\Console\\Tests\\Command\\HelloCommand --exclude Yannoff\\Component\\Console\\Internal\\Version
