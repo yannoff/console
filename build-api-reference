@@ -19,3 +19,15 @@ env PHP_VERSION=7.2 phpdoc gen:pages --docs-root ${DOC_ROOT} --template class.md
 
 # Build table of contents
 env PHP_VERSION=7.2 phpdoc gen:index --docs-root ${DOC_ROOT} --template index.md.twig --namespace Yannoff\\Component\\Console --exclude Yannoff\\Component\\Console\\Tests\\Command\\HelloCommand --exclude Yannoff\\Component\\Console\\Internal\\Version
+
+# Cleanup irrelevant updates
+modified=( $(git status --porcelain ${DOC_ROOT} | awk '{ print $2; }') )
+for f in "${modified[@]}"
+do
+    # A 2-lines minimal diff means only generation date has changed
+    if [ "$(git min-diff $f | wc -l)" -eq "2" ]
+    then
+        echo -e "\033[01;30m-> Checking out file: $f\033[00m"
+        git checkout $f
+    fi
+done
