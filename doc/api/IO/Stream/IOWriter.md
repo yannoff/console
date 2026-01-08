@@ -1,4 +1,5 @@
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
+[API Reference](/doc/api/index.md) &raquo; [Yannoff](../../index.md) &raquo; [Component](../../index.md) &raquo; [Console](../../index.md) &raquo; [IO](../index.md) &raquo; [Stream](./index.md) &raquo; [IOWriter][self]
+
 
 # Interface IOWriter
 
@@ -10,9 +11,9 @@ _**implements** [IOStream](/doc/api/IO/Stream/IOStream.md)_
 
 ## Overview
 
-*Contract for I/O writer streams*</br>
+_Contract for I/O writer streams_</br>
 
-
+Source file: [src/IO/Stream/IOWriter.php](/src/IO/Stream/IOWriter.php)
 ### Constants
 
 - [APPEND](#iowriterAPPEND)
@@ -32,7 +33,7 @@ _**implements** [IOStream](/doc/api/IO/Stream/IOStream.md)_
 
 ### <a name="APPEND">`IOWriter::APPEND`</a>
 
-*fopen() mode: append*</br>
+_fopen() mode: append_</br>
 > type: [string][php:string] <br/>
 > access: public <br/>
 > value: `"a+"` <br/>
@@ -42,7 +43,7 @@ _**implements** [IOStream](/doc/api/IO/Stream/IOStream.md)_
 
 ### <a name="READONLY">`IOWriter::READONLY`</a>
 
-*fopen() mode: read*</br>
+_fopen() mode: read_</br>
 > type: [string][php:string] <br/>
 > access: public <br/>
 > value: `"r"` <br/>
@@ -52,7 +53,7 @@ _**implements** [IOStream](/doc/api/IO/Stream/IOStream.md)_
 
 ### <a name="STDERR">`IOWriter::STDERR`</a>
 
-*Short name for standard error stream*</br>
+_Short name for standard error stream_</br>
 > type: [string][php:string] <br/>
 > access: public <br/>
 > value: `"stderr"` <br/>
@@ -62,7 +63,7 @@ _**implements** [IOStream](/doc/api/IO/Stream/IOStream.md)_
 
 ### <a name="STDIN">`IOWriter::STDIN`</a>
 
-*Short name for standard input stream*</br>
+_Short name for standard input stream_</br>
 > type: [string][php:string] <br/>
 > access: public <br/>
 > value: `"stdin"` <br/>
@@ -72,7 +73,7 @@ _**implements** [IOStream](/doc/api/IO/Stream/IOStream.md)_
 
 ### <a name="STDOUT">`IOWriter::STDOUT`</a>
 
-*Short name for standard output stream*</br>
+_Short name for standard output stream_</br>
 > type: [string][php:string] <br/>
 > access: public <br/>
 > value: `"stdout"` <br/>
@@ -91,7 +92,7 @@ _**implements** [IOStream](/doc/api/IO/Stream/IOStream.md)_
 IOWriter::write($contents, $ending)
 ```
 
-*Write contents to the output stream*</br>
+_Write contents to the output stream_</br>
 
 
 > access: public <br/>
@@ -100,8 +101,8 @@ IOWriter::write($contents, $ending)
 
 Name|Type|Description
 ----|----|-----------
-$contents|[string][php:string]|The contents to write<br/>
-$ending|[string][php:string]|Character or text to be appended (defaults to "\n")
+$contents|[string][php:string]|The contents to write
+$ending|[string][php:string]|Character or text to be appended (defaults to "\n")<br/>
 
 #### Return value
 
@@ -122,6 +123,7 @@ _Number of bytes written or **false** on error_
 [php:float]: https://www.php.net/manual/language.types.float.php "PHP Built-in: float"
 [php:int]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: int"
 [php:integer]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: integer"
+[php:mixed]: https://www.php.net/manual/language.types.mixed.php "PHP Built-in: mixed"
 [php:null]: https://www.php.net/manual/language.types.null.php "PHP Built-in: null"
 [php:object]: https://www.php.net/manual/language.types.object.php "PHP Built-in: object"
 [php:resource]: https://www.php.net/manual/language.types.resource.php "PHP Built-in: resource"
@@ -139,14 +141,16 @@ _Number of bytes written or **false** on error_
 [php:RuntimeException]: https://www.php.net/manual/class.runtimeexception.php "PHP Built-in: RuntimeException"
 [php:Reflector]: https://www.php.net/manual/class.reflector.php "PHP Built-in: Reflector"
 [php:ReflectionClass]: https://www.php.net/manual/class.reflectionclass.php "PHP Built-in: ReflectionClass"
-[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
-[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
-[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionClassConstant]: https://www.php.net/manual/class.reflectionclassconstant.php "PHP Built-in: ReflectionClassConstant"
 [php:ReflectionConstant]: https://www.php.net/manual/class.reflectionconstant.php "PHP Built-in: ReflectionConstant"
+[php:ReflectionException]: https://www.php.net/manual/class.reflectionexception.php "PHP Built-in: ReflectionException"
+[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
+[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
+[php:ReflectionParameter]: https://www.php.net/manual/class.reflectionparameter.php "PHP Built-in: ReflectionParameter"
 [php:StdClass]: https://www.php.net/manual/class.stdclass.php "PHP Built-in: StdClass"
 [php:Throwable]: https://www.php.net/manual/class.throwable.php "PHP Built-in: Throwable"
 [php:Traversable]: https://www.php.net/manual/class.traversable.php "PHP Built-in: Traversable"
 
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
 
-<!-- Generated: 2025-05-11 14:17:53 +01:00 -->
+<!-- Generated: 2026-01-08 15:51:59 +01:00 -->

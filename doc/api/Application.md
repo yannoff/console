@@ -1,4 +1,5 @@
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
+[API Reference](/doc/api/index.md) &raquo; [Yannoff](./index.md) &raquo; [Component](./index.md) &raquo; [Console](./index.md) &raquo; [Application][self]
+
 
 # Class Application
 
@@ -12,7 +13,7 @@ _**uses** [IOHelper](/doc/api/IO/IOHelper.md)_
 
 ## Overview
 
-
+Source file: [src/Application.php](/src/Application.php)
 ### Constants
 
 - [COMMAND_HELP](#applicationCOMMAND_HELP)
@@ -61,7 +62,7 @@ _**uses** [IOHelper](/doc/api/IO/IOHelper.md)_
 
 ### <a name="COMMAND_HELP">`Application::COMMAND_HELP`</a>
 
-*Name used for the `help` command*</br>
+_Name used for the `help` command_</br>
 
 > type: [string][php:string] <br/>
 > access: public <br/>
@@ -71,7 +72,7 @@ _**uses** [IOHelper](/doc/api/IO/IOHelper.md)_
 
 ### <a name="COMMAND_VERS">`Application::COMMAND_VERS`</a>
 
-*Name used for the `version` command*</br>
+_Name used for the `version` command_</br>
 
 > type: [string][php:string] <br/>
 > access: public <br/>
@@ -81,7 +82,7 @@ _**uses** [IOHelper](/doc/api/IO/IOHelper.md)_
 
 ### <a name="PAD">`Application::PAD`</a>
 
-*Default width for the name columns in help*</br>
+_Default width for the name columns in help_</br>
 
 > type: [int][php:int] <br/>
 > access: public <br/>
@@ -95,7 +96,7 @@ _**uses** [IOHelper](/doc/api/IO/IOHelper.md)_
 
 ### <a name="commands">`Application::$commands`</a>
 
-*Stored commands registry*</br>
+_Stored commands registry_</br>
 
 
 > type: [Command[]](/doc/api/Command.md) <br/>
@@ -105,7 +106,7 @@ _**uses** [IOHelper](/doc/api/IO/IOHelper.md)_
 
 ### <a name="mono">`Application::$mono`</a>
 
-*Is this application a Mono-Command Application ?*</br>
+_Is this application a Mono-Command Application ?_</br>
 
 
 > type: [bool][php:bool] <br/>
@@ -115,7 +116,7 @@ _**uses** [IOHelper](/doc/api/IO/IOHelper.md)_
 
 ### <a name="name">`Application::$name`</a>
 
-*The application name*</br>
+_The application name_</br>
 
 
 > type: [string][php:string] <br/>
@@ -125,7 +126,7 @@ _**uses** [IOHelper](/doc/api/IO/IOHelper.md)_
 
 ### <a name="script">`Application::$script`</a>
 
-*The called script name*</br>
+_The called script name_</br>
 
 
 > type: [string][php:string] <br/>
@@ -135,7 +136,7 @@ _**uses** [IOHelper](/doc/api/IO/IOHelper.md)_
 
 ### <a name="version">`Application::$version`</a>
 
-*The application version*</br>
+_The application version_</br>
 
 
 > type: [string][php:string] <br/>
@@ -153,7 +154,7 @@ _**uses** [IOHelper](/doc/api/IO/IOHelper.md)_
 Application::__construct($name, $version, $main)
 ```
 
-*Application constructor.*</br>
+_Application constructor._</br>
 
 
 > access: public <br/>
@@ -179,12 +180,12 @@ $main|[Command](/doc/api/Command.md) &#124; [null][php:null]|Main command (only 
 Application::__get($name)
 ```
 
-*Magic getter method for the input/output streams pseudo-properties*</br>
+_Magic getter method for the input/output streams pseudo-properties_</br>
 
-*In case one may need to define a proper magic getter in the class using IOHelper,*</br>
-*this method should be imported as an alias, and called by the final __get() implementation*</br>
+_In case one may need to define a proper magic getter in the class using IOHelper,_</br>
+_this method should be imported as an alias, and called by the final `__get()` implementation_</br>
 
-*Ex:*</br>
+_Ex:_</br>
 
 ```php
 class AcmeClass {
@@ -239,7 +240,7 @@ Type|Description
 Application::add($command)
 ```
 
-*Add a command to the registry*</br>
+_Add a command to the registry_</br>
 
 
 > access: public <br/>
@@ -264,7 +265,7 @@ $command|[Command](/doc/api/Command.md)|The command to register<br/>
 Application::addBaseCommands()
 ```
 
-*Add base common commands*</br>
+_Add base common commands_</br>
 
 
 > access: public <br/>
@@ -287,7 +288,7 @@ Application::addBaseCommands()
 Application::addCommands($commands)
 ```
 
-*Add several commands in one shot*</br>
+_Add several commands in one shot_</br>
 
 
 > access: public <br/>
@@ -312,7 +313,7 @@ $commands|[Command[]](/doc/api/Command.md)|The commands to be registered<br/>
 Application::dmesg($message, $level)
 ```
 
-*Print a message on stderr if priority is relevant compared to the main verbosity level*</br>
+_Print a message on stderr if priority is relevant compared to the main verbosity level_</br>
 
 
 > access: protected <br/>
@@ -338,7 +339,7 @@ $level|[int][php:int]|
 Application::error($text, $ending)
 ```
 
-*Print text to STDERR*</br>
+_Print text to STDERR_</br>
 
 
 > access: public <br/>
@@ -348,8 +349,8 @@ Application::error($text, $ending)
 
 Name|Type|Description
 ----|----|-----------
-$text|[string][php:string]|The text to print (defaults to empty string)<br/>
-$ending|[string][php:string]|Ending character or text
+$text|[string][php:string]|The text to print (defaults to empty string)
+$ending|[string][php:string]|Ending character or text<br/>
 
 #### Return value
 
@@ -365,8 +366,8 @@ $ending|[string][php:string]|Ending character or text
 Application::find($name)
 ```
 
-*Proxy to Application::find() method*</br>
-*Implemented for backward compatibility with Symfony inheriting applications*</br>
+_Proxy to Application::find() method_</br>
+_Implemented for backward compatibility with Symfony inheriting applications_</br>
 
 
 > access: public <br/>
@@ -397,7 +398,7 @@ Type|Description
 Application::get($name)
 ```
 
-*Get a command by its name from the registry*</br>
+_Get a command by its name from the registry_</br>
 
 
 > access: public <br/>
@@ -428,7 +429,7 @@ Type|Description
 Application::getDefault()
 ```
 
-*Getter for the default command name*</br>
+_Getter for the default command name_</br>
 
 
 > access: public <br/>
@@ -457,7 +458,7 @@ Type|Description
 Application::getName()
 ```
 
-*Getter for the application name*</br>
+_Getter for the application name_</br>
 
 
 > access: public <br/>
@@ -480,7 +481,7 @@ Application::getName()
 Application::getScript()
 ```
 
-*Getter for the script property*</br>
+_Getter for the script property_</br>
 
 
 > access: public <br/>
@@ -503,7 +504,7 @@ Application::getScript()
 Application::getUsage($tab, $width)
 ```
 
-*Build application usage/help message upon the registered commands and return it*</br>
+_Build application usage/help message upon the registered commands and return it_</br>
 
 
 > access: public <br/>
@@ -512,8 +513,8 @@ Application::getUsage($tab, $width)
 
 Name|Type|Description
 ----|----|-----------
-$tab|[string][php:string]|The tabulation string (defaults to `\t`)<br/>
-$width|[int][php:int]|Minimum width for the command names column (defaults to `18`)
+$tab|[string][php:string]|The tabulation string (defaults to `\t`)
+$width|[int][php:int]|Minimum width for the command names column (defaults to `18`)<br/>
 
 #### Return value
 
@@ -550,7 +551,7 @@ Application::getUserCommands()
 Application::getVersion()
 ```
 
-*Getter for the application version*</br>
+_Getter for the application version_</br>
 
 
 > access: public <br/>
@@ -573,7 +574,7 @@ Application::getVersion()
 Application::has($name)
 ```
 
-*Check for the presence of the named command in the registry*</br>
+_Check for the presence of the named command in the registry_</br>
 
 
 > access: public <br/>
@@ -598,8 +599,8 @@ $name|[string][php:string]|The searched command name<br/>
 Application::init()
 ```
 
-*Hook for initialization tasks, called at the end of the constructor:*</br>
-*- add common commands (help, version)*</br>
+_Hook for initialization tasks, called at the end of the constructor:_</br>
+_- add common commands (help, version)_</br>
 
 > access: protected <br/>
 
@@ -620,7 +621,7 @@ Application::init()
 Application::isMono()
 ```
 
-*Getter for the mono-command application flag*</br>
+_Getter for the mono-command application flag_</br>
 
 
 > access: public <br/>
@@ -643,7 +644,7 @@ Application::isMono()
 Application::output($stream, $contents, $ending)
 ```
 
-*Print contents to the given output*</br>
+_Print contents to the given output_</br>
 
 
 > access: private <br/>
@@ -653,9 +654,9 @@ Application::output($stream, $contents, $ending)
 
 Name|Type|Description
 ----|----|-----------
-$stream|[IOWriter](/doc/api/IO/Stream/IOWriter.md)|The output stream wrapper<br/>
+$stream|[IOWriter](/doc/api/IO/Stream/IOWriter.md)|The output stream wrapper
 $contents|[string][php:string]|The text to print (defaults to empty string)
-$ending|[string][php:string]|Ending character or text (defaults to "\n")
+$ending|[string][php:string]|Ending character or text (defaults to "\n")<br/>
 
 #### Return value
 
@@ -671,7 +672,7 @@ $ending|[string][php:string]|Ending character or text (defaults to "\n")
 Application::parse($args)
 ```
 
-*Find command name and arguments from the command-line invocation*</br>
+_Find command name and arguments from the command-line invocation_</br>
 
 
 > access: public <br/>
@@ -697,7 +698,7 @@ _An associative array of the form ['command' => '...', 'args' => array(...)]_
 Application::read($interactive)
 ```
 
-*Read contents from the standard input*</br>
+_Read contents from the standard input_</br>
 
 
 > access: public <br/>
@@ -724,8 +725,8 @@ _The contents or **false** in case of failure_
 Application::run($args)
 ```
 
-*Run the application*</br>
-*This is the entrypoint method.*</br>
+_Run the application_</br>
+_This is the entrypoint method._</br>
 
 
 > access: public <br/>
@@ -751,7 +752,7 @@ _The command exit status code_
 Application::setMono($mono)
 ```
 
-*Setter for the mono-command application flag*</br>
+_Setter for the mono-command application flag_</br>
 
 
 > access: public <br/>
@@ -776,7 +777,7 @@ $mono|[bool][php:bool]|
 Application::setVerbosity($verbosity)
 ```
 
-*Change the main application verbosity level*</br>
+_Change the main application verbosity level_</br>
 
 
 > access: public <br/>
@@ -802,7 +803,7 @@ $verbosity|[int][php:int]|
 Application::write($text, $ending)
 ```
 
-*Print text to STDOUT*</br>
+_Print text to STDOUT_</br>
 
 
 > access: public <br/>
@@ -812,8 +813,8 @@ Application::write($text, $ending)
 
 Name|Type|Description
 ----|----|-----------
-$text|[string][php:string]|The text to print (defaults to empty string)<br/>
-$ending|[string][php:string]|Ending character or text
+$text|[string][php:string]|The text to print (defaults to empty string)
+$ending|[string][php:string]|Ending character or text<br/>
 
 #### Return value
 
@@ -833,6 +834,7 @@ $ending|[string][php:string]|Ending character or text
 [php:float]: https://www.php.net/manual/language.types.float.php "PHP Built-in: float"
 [php:int]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: int"
 [php:integer]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: integer"
+[php:mixed]: https://www.php.net/manual/language.types.mixed.php "PHP Built-in: mixed"
 [php:null]: https://www.php.net/manual/language.types.null.php "PHP Built-in: null"
 [php:object]: https://www.php.net/manual/language.types.object.php "PHP Built-in: object"
 [php:resource]: https://www.php.net/manual/language.types.resource.php "PHP Built-in: resource"
@@ -850,14 +852,16 @@ $ending|[string][php:string]|Ending character or text
 [php:RuntimeException]: https://www.php.net/manual/class.runtimeexception.php "PHP Built-in: RuntimeException"
 [php:Reflector]: https://www.php.net/manual/class.reflector.php "PHP Built-in: Reflector"
 [php:ReflectionClass]: https://www.php.net/manual/class.reflectionclass.php "PHP Built-in: ReflectionClass"
-[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
-[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
-[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionClassConstant]: https://www.php.net/manual/class.reflectionclassconstant.php "PHP Built-in: ReflectionClassConstant"
 [php:ReflectionConstant]: https://www.php.net/manual/class.reflectionconstant.php "PHP Built-in: ReflectionConstant"
+[php:ReflectionException]: https://www.php.net/manual/class.reflectionexception.php "PHP Built-in: ReflectionException"
+[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
+[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
+[php:ReflectionParameter]: https://www.php.net/manual/class.reflectionparameter.php "PHP Built-in: ReflectionParameter"
 [php:StdClass]: https://www.php.net/manual/class.stdclass.php "PHP Built-in: StdClass"
 [php:Throwable]: https://www.php.net/manual/class.throwable.php "PHP Built-in: Throwable"
 [php:Traversable]: https://www.php.net/manual/class.traversable.php "PHP Built-in: Traversable"
 
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
 
-<!-- Generated: 2025-05-11 14:17:53 +01:00 -->
+<!-- Generated: 2026-01-08 16:50:57 +01:00 -->

@@ -1,4 +1,5 @@
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
+[API Reference](/doc/api/index.md) &raquo; [Yannoff](./index.md) &raquo; [Component](./index.md) &raquo; [Console](./index.md) &raquo; [Definition][self]
+
 
 # Class Definition
 
@@ -9,9 +10,9 @@
 
 ## Overview
 
-*The registry which holds options & arguments definitions*</br>
+_The registry which holds options & arguments definitions_</br>
 
-
+Source file: [src/Definition.php](/src/Definition.php)
 ### Properties
 
 - [$aliases](#definitionaliases)
@@ -46,7 +47,7 @@
 
 ### <a name="aliases">`Definition::$aliases`</a>
 
-*Mapping between option definitions short & long names*</br>
+_Mapping between option definitions short & long names_</br>
 
 
 > type: [array][php:array] <br/>
@@ -56,8 +57,8 @@
 
 ### <a name="arguments">`Definition::$arguments`</a>
 
-*Registry for argument definitions*</br>
-*Each argument is stored using its name as a key*</br>
+_Registry for argument definitions_</br>
+_Each argument is stored using its name as a key_</br>
 
 
 > type: [Argument[]](/doc/api/Definition/Argument.md) <br/>
@@ -67,8 +68,8 @@
 
 ### <a name="options">`Definition::$options`</a>
 
-*Registry for option definitions*</br>
-*Each option is stored using its long name as a key*</br>
+_Registry for option definitions_</br>
+_Each option is stored using its long name as a key_</br>
 
 
 > type: [Option[]](/doc/api/Definition/Option.md) <br/>
@@ -86,7 +87,7 @@
 Definition::addArgument($argument)
 ```
 
-*Register an argument definition*</br>
+_Register an argument definition_</br>
 
 
 > access: public <br/>
@@ -111,7 +112,7 @@ $argument|[Argument](/doc/api/Definition/Argument.md)|
 Definition::addOption($option)
 ```
 
-*Register an option definition*</br>
+_Register an option definition_</br>
 
 
 > access: public <br/>
@@ -136,7 +137,7 @@ $option|[Option](/doc/api/Definition/Option.md)|
 Definition::all($register)
 ```
 
-*Get all items array for the given registry name*</br>
+_Get all items array for the given registry name_</br>
 
 
 > access: public <br/>
@@ -167,7 +168,7 @@ Type|Description
 Definition::countArguments()
 ```
 
-*Return the total number of defined arguments*</br>
+_Return the total number of defined arguments_</br>
 
 
 > access: public <br/>
@@ -190,7 +191,7 @@ Definition::countArguments()
 Definition::getArgSynopsis()
 ```
 
-*Return the list of arguments, pre-formatted for Command help*</br>
+_Return the list of arguments, pre-formatted for Command help_</br>
 
 
 > access: public <br/>
@@ -213,7 +214,7 @@ Definition::getArgSynopsis()
 Definition::getArgument($name)
 ```
 
-*Get argument from the registry by its name*</br>
+_Get argument from the registry by its name_</br>
 
 
 > access: public <br/>
@@ -244,7 +245,7 @@ Type|Description
 Definition::getArguments($callback)
 ```
 
-*Return the arguments list, optionally filtered by a custom callback*</br>
+_Return the arguments list, optionally filtered by a custom callback_</br>
 
 
 > access: public <br/>
@@ -269,7 +270,7 @@ $callback|[callable][php:callable] &#124; [null][php:null]|Optional filtering ca
 Definition::getLongOption($name)
 ```
 
-*Get option from the registry by its long name*</br>
+_Get option from the registry by its long name_</br>
 
 
 > access: public <br/>
@@ -294,7 +295,7 @@ $name|[string][php:string]|
 Definition::getMandatoryArgs()
 ```
 
-*Return the mandatory arguments list*</br>
+_Return the mandatory arguments list_</br>
 
 
 > access: public <br/>
@@ -317,7 +318,7 @@ Definition::getMandatoryArgs()
 Definition::getNameByPosition($register, $idx)
 ```
 
-*Calculate the index of the queried item in the given registry*</br>
+_Calculate the index of the queried item in the given registry_</br>
 
 
 > access: public <br/>
@@ -343,7 +344,7 @@ $idx|[int][php:int]|
 Definition::getOption($name)
 ```
 
-*Get option by its name, searching both long & short names*</br>
+_Get option by its name, searching both long & short names_</br>
 
 
 > access: public <br/>
@@ -374,7 +375,7 @@ Type|Description
 Definition::getOptionalArgs()
 ```
 
-*Return the optional arguments list*</br>
+_Return the optional arguments list_</br>
 
 
 > access: public <br/>
@@ -397,7 +398,7 @@ Definition::getOptionalArgs()
 Definition::getRequiredArgs()
 ```
 
-*Return the required arguments list*</br>
+_Return the required arguments list_</br>
 
 
 > access: public <br/>
@@ -420,7 +421,7 @@ Definition::getRequiredArgs()
 Definition::getShortOption($name)
 ```
 
-*Get option from the registry by its short name*</br>
+_Get option from the registry by its short name_</br>
 
 
 > access: public <br/>
@@ -445,7 +446,7 @@ $name|[string][php:string]|
 Definition::hasArgument($name)
 ```
 
-*Check for existence of the given argument in the registry*</br>
+_Check for existence of the given argument in the registry_</br>
 
 
 > access: public <br/>
@@ -470,7 +471,7 @@ $name|[string][php:string]|
 Definition::hasLongOption($name)
 ```
 
-*Check for existence of the given option in the registry by its long name*</br>
+_Check for existence of the given option in the registry by its long name_</br>
 
 
 > access: public <br/>
@@ -495,7 +496,7 @@ $name|[string][php:string]|
 Definition::hasOption($name)
 ```
 
-*Check for existence of the given option in the registry*</br>
+_Check for existence of the given option in the registry_</br>
 
 
 > access: public <br/>
@@ -520,7 +521,7 @@ $name|[string][php:string]|
 Definition::hasShortOption($name)
 ```
 
-*Check for existence of the given option in the registry by its short name*</br>
+_Check for existence of the given option in the registry by its short name_</br>
 
 
 > access: public <br/>
@@ -549,6 +550,7 @@ $name|[string][php:string]|
 [php:float]: https://www.php.net/manual/language.types.float.php "PHP Built-in: float"
 [php:int]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: int"
 [php:integer]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: integer"
+[php:mixed]: https://www.php.net/manual/language.types.mixed.php "PHP Built-in: mixed"
 [php:null]: https://www.php.net/manual/language.types.null.php "PHP Built-in: null"
 [php:object]: https://www.php.net/manual/language.types.object.php "PHP Built-in: object"
 [php:resource]: https://www.php.net/manual/language.types.resource.php "PHP Built-in: resource"
@@ -566,14 +568,16 @@ $name|[string][php:string]|
 [php:RuntimeException]: https://www.php.net/manual/class.runtimeexception.php "PHP Built-in: RuntimeException"
 [php:Reflector]: https://www.php.net/manual/class.reflector.php "PHP Built-in: Reflector"
 [php:ReflectionClass]: https://www.php.net/manual/class.reflectionclass.php "PHP Built-in: ReflectionClass"
-[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
-[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
-[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionClassConstant]: https://www.php.net/manual/class.reflectionclassconstant.php "PHP Built-in: ReflectionClassConstant"
 [php:ReflectionConstant]: https://www.php.net/manual/class.reflectionconstant.php "PHP Built-in: ReflectionConstant"
+[php:ReflectionException]: https://www.php.net/manual/class.reflectionexception.php "PHP Built-in: ReflectionException"
+[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
+[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
+[php:ReflectionParameter]: https://www.php.net/manual/class.reflectionparameter.php "PHP Built-in: ReflectionParameter"
 [php:StdClass]: https://www.php.net/manual/class.stdclass.php "PHP Built-in: StdClass"
 [php:Throwable]: https://www.php.net/manual/class.throwable.php "PHP Built-in: Throwable"
 [php:Traversable]: https://www.php.net/manual/class.traversable.php "PHP Built-in: Traversable"
 
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
 
-<!-- Generated: 2025-05-11 14:17:53 +01:00 -->
+<!-- Generated: 2026-01-08 15:51:59 +01:00 -->

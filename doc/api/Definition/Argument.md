@@ -1,4 +1,5 @@
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
+[API Reference](/doc/api/index.md) &raquo; [Yannoff](../index.md) &raquo; [Component](../index.md) &raquo; [Console](../index.md) &raquo; [Definition](./index.md) &raquo; [Argument][self]
+
 
 # Class Argument
 
@@ -10,9 +11,9 @@ _**extends** [Item](/doc/api/Definition/Item.md)_
 
 ## Overview
 
-*Argument definition item*</br>
+_Argument definition item_</br>
 
-
+Source file: [src/Definition/Argument.php](/src/Definition/Argument.php)
 ### Constants
 
 - [OPTIONAL](#argumentOPTIONAL)
@@ -50,7 +51,7 @@ _**extends** [Item](/doc/api/Definition/Item.md)_
 
 ### <a name="OPTIONAL">`Argument::OPTIONAL`</a>
 
-*Argument type: optional*</br>
+_Argument type: optional_</br>
 > type: [int][php:int] <br/>
 > access: public <br/>
 > value: `2` <br/>
@@ -59,7 +60,7 @@ _**extends** [Item](/doc/api/Definition/Item.md)_
 
 ### <a name="REQUIRED">`Argument::REQUIRED`</a>
 
-*Argument type: required*</br>
+_Argument type: required_</br>
 > type: [int][php:int] <br/>
 > access: public <br/>
 > value: `1` <br/>
@@ -72,7 +73,7 @@ _**extends** [Item](/doc/api/Definition/Item.md)_
 
 ### <a name="default">`Argument::$default`</a>
 
-*Optional default value for the item*</br>
+_Optional default value for the item_</br>
 
 
 > type: [mixed][php:mixed] <br/>
@@ -82,7 +83,7 @@ _**extends** [Item](/doc/api/Definition/Item.md)_
 
 ### <a name="hasDefault">`Argument::$hasDefault`</a>
 
-*Flag indicating if default value was set*</br>
+_Flag indicating if default value was set_</br>
 
 
 > type: [bool][php:bool] <br/>
@@ -92,7 +93,7 @@ _**extends** [Item](/doc/api/Definition/Item.md)_
 
 ### <a name="help">`Argument::$help`</a>
 
-*The item help/description message*</br>
+_The item help/description message_</br>
 
 
 > type: [string][php:string] <br/>
@@ -102,7 +103,7 @@ _**extends** [Item](/doc/api/Definition/Item.md)_
 
 ### <a name="name">`Argument::$name`</a>
 
-*The item name*</br>
+_The item name_</br>
 
 
 > type: [string][php:string] <br/>
@@ -112,7 +113,7 @@ _**extends** [Item](/doc/api/Definition/Item.md)_
 
 ### <a name="type">`Argument::$type`</a>
 
-*The item type*</br>
+_The item type_</br>
 
 
 > type: [int][php:int] <br/>
@@ -130,7 +131,7 @@ _**extends** [Item](/doc/api/Definition/Item.md)_
 Argument::__construct($name, $type, $help, $default)
 ```
 
-*Argument constructor.*</br>
+_Argument constructor._</br>
 
 
 > access: public <br/>
@@ -139,10 +140,10 @@ Argument::__construct($name, $type, $help, $default)
 
 Name|Type|Description
 ----|----|-----------
-$name|[string][php:string]|The argument name<br/>
+$name|[string][php:string]|The argument name
 $type|[int][php:int]|The argument type: optional/required
 $help|[string][php:string]|The argument help message
-$default|[mixed][php:mixed]|Optional default value for the argument
+$default|[mixed][php:mixed]|Optional default value for the argument<br/>
 
 #### Return value
 
@@ -163,7 +164,7 @@ Type|Description
 Argument::__toString()
 ```
 
-*Default to-string type-cast conversion for Item objects*</br>
+_Default to-string type-cast conversion for Item objects_</br>
 
 
 > access: public <br/>
@@ -187,7 +188,7 @@ Argument::__toString()
 Argument::escape($value)
 ```
 
-*Escape special chars in value for rendering*</br>
+_Escape special chars in value for rendering_</br>
 
 
 > access: public <br/>
@@ -213,7 +214,7 @@ $value|[string][php:string]|
 Argument::getDefault($escape)
 ```
 
-*Getter for the item default value*</br>
+_Getter for the item default value_</br>
 
 
 > access: public <br/>
@@ -223,10 +224,11 @@ Argument::getDefault($escape)
 
 Name|Type|Description
 ----|----|-----------
-$escape|[bool][php:bool]|Whether the special chars should be escaped<br/>
+$escape|[bool][php:bool]|Whether the special chars should be escaped (default: `false`)<br/>
 
 #### Return value
 
+_Either the escaped or raw value_
 
 > type: [mixed][php:mixed]
 
@@ -239,7 +241,7 @@ $escape|[bool][php:bool]|Whether the special chars should be escaped<br/>
 Argument::getHelp()
 ```
 
-*Getter for the item help message*</br>
+_Getter for the item help message_</br>
 
 
 > access: public <br/>
@@ -263,7 +265,7 @@ Argument::getHelp()
 Argument::getName()
 ```
 
-*Getter for the item name*</br>
+_Getter for the item name_</br>
 
 
 > access: public <br/>
@@ -287,7 +289,7 @@ Argument::getName()
 Argument::getSynopsis($tab, $width)
 ```
 
-*Return the formatted help for the item*</br>
+_Return the formatted help for the item_</br>
 
 
 > access: public <br/>
@@ -297,8 +299,8 @@ Argument::getSynopsis($tab, $width)
 
 Name|Type|Description
 ----|----|-----------
-$tab|[string][php:string]|The tabulation string (defaults to `\t`)<br/>
-$width|[int][php:int]|Minimum width for the names column (defaults to `18`)
+$tab|[string][php:string]|The tabulation string (defaults to `\t`)
+$width|[int][php:int]|Minimum width for the names column (defaults to `18`)<br/>
 
 #### Return value
 
@@ -314,7 +316,7 @@ $width|[int][php:int]|Minimum width for the names column (defaults to `18`)
 Argument::getType()
 ```
 
-*Getter for the item type*</br>
+_Getter for the item type_</br>
 
 
 > access: public <br/>
@@ -338,7 +340,7 @@ Argument::getType()
 Argument::getValidTypes()
 ```
 
-*Give the authorized values for the type property*</br>
+_Give the authorized values for the type property_</br>
 
 
 > access: public <br/>
@@ -362,7 +364,7 @@ Argument::getValidTypes()
 Argument::hasDefault()
 ```
 
-*Getter for the hasDefault flag*</br>
+_Getter for the hasDefault flag_</br>
 
 
 > access: public <br/>
@@ -386,8 +388,8 @@ Argument::hasDefault()
 Argument::isMandatory()
 ```
 
-*True if the argument is required AND has no default value set*</br>
-*Indeed a required argument with its default value set is de facto not mandatory*</br>
+_True if the argument is required AND has no default value set_</br>
+_Indeed a required argument with its default value set is de facto not mandatory_</br>
 
 
 > access: public <br/>
@@ -410,7 +412,7 @@ Argument::isMandatory()
 Argument::isOptional()
 ```
 
-*True if the argument is typed as "optional"*</br>
+_True if the argument is typed as "optional"_</br>
 
 
 > access: public <br/>
@@ -433,7 +435,7 @@ Argument::isOptional()
 Argument::isRequired()
 ```
 
-*True if the argument is typed as required*</br>
+_True if the argument is typed as required_</br>
 
 
 > access: public <br/>
@@ -456,7 +458,7 @@ Argument::isRequired()
 Argument::isValidType($type)
 ```
 
-*Check whether the given type as a valid value*</br>
+_Check whether the given type as a valid value_</br>
 
 
 > access: public <br/>
@@ -482,7 +484,7 @@ $type|[int][php:int]|
 Argument::setHasDefault($hasDefault)
 ```
 
-*Setter for the $hasDefault flag*</br>
+_Setter for the $hasDefault flag_</br>
 
 
 > access: public <br/>
@@ -530,14 +532,16 @@ $hasDefault|[bool][php:bool]|
 [php:RuntimeException]: https://www.php.net/manual/class.runtimeexception.php "PHP Built-in: RuntimeException"
 [php:Reflector]: https://www.php.net/manual/class.reflector.php "PHP Built-in: Reflector"
 [php:ReflectionClass]: https://www.php.net/manual/class.reflectionclass.php "PHP Built-in: ReflectionClass"
-[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
-[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
-[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionClassConstant]: https://www.php.net/manual/class.reflectionclassconstant.php "PHP Built-in: ReflectionClassConstant"
 [php:ReflectionConstant]: https://www.php.net/manual/class.reflectionconstant.php "PHP Built-in: ReflectionConstant"
+[php:ReflectionException]: https://www.php.net/manual/class.reflectionexception.php "PHP Built-in: ReflectionException"
+[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
+[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
+[php:ReflectionParameter]: https://www.php.net/manual/class.reflectionparameter.php "PHP Built-in: ReflectionParameter"
 [php:StdClass]: https://www.php.net/manual/class.stdclass.php "PHP Built-in: StdClass"
 [php:Throwable]: https://www.php.net/manual/class.throwable.php "PHP Built-in: Throwable"
 [php:Traversable]: https://www.php.net/manual/class.traversable.php "PHP Built-in: Traversable"
 
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
 
-<!-- Generated: 2025-11-17 17:34:24 +01:00 -->
+<!-- Generated: 2026-01-08 15:51:59 +01:00 -->

@@ -40,7 +40,7 @@ trait IOHelper
      * Magic getter method for the input/output streams pseudo-properties
      *
      * In case one may need to define a proper magic getter in the class using IOHelper,
-     * this method should be imported as an alias, and called by the final __get() implementation
+     * this method should be imported as an alias, and called by the final `__get()` implementation
      * 
      * Ex:
      * 

@@ -1,4 +1,5 @@
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
+[API Reference](/doc/api/index.md) &raquo; [Yannoff](../index.md) &raquo; [Component](../index.md) &raquo; [Console](../index.md) &raquo; [Command](./index.md) &raquo; [VersionCommand][self]
+
 
 # Class VersionCommand
 
@@ -11,7 +12,7 @@ _**implements** [StreamAware](/doc/api/IO/StreamAware.md)_
 
 ## Overview
 
-
+Source file: [src/Command/VersionCommand.php](/src/Command/VersionCommand.php)
 ### Properties
 
 - [$application](#versioncommandapplication)
@@ -37,6 +38,7 @@ _**implements** [StreamAware](/doc/api/IO/StreamAware.md)_
 - [execute()](#versioncommandexecute)
 - [getApplication()](#versioncommandgetApplication)
 - [getArgument()](#versioncommandgetArgument)
+- [getBashComp()](#versioncommandgetBashComp)
 - [getDescription()](#versioncommandgetDescription)
 - [getHelp()](#versioncommandgetHelp)
 - [getName()](#versioncommandgetName)
@@ -61,7 +63,7 @@ _**implements** [StreamAware](/doc/api/IO/StreamAware.md)_
 
 ### <a name="application">`VersionCommand::$application`</a>
 
-*Pointer to the main Application instance*</br>
+_Pointer to the main Application instance_</br>
 
 
 > type: [Application](/doc/api/Application.md) <br/>
@@ -71,7 +73,7 @@ _**implements** [StreamAware](/doc/api/IO/StreamAware.md)_
 
 ### <a name="closure">`VersionCommand::$closure`</a>
 
-*Optional closure to be launch by the execute method*</br>
+_Optional closure to be launch by the execute method_</br>
 
 
 > type: [Closure][php:Closure] <br/>
@@ -81,7 +83,7 @@ _**implements** [StreamAware](/doc/api/IO/StreamAware.md)_
 
 ### <a name="definition">`VersionCommand::$definition`</a>
 
-*Argument & option definitions registry*</br>
+_Argument & option definitions registry_</br>
 
 
 > type: [Definition](/doc/api/Definition.md) <br/>
@@ -91,7 +93,7 @@ _**implements** [StreamAware](/doc/api/IO/StreamAware.md)_
 
 ### <a name="desc">`VersionCommand::$desc`</a>
 
-*The command description message*</br>
+_The command description message_</br>
 
 
 > type: [string][php:string] <br/>
@@ -101,7 +103,7 @@ _**implements** [StreamAware](/doc/api/IO/StreamAware.md)_
 
 ### <a name="help">`VersionCommand::$help`</a>
 
-*The command help message*</br>
+_The command help message_</br>
 
 
 > type: [string][php:string] <br/>
@@ -111,7 +113,7 @@ _**implements** [StreamAware](/doc/api/IO/StreamAware.md)_
 
 ### <a name="name">`VersionCommand::$name`</a>
 
-*The command name*</br>
+_The command name_</br>
 
 
 > type: [string][php:string] <br/>
@@ -121,7 +123,7 @@ _**implements** [StreamAware](/doc/api/IO/StreamAware.md)_
 
 ### <a name="resolver">`VersionCommand::$resolver`</a>
 
-*The command-line arguments resolver*</br>
+_The command-line arguments resolver_</br>
 
 
 > type: [ArgvResolver](/doc/api/ArgvResolver.md) <br/>
@@ -139,7 +141,7 @@ _**implements** [StreamAware](/doc/api/IO/StreamAware.md)_
 VersionCommand::__construct($name, $closure)
 ```
 
-*Command constructor.*</br>
+_Command constructor._</br>
 
 
 > access: public <br/>
@@ -165,12 +167,12 @@ $closure|[Closure][php:Closure] &#124; [null][php:null]|Optional executable code
 VersionCommand::__get($name)
 ```
 
-*Magic getter method for the input/output streams pseudo-properties*</br>
+_Magic getter method for the input/output streams pseudo-properties_</br>
 
-*In case one may need to define a proper magic getter in the class using IOHelper,*</br>
-*this method should be imported as an alias, and called by the final __get() implementation*</br>
+_In case one may need to define a proper magic getter in the class using IOHelper,_</br>
+_this method should be imported as an alias, and called by the final `__get()` implementation_</br>
 
-*Ex:*</br>
+_Ex:_</br>
 
 ```php
 class AcmeClass {
@@ -225,7 +227,7 @@ Type|Description
 VersionCommand::__toString()
 ```
 
-*Return a string representation of a command: its name*</br>
+_Return a string representation of a command: its name_</br>
 
 
 > access: public <br/>
@@ -249,7 +251,7 @@ VersionCommand::__toString()
 VersionCommand::addArgument($name, $type, $help, $default)
 ```
 
-*Add an argument definition to the command*</br>
+_Add an argument definition to the command_</br>
 
 
 > access: protected <br/>
@@ -259,10 +261,10 @@ VersionCommand::addArgument($name, $type, $help, $default)
 
 Name|Type|Description
 ----|----|-----------
-$name|[string][php:string]|The argument name<br/>
+$name|[string][php:string]|The argument name
 $type|[int][php:int]|The argument type: required or optional
 $help|[string][php:string]|The argument help message
-$default|mixed|Optional default value for the argument
+$default|[mixed][php:mixed]|Optional default value for the argument<br/>
 
 #### Return value
 
@@ -284,7 +286,7 @@ Type|Description
 VersionCommand::addCommonOptions()
 ```
 
-*Add the options common to every command*</br>
+_Add the options common to every command_</br>
 
 
 > access: protected <br/>
@@ -308,10 +310,10 @@ VersionCommand::addCommonOptions()
 VersionCommand::addHelpOption()
 ```
 
-*Base method to add the --help option*</br>
+_Base method to add the --help and --bash-comp options_</br>
 
-*This method might be overwritten in extending classes*</br>
-*(for instance to avoid shortname collision between options)*</br>
+_This method might be overwritten in extending classes_</br>
+_(for instance to avoid shortname collision between options)_</br>
 
 
 > access: protected <br/>
@@ -335,7 +337,7 @@ VersionCommand::addHelpOption()
 VersionCommand::addOption($name, $short, $type, $help, $default)
 ```
 
-*Add an option definition to the command*</br>
+_Add an option definition to the command_</br>
 
 
 > access: protected <br/>
@@ -345,11 +347,11 @@ VersionCommand::addOption($name, $short, $type, $help, $default)
 
 Name|Type|Description
 ----|----|-----------
-$name|[string][php:string]|Long name for the option<br/>
+$name|[string][php:string]|Long name for the option
 $short|[string][php:string]|Optional short name for the option
 $type|[int][php:int]|The option type: value or flag
 $help|[string][php:string]|The option help message
-$default|mixed|Optional default value for the option
+$default|[mixed][php:mixed]|Optional default value for the option<br/>
 
 #### Return value
 
@@ -371,11 +373,11 @@ Type|Description
 VersionCommand::configure()
 ```
 
-*The command initialization method*</br>
-*This is where all the command setup instructions must reside:*</br>
-*setting name, help, description, options & arguments definitions*</br>
+_The command initialization method_</br>
+_This is where all the command setup instructions must reside:_</br>
+_setting name, help, description, options & arguments definitions_</br>
 
-*This method is intended to be overridden in extending classes*</br>
+_This method is intended to be overridden in extending classes_</br>
 
 > access: public <br/>
 > overridden from: [Command](/doc/api/Command.md#commandconfigure) <br/>
@@ -397,7 +399,7 @@ VersionCommand::configure()
 VersionCommand::dmesg($message, $level)
 ```
 
-*Print a message on stderr if priority is relevant compared to the main verbosity level*</br>
+_Print a message on stderr if priority is relevant compared to the main verbosity level_</br>
 
 
 > access: protected <br/>
@@ -423,7 +425,7 @@ $level|[int][php:int]|
 VersionCommand::error($text, $ending)
 ```
 
-*Print text to STDERR*</br>
+_Print text to STDERR_</br>
 
 
 > access: public <br/>
@@ -433,8 +435,8 @@ VersionCommand::error($text, $ending)
 
 Name|Type|Description
 ----|----|-----------
-$text|[string][php:string]|The text to print (defaults to empty string)<br/>
-$ending|[string][php:string]|Ending character or text
+$text|[string][php:string]|The text to print (defaults to empty string)
+$ending|[string][php:string]|Ending character or text<br/>
 
 #### Return value
 
@@ -450,12 +452,12 @@ $ending|[string][php:string]|Ending character or text
 VersionCommand::execute()
 ```
 
-*Placeholder for the main command code*</br>
+_Placeholder for the main command code_</br>
 
-*This method is to be overriden in child command classes*</br>
+_This method is to be overriden in child command classes_</br>
 
-*However, if a closure was passed to the constructor it*</br>
-*will be executed here*</br>
+_However, if a closure was passed to the constructor it_</br>
+_will be executed here_</br>
 
 
 > access: public <br/>
@@ -480,7 +482,7 @@ _The command exit status code_
 VersionCommand::getApplication()
 ```
 
-*Getter for the Application instance*</br>
+_Getter for the Application instance_</br>
 
 
 > access: public <br/>
@@ -504,7 +506,7 @@ VersionCommand::getApplication()
 VersionCommand::getArgument($name)
 ```
 
-*Retrieve an argument value by its name*</br>
+_Retrieve an argument value by its name_</br>
 
 
 > access: public <br/>
@@ -519,7 +521,7 @@ $name|[string][php:string]|The name of the queried argument<br/>
 #### Return value
 
 
-> type: mixed
+> type: [mixed][php:mixed]
 
 
 #### Exceptions
@@ -531,13 +533,39 @@ Type|Description
 
 <br/><br/>
 
+### <a name="getBashComp">`VersionCommand::getBashComp()`</a>
+
+```php
+VersionCommand::getBashComp($glue)
+```
+
+_Build a bash completion formatted list of all options_</br>
+
+
+> access: public <br/>
+> inherited from: [Command](/doc/api/Command.md#commandgetBashComp) <br/>
+
+#### Arguments
+
+Name|Type|Description
+----|----|-----------
+$glue|[string][php:string]|The string used to join options items<br/>
+
+#### Return value
+
+
+> type: [string][php:string]
+
+
+<br/><br/>
+
 ### <a name="getDescription">`VersionCommand::getDescription()`</a>
 
 ```php
 VersionCommand::getDescription()
 ```
 
-*Getter for the command description*</br>
+_Getter for the command description_</br>
 
 
 > access: public <br/>
@@ -561,7 +589,7 @@ VersionCommand::getDescription()
 VersionCommand::getHelp()
 ```
 
-*Getter for the command short help*</br>
+_Getter for the command short help_</br>
 
 
 > access: public <br/>
@@ -585,7 +613,7 @@ VersionCommand::getHelp()
 VersionCommand::getName()
 ```
 
-*Getter for the command name*</br>
+_Getter for the command name_</br>
 
 
 > access: public <br/>
@@ -609,7 +637,7 @@ VersionCommand::getName()
 VersionCommand::getOption($name)
 ```
 
-*Retrieve an option value by its name*</br>
+_Retrieve an option value by its name_</br>
 
 
 > access: public <br/>
@@ -624,7 +652,7 @@ $name|[string][php:string]|The name of the queried option<br/>
 #### Return value
 
 
-> type: mixed
+> type: [mixed][php:mixed]
 
 
 #### Exceptions
@@ -641,7 +669,7 @@ Type|Description
 VersionCommand::getSynopsis($tab)
 ```
 
-*Get the command synopsis*</br>
+_Get the command synopsis_</br>
 
 
 > access: protected <br/>
@@ -667,7 +695,7 @@ $tab|[string][php:string]|The tabulation string (defaults to `\t`)<br/>
 VersionCommand::getUsage($tab, $width)
 ```
 
-*Build the whole command usage/help message with all options/arguments documented*</br>
+_Build the whole command usage/help message with all options/arguments documented_</br>
 
 
 > access: public <br/>
@@ -677,8 +705,8 @@ VersionCommand::getUsage($tab, $width)
 
 Name|Type|Description
 ----|----|-----------
-$tab|[string][php:string]|The tabulation string (defaults to `\t`)<br/>
-$width|[int][php:int]|Minimum width for the option/argument names column (defaults to `18`)
+$tab|[string][php:string]|The tabulation string (defaults to `\t`)
+$width|[int][php:int]|Minimum width for the option/argument names column (defaults to `18`)<br/>
 
 #### Return value
 
@@ -694,7 +722,7 @@ $width|[int][php:int]|Minimum width for the option/argument names column (defaul
 VersionCommand::isSystem()
 ```
 
-*Discriminate user-defined vs built-in commands*</br>
+_Discriminate user-defined vs built-in commands_</br>
 
 
 > access: public <br/>
@@ -718,7 +746,7 @@ VersionCommand::isSystem()
 VersionCommand::output($stream, $contents, $ending)
 ```
 
-*Print contents to the given output*</br>
+_Print contents to the given output_</br>
 
 
 > access: private <br/>
@@ -728,9 +756,9 @@ VersionCommand::output($stream, $contents, $ending)
 
 Name|Type|Description
 ----|----|-----------
-$stream|[IOWriter](/doc/api/IO/Stream/IOWriter.md)|The output stream wrapper<br/>
+$stream|[IOWriter](/doc/api/IO/Stream/IOWriter.md)|The output stream wrapper
 $contents|[string][php:string]|The text to print (defaults to empty string)
-$ending|[string][php:string]|Ending character or text (defaults to "\n")
+$ending|[string][php:string]|Ending character or text (defaults to "\n")<br/>
 
 #### Return value
 
@@ -746,7 +774,7 @@ $ending|[string][php:string]|Ending character or text (defaults to "\n")
 VersionCommand::read($interactive)
 ```
 
-*Read contents from the standard input*</br>
+_Read contents from the standard input_</br>
 
 
 > access: public <br/>
@@ -773,7 +801,7 @@ _The contents or **false** in case of failure_
 VersionCommand::run($args)
 ```
 
-*Method running the command*</br>
+_Method running the command_</br>
 
 
 > access: public <br/>
@@ -808,8 +836,8 @@ Type|Description
 VersionCommand::setApplication($application)
 ```
 
-*Setter for the Application instance pointer*</br>
-*NOTA BENE: Application is passed BY-REF*</br>
+_Setter for the Application instance pointer_</br>
+_NOTA BENE: Application is passed BY-REF_</br>
 
 
 > access: public <br/>
@@ -835,7 +863,7 @@ $application|[Application](/doc/api/Application.md)|The Application instance ref
 VersionCommand::setDescription($desc)
 ```
 
-*Setter for the command description*</br>
+_Setter for the command description_</br>
 
 
 > access: protected <br/>
@@ -861,7 +889,7 @@ $desc|[string][php:string]|
 VersionCommand::setHelp($help)
 ```
 
-*Setter for the command help*</br>
+_Setter for the command help_</br>
 
 
 > access: protected <br/>
@@ -887,7 +915,7 @@ $help|[string][php:string]|
 VersionCommand::setName($name)
 ```
 
-*Setter for the command name*</br>
+_Setter for the command name_</br>
 
 
 > access: protected <br/>
@@ -913,7 +941,7 @@ $name|[string][php:string]|
 VersionCommand::setVerbosity($verbosity)
 ```
 
-*Change the main application verbosity level*</br>
+_Change the main application verbosity level_</br>
 
 
 > access: public <br/>
@@ -939,7 +967,7 @@ $verbosity|[int][php:int]|
 VersionCommand::write($text, $ending)
 ```
 
-*Print text to STDOUT*</br>
+_Print text to STDOUT_</br>
 
 
 > access: public <br/>
@@ -949,8 +977,8 @@ VersionCommand::write($text, $ending)
 
 Name|Type|Description
 ----|----|-----------
-$text|[string][php:string]|The text to print (defaults to empty string)<br/>
-$ending|[string][php:string]|Ending character or text
+$text|[string][php:string]|The text to print (defaults to empty string)
+$ending|[string][php:string]|Ending character or text<br/>
 
 #### Return value
 
@@ -970,6 +998,7 @@ $ending|[string][php:string]|Ending character or text
 [php:float]: https://www.php.net/manual/language.types.float.php "PHP Built-in: float"
 [php:int]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: int"
 [php:integer]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: integer"
+[php:mixed]: https://www.php.net/manual/language.types.mixed.php "PHP Built-in: mixed"
 [php:null]: https://www.php.net/manual/language.types.null.php "PHP Built-in: null"
 [php:object]: https://www.php.net/manual/language.types.object.php "PHP Built-in: object"
 [php:resource]: https://www.php.net/manual/language.types.resource.php "PHP Built-in: resource"
@@ -987,14 +1016,16 @@ $ending|[string][php:string]|Ending character or text
 [php:RuntimeException]: https://www.php.net/manual/class.runtimeexception.php "PHP Built-in: RuntimeException"
 [php:Reflector]: https://www.php.net/manual/class.reflector.php "PHP Built-in: Reflector"
 [php:ReflectionClass]: https://www.php.net/manual/class.reflectionclass.php "PHP Built-in: ReflectionClass"
-[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
-[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
-[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionClassConstant]: https://www.php.net/manual/class.reflectionclassconstant.php "PHP Built-in: ReflectionClassConstant"
 [php:ReflectionConstant]: https://www.php.net/manual/class.reflectionconstant.php "PHP Built-in: ReflectionConstant"
+[php:ReflectionException]: https://www.php.net/manual/class.reflectionexception.php "PHP Built-in: ReflectionException"
+[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
+[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
+[php:ReflectionParameter]: https://www.php.net/manual/class.reflectionparameter.php "PHP Built-in: ReflectionParameter"
 [php:StdClass]: https://www.php.net/manual/class.stdclass.php "PHP Built-in: StdClass"
 [php:Throwable]: https://www.php.net/manual/class.throwable.php "PHP Built-in: Throwable"
 [php:Traversable]: https://www.php.net/manual/class.traversable.php "PHP Built-in: Traversable"
 
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
 
-<!-- Generated: 2025-11-12 11:41:42 +01:00 -->
+<!-- Generated: 2026-01-08 16:50:57 +01:00 -->

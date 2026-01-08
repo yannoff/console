@@ -1,4 +1,5 @@
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
+[API Reference](/doc/api/index.md) &raquo; [Yannoff](../../index.md) &raquo; [Component](../../index.md) &raquo; [Console](../../index.md) &raquo; [IO](../index.md) &raquo; [Output](./index.md) &raquo; [Formatter][self]
+
 
 # Interface Formatter
 
@@ -9,9 +10,9 @@
 
 ## Overview
 
-*Contract for console output formatters*</br>
+_Contract for console output formatters_</br>
 
-
+Source file: [src/IO/Output/Formatter.php](/src/IO/Output/Formatter.php)
 ### Constants
 
 - [CR](#formatterCR)
@@ -35,7 +36,7 @@
 
 ### <a name="CR">`Formatter::CR`</a>
 
-*String representation for carriage return*</br>
+_String representation for carriage return_</br>
 
 
 > type: [string][php:string] <br/>
@@ -47,7 +48,7 @@
 
 ### <a name="CRLF">`Formatter::CRLF`</a>
 
-*String representation for windows new lines*</br>
+_String representation for windows new lines_</br>
 
 
 > type: [string][php:string] <br/>
@@ -59,7 +60,7 @@
 
 ### <a name="LF">`Formatter::LF`</a>
 
-*String representation for line-feed*</br>
+_String representation for line-feed_</br>
 
 
 > type: [string][php:string] <br/>
@@ -71,7 +72,7 @@
 
 ### <a name="OS_CYGWIN">`Formatter::OS_CYGWIN`</a>
 
-*Short name for Cygwin OS*</br>
+_Short name for Cygwin OS_</br>
 > type: [string][php:string] <br/>
 > access: public <br/>
 > value: `"Cygwin"` <br/>
@@ -80,7 +81,7 @@
 
 ### <a name="OS_DARWIN">`Formatter::OS_DARWIN`</a>
 
-*Short name for Darwin OS*</br>
+_Short name for Darwin OS_</br>
 > type: [string][php:string] <br/>
 > access: public <br/>
 > value: `"Darwin"` <br/>
@@ -89,7 +90,7 @@
 
 ### <a name="OS_LINUX">`Formatter::OS_LINUX`</a>
 
-*Short name for Linux OS*</br>
+_Short name for Linux OS_</br>
 > type: [string][php:string] <br/>
 > access: public <br/>
 > value: `"Linux"` <br/>
@@ -98,7 +99,7 @@
 
 ### <a name="PAD">`Formatter::PAD`</a>
 
-*Minimal left-padding width for the name columns in help*</br>
+_Minimal left-padding width for the name columns in help_</br>
 
 
 > type: [string][php:string] <br/>
@@ -110,7 +111,7 @@
 
 ### <a name="STAB">`Formatter::STAB`</a>
 
-*Soft-tab string: 4 spaces*</br>
+_Soft-tab string: 4 spaces_</br>
 
 
 > type: [string][php:string] <br/>
@@ -122,7 +123,7 @@
 
 ### <a name="TAB">`Formatter::TAB`</a>
 
-*Tabulation character*</br>
+_Tabulation character_</br>
 
 
 > type: [string][php:string] <br/>
@@ -143,7 +144,7 @@
 Formatter::format($text)
 ```
 
-*Render the given markup text into a terminal-compatible format*</br>
+_Render the given markup text into a terminal-compatible format_</br>
 
 
 > access: public <br/>
@@ -172,6 +173,7 @@ $text|[string][php:string]|The pre-formatted text to be rendered<br/>
 [php:float]: https://www.php.net/manual/language.types.float.php "PHP Built-in: float"
 [php:int]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: int"
 [php:integer]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: integer"
+[php:mixed]: https://www.php.net/manual/language.types.mixed.php "PHP Built-in: mixed"
 [php:null]: https://www.php.net/manual/language.types.null.php "PHP Built-in: null"
 [php:object]: https://www.php.net/manual/language.types.object.php "PHP Built-in: object"
 [php:resource]: https://www.php.net/manual/language.types.resource.php "PHP Built-in: resource"
@@ -189,14 +191,16 @@ $text|[string][php:string]|The pre-formatted text to be rendered<br/>
 [php:RuntimeException]: https://www.php.net/manual/class.runtimeexception.php "PHP Built-in: RuntimeException"
 [php:Reflector]: https://www.php.net/manual/class.reflector.php "PHP Built-in: Reflector"
 [php:ReflectionClass]: https://www.php.net/manual/class.reflectionclass.php "PHP Built-in: ReflectionClass"
-[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
-[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
-[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionClassConstant]: https://www.php.net/manual/class.reflectionclassconstant.php "PHP Built-in: ReflectionClassConstant"
 [php:ReflectionConstant]: https://www.php.net/manual/class.reflectionconstant.php "PHP Built-in: ReflectionConstant"
+[php:ReflectionException]: https://www.php.net/manual/class.reflectionexception.php "PHP Built-in: ReflectionException"
+[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
+[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
+[php:ReflectionParameter]: https://www.php.net/manual/class.reflectionparameter.php "PHP Built-in: ReflectionParameter"
 [php:StdClass]: https://www.php.net/manual/class.stdclass.php "PHP Built-in: StdClass"
 [php:Throwable]: https://www.php.net/manual/class.throwable.php "PHP Built-in: Throwable"
 [php:Traversable]: https://www.php.net/manual/class.traversable.php "PHP Built-in: Traversable"
 
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
 
-<!-- Generated: 2025-05-11 14:17:53 +01:00 -->
+<!-- Generated: 2026-01-08 15:51:59 +01:00 -->

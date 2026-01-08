@@ -1,4 +1,5 @@
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
+[API Reference](/doc/api/index.md) &raquo; [Yannoff](../index.md) &raquo; [Component](../index.md) &raquo; [Console](../index.md) &raquo; [IO](./index.md) &raquo; [IOHelper][self]
+
 
 # Trait IOHelper
 
@@ -9,10 +10,15 @@
 
 ## Overview
 
-*Class IOHelper*</br>
-*Provide a set of I/O read & write helper methods*</br>
+_Class IOHelper_</br>
+_Provide a set of I/O read & write helper methods_</br>
 
+Source file: [src/IO/IOHelper.php](/src/IO/IOHelper.php)
+### Properties
 
+- [$stderr](#iohelperstderr)
+- [$stdin](#iohelperstdin)
+- [$stdout](#iohelperstdout)
 
 ### Methods
 
@@ -26,6 +32,33 @@
 
 ---
 
+## Properties
+
+
+### <a name="stderr">`IOHelper::$stderr`</a>
+
+
+> type: [StandardError](/doc/api/IO/Stream/StandardError.md) <br/>
+> access: magic (read) <br/>
+
+<br/>
+
+### <a name="stdin">`IOHelper::$stdin`</a>
+
+
+> type: [StandardInput](/doc/api/IO/Stream/StandardInput.md) <br/>
+> access: magic (read) <br/>
+
+<br/>
+
+### <a name="stdout">`IOHelper::$stdout`</a>
+
+
+> type: [StandardOutput](/doc/api/IO/Stream/StandardOutput.md) <br/>
+> access: magic (read) <br/>
+
+<br/>
+
 
 ## Methods
 
@@ -36,12 +69,12 @@
 IOHelper::__get($name)
 ```
 
-*Magic getter method for the input/output streams pseudo-properties*</br>
+_Magic getter method for the input/output streams pseudo-properties_</br>
 
-*In case one may need to define a proper magic getter in the class using IOHelper,*</br>
-*this method should be imported as an alias, and called by the final __get() implementation*</br>
+_In case one may need to define a proper magic getter in the class using IOHelper,_</br>
+_this method should be imported as an alias, and called by the final `__get()` implementation_</br>
 
-*Ex:*</br>
+_Ex:_</br>
 
 ```php
 class AcmeClass {
@@ -95,7 +128,7 @@ Type|Description
 IOHelper::dmesg($message, $level)
 ```
 
-*Print a message on stderr if priority is relevant compared to the main verbosity level*</br>
+_Print a message on stderr if priority is relevant compared to the main verbosity level_</br>
 
 
 > access: protected <br/>
@@ -120,7 +153,7 @@ $level|[int][php:int]|
 IOHelper::error($text, $ending)
 ```
 
-*Print text to STDERR*</br>
+_Print text to STDERR_</br>
 
 
 > access: public <br/>
@@ -129,8 +162,8 @@ IOHelper::error($text, $ending)
 
 Name|Type|Description
 ----|----|-----------
-$text|[string][php:string]|The text to print (defaults to empty string)<br/>
-$ending|[string][php:string]|Ending character or text
+$text|[string][php:string]|The text to print (defaults to empty string)
+$ending|[string][php:string]|Ending character or text<br/>
 
 #### Return value
 
@@ -146,7 +179,7 @@ $ending|[string][php:string]|Ending character or text
 IOHelper::output($stream, $contents, $ending)
 ```
 
-*Print contents to the given output*</br>
+_Print contents to the given output_</br>
 
 
 > access: private <br/>
@@ -155,9 +188,9 @@ IOHelper::output($stream, $contents, $ending)
 
 Name|Type|Description
 ----|----|-----------
-$stream|[IOWriter](/doc/api/IO/Stream/IOWriter.md)|The output stream wrapper<br/>
+$stream|[IOWriter](/doc/api/IO/Stream/IOWriter.md)|The output stream wrapper
 $contents|[string][php:string]|The text to print (defaults to empty string)
-$ending|[string][php:string]|Ending character or text (defaults to "\n")
+$ending|[string][php:string]|Ending character or text (defaults to "\n")<br/>
 
 #### Return value
 
@@ -173,7 +206,7 @@ $ending|[string][php:string]|Ending character or text (defaults to "\n")
 IOHelper::read($interactive)
 ```
 
-*Read contents from the standard input*</br>
+_Read contents from the standard input_</br>
 
 
 > access: public <br/>
@@ -199,7 +232,7 @@ _The contents or **false** in case of failure_
 IOHelper::setVerbosity($verbosity)
 ```
 
-*Change the main application verbosity level*</br>
+_Change the main application verbosity level_</br>
 
 
 > access: public <br/>
@@ -224,7 +257,7 @@ $verbosity|[int][php:int]|
 IOHelper::write($text, $ending)
 ```
 
-*Print text to STDOUT*</br>
+_Print text to STDOUT_</br>
 
 
 > access: public <br/>
@@ -233,8 +266,8 @@ IOHelper::write($text, $ending)
 
 Name|Type|Description
 ----|----|-----------
-$text|[string][php:string]|The text to print (defaults to empty string)<br/>
-$ending|[string][php:string]|Ending character or text
+$text|[string][php:string]|The text to print (defaults to empty string)
+$ending|[string][php:string]|Ending character or text<br/>
 
 #### Return value
 
@@ -254,6 +287,7 @@ $ending|[string][php:string]|Ending character or text
 [php:float]: https://www.php.net/manual/language.types.float.php "PHP Built-in: float"
 [php:int]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: int"
 [php:integer]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: integer"
+[php:mixed]: https://www.php.net/manual/language.types.mixed.php "PHP Built-in: mixed"
 [php:null]: https://www.php.net/manual/language.types.null.php "PHP Built-in: null"
 [php:object]: https://www.php.net/manual/language.types.object.php "PHP Built-in: object"
 [php:resource]: https://www.php.net/manual/language.types.resource.php "PHP Built-in: resource"
@@ -271,14 +305,16 @@ $ending|[string][php:string]|Ending character or text
 [php:RuntimeException]: https://www.php.net/manual/class.runtimeexception.php "PHP Built-in: RuntimeException"
 [php:Reflector]: https://www.php.net/manual/class.reflector.php "PHP Built-in: Reflector"
 [php:ReflectionClass]: https://www.php.net/manual/class.reflectionclass.php "PHP Built-in: ReflectionClass"
-[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
-[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
-[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionClassConstant]: https://www.php.net/manual/class.reflectionclassconstant.php "PHP Built-in: ReflectionClassConstant"
 [php:ReflectionConstant]: https://www.php.net/manual/class.reflectionconstant.php "PHP Built-in: ReflectionConstant"
+[php:ReflectionException]: https://www.php.net/manual/class.reflectionexception.php "PHP Built-in: ReflectionException"
+[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
+[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
+[php:ReflectionParameter]: https://www.php.net/manual/class.reflectionparameter.php "PHP Built-in: ReflectionParameter"
 [php:StdClass]: https://www.php.net/manual/class.stdclass.php "PHP Built-in: StdClass"
 [php:Throwable]: https://www.php.net/manual/class.throwable.php "PHP Built-in: Throwable"
 [php:Traversable]: https://www.php.net/manual/class.traversable.php "PHP Built-in: Traversable"
 
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
 
-<!-- Generated: 2025-05-11 14:17:53 +01:00 -->
+<!-- Generated: 2026-01-08 16:50:57 +01:00 -->
