@@ -1,4 +1,5 @@
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
+[API Reference](/doc/api/index.md) &raquo; [Yannoff](../../index.md) &raquo; [Component](../../index.md) &raquo; [Console](../../index.md) &raquo; [IO](../index.md) &raquo; [Stream](./index.md) &raquo; [StandardInput][self]
+
 
 # Class StandardInput
 
@@ -11,9 +12,9 @@ _**implements** [IOReader](/doc/api/IO/Stream/IOReader.md), [IOStream](/doc/api/
 
 ## Overview
 
-*Reader stream for standard input (STDIN)*</br>
+_Reader stream for standard input (STDIN)_</br>
 
-
+Source file: [src/IO/Stream/StandardInput.php](/src/IO/Stream/StandardInput.php)
 ### Constants
 
 - [APPEND](#standardinputAPPEND)
@@ -47,7 +48,7 @@ _**implements** [IOReader](/doc/api/IO/Stream/IOReader.md), [IOStream](/doc/api/
 
 ### <a name="APPEND">`StandardInput::APPEND`</a>
 
-*fopen() mode: append*</br>
+_fopen() mode: append_</br>
 > type: [string][php:string] <br/>
 > access: public <br/>
 > value: `"a+"` <br/>
@@ -57,7 +58,7 @@ _**implements** [IOReader](/doc/api/IO/Stream/IOReader.md), [IOStream](/doc/api/
 
 ### <a name="MODE">`StandardInput::MODE`</a>
 
-*The stream open mode*</br>
+_The stream open mode_</br>
 
 > access: public <br/>
 > value: `"r"` <br/>
@@ -66,7 +67,7 @@ _**implements** [IOReader](/doc/api/IO/Stream/IOReader.md), [IOStream](/doc/api/
 
 ### <a name="NAME">`StandardInput::NAME`</a>
 
-*The stream short name*</br>
+_The stream short name_</br>
 
 > access: public <br/>
 > value: `"stdin"` <br/>
@@ -75,7 +76,7 @@ _**implements** [IOReader](/doc/api/IO/Stream/IOReader.md), [IOStream](/doc/api/
 
 ### <a name="READONLY">`StandardInput::READONLY`</a>
 
-*fopen() mode: read*</br>
+_fopen() mode: read_</br>
 > type: [string][php:string] <br/>
 > access: public <br/>
 > value: `"r"` <br/>
@@ -85,7 +86,7 @@ _**implements** [IOReader](/doc/api/IO/Stream/IOReader.md), [IOStream](/doc/api/
 
 ### <a name="STDERR">`StandardInput::STDERR`</a>
 
-*Short name for standard error stream*</br>
+_Short name for standard error stream_</br>
 > type: [string][php:string] <br/>
 > access: public <br/>
 > value: `"stderr"` <br/>
@@ -95,7 +96,7 @@ _**implements** [IOReader](/doc/api/IO/Stream/IOReader.md), [IOStream](/doc/api/
 
 ### <a name="STDIN">`StandardInput::STDIN`</a>
 
-*Short name for standard input stream*</br>
+_Short name for standard input stream_</br>
 > type: [string][php:string] <br/>
 > access: public <br/>
 > value: `"stdin"` <br/>
@@ -105,7 +106,7 @@ _**implements** [IOReader](/doc/api/IO/Stream/IOReader.md), [IOStream](/doc/api/
 
 ### <a name="STDOUT">`StandardInput::STDOUT`</a>
 
-*Short name for standard output stream*</br>
+_Short name for standard output stream_</br>
 > type: [string][php:string] <br/>
 > access: public <br/>
 > value: `"stdout"` <br/>
@@ -119,7 +120,7 @@ _**implements** [IOReader](/doc/api/IO/Stream/IOReader.md), [IOStream](/doc/api/
 
 ### <a name="handle">`StandardInput::$handle`</a>
 
-*Handle to the stream wrapper*</br>
+_Handle to the stream wrapper_</br>
 
 
 > type: [resource][php:resource] <br/>
@@ -137,7 +138,7 @@ _**implements** [IOReader](/doc/api/IO/Stream/IOReader.md), [IOStream](/doc/api/
 StandardInput::__construct()
 ```
 
-*Wrapper constructor.*</br>
+_Wrapper constructor._</br>
 
 > access: public <br/>
 > inherited from: [Wrapper](/doc/api/IO/Stream/Wrapper.md#wrapper__construct) <br/>
@@ -159,8 +160,8 @@ StandardInput::__construct()
 StandardInput::__destruct()
 ```
 
-*Wrapper destructor*</br>
-*Free the stream handle resource*</br>
+_Wrapper destructor_</br>
+_Free the stream handle resource_</br>
 
 > access: public <br/>
 > inherited from: [Wrapper](/doc/api/IO/Stream/Wrapper.md#wrapper__destruct) <br/>
@@ -182,7 +183,7 @@ StandardInput::__destruct()
 StandardInput::bind()
 ```
 
-*Bind the wrapper stream resource*</br>
+_Bind the wrapper stream resource_</br>
 
 > access: protected <br/>
 > inherited from: [Wrapper](/doc/api/IO/Stream/Wrapper.md#wrapperbind) <br/>
@@ -204,7 +205,7 @@ StandardInput::bind()
 StandardInput::constant($name)
 ```
 
-*Generic getter for Wrapper child classes constants*</br>
+_Generic getter for Wrapper child classes constants_</br>
 
 
 > access: protected <br/>
@@ -219,7 +220,7 @@ $name|[string][php:string]|The class constant name<br/>
 #### Return value
 
 
-> type: mixed
+> type: [mixed][php:mixed]
 
 
 #### Exceptions
@@ -236,7 +237,7 @@ Type|Description
 StandardInput::free()
 ```
 
-*Unbind the wrapper stream resource*</br>
+_Unbind the wrapper stream resource_</br>
 
 > access: protected <br/>
 > inherited from: [Wrapper](/doc/api/IO/Stream/Wrapper.md#wrapperfree) <br/>
@@ -258,7 +259,7 @@ StandardInput::free()
 StandardInput::getOpenMode()
 ```
 
-*Build the PHP stream wrapper fopen() mode using the child class MODE constant*</br>
+_Build the PHP stream wrapper fopen() mode using the child class MODE constant_</br>
 
 
 > access: public <br/>
@@ -282,7 +283,7 @@ StandardInput::getOpenMode()
 StandardInput::getURI()
 ```
 
-*Build the PHP stream wrapper URI using the child class NAME constant*</br>
+_Build the PHP stream wrapper URI using the child class NAME constant_</br>
 
 
 > access: public <br/>
@@ -306,7 +307,7 @@ StandardInput::getURI()
 StandardInput::isFile()
 ```
 
-*Check whether the stream is a regular file redirect*</br>
+_Check whether the stream is a regular file redirect_</br>
 
 
 > access: public <br/>
@@ -330,7 +331,7 @@ StandardInput::isFile()
 StandardInput::isPiped()
 ```
 
-*Check whether the stream is a FIFO*</br>
+_Check whether the stream is a FIFO_</br>
 
 
 > access: public <br/>
@@ -354,7 +355,7 @@ StandardInput::isPiped()
 StandardInput::read($interactive)
 ```
 
-*Fetch contents from the input stream*</br>
+_Fetch contents from the input stream_</br>
 
 
 > access: public <br/>
@@ -384,6 +385,7 @@ _The contents or **false** in case of failure_
 [php:float]: https://www.php.net/manual/language.types.float.php "PHP Built-in: float"
 [php:int]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: int"
 [php:integer]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: integer"
+[php:mixed]: https://www.php.net/manual/language.types.mixed.php "PHP Built-in: mixed"
 [php:null]: https://www.php.net/manual/language.types.null.php "PHP Built-in: null"
 [php:object]: https://www.php.net/manual/language.types.object.php "PHP Built-in: object"
 [php:resource]: https://www.php.net/manual/language.types.resource.php "PHP Built-in: resource"
@@ -401,14 +403,16 @@ _The contents or **false** in case of failure_
 [php:RuntimeException]: https://www.php.net/manual/class.runtimeexception.php "PHP Built-in: RuntimeException"
 [php:Reflector]: https://www.php.net/manual/class.reflector.php "PHP Built-in: Reflector"
 [php:ReflectionClass]: https://www.php.net/manual/class.reflectionclass.php "PHP Built-in: ReflectionClass"
-[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
-[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
-[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionClassConstant]: https://www.php.net/manual/class.reflectionclassconstant.php "PHP Built-in: ReflectionClassConstant"
 [php:ReflectionConstant]: https://www.php.net/manual/class.reflectionconstant.php "PHP Built-in: ReflectionConstant"
+[php:ReflectionException]: https://www.php.net/manual/class.reflectionexception.php "PHP Built-in: ReflectionException"
+[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
+[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
+[php:ReflectionParameter]: https://www.php.net/manual/class.reflectionparameter.php "PHP Built-in: ReflectionParameter"
 [php:StdClass]: https://www.php.net/manual/class.stdclass.php "PHP Built-in: StdClass"
 [php:Throwable]: https://www.php.net/manual/class.throwable.php "PHP Built-in: Throwable"
 [php:Traversable]: https://www.php.net/manual/class.traversable.php "PHP Built-in: Traversable"
 
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
 
-<!-- Generated: 2025-05-11 14:17:53 +01:00 -->
+<!-- Generated: 2026-01-08 15:51:59 +01:00 -->

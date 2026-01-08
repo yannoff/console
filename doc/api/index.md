@@ -1,10 +1,11 @@
+[API Reference](/doc/api/index.md) &raquo; [Yannoff](./index.md) &raquo; [Component](./index.md) &raquo; [Console](./index.md)
+
 
 # API Reference
 
-**Root Namespace:** [Yannoff\Component\Console]()
+**Namespace:** [Yannoff\Component\Console]()
 
-## Table Of Contents
-
+## Classes
 
 ###
 - [Application](Application.md)
@@ -84,4 +85,4 @@
 
 
 
-<!-- Generated: 2025-05-11 14:17:54 +01:00 -->
+<!-- Generated: 2026-01-08 15:52:00 +01:00 -->

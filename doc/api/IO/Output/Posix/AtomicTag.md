@@ -1,4 +1,5 @@
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
+[API Reference](/doc/api/index.md) &raquo; [Yannoff](../../../index.md) &raquo; [Component](../../../index.md) &raquo; [Console](../../../index.md) &raquo; [IO](../../index.md) &raquo; [Output](../index.md) &raquo; [Posix](./index.md) &raquo; [AtomicTag][self]
+
 
 # Class AtomicTag
 
@@ -9,9 +10,9 @@
 
 ## Overview
 
-*Object representation for styling pseudo-tags*</br>
+_Object representation for styling pseudo-tags_</br>
 
-
+Source file: [src/IO/Output/Posix/AtomicTag.php](/src/IO/Output/Posix/AtomicTag.php)
 ### Properties
 
 - [$modifier](#atomictagmodifier)
@@ -34,7 +35,7 @@
 
 ### <a name="modifier">`AtomicTag::$modifier`</a>
 
-*The terminal modifier sequence*</br>
+_The terminal modifier sequence_</br>
 
 
 > type: [string][php:string] <br/>
@@ -44,7 +45,7 @@
 
 ### <a name="name">`AtomicTag::$name`</a>
 
-*The tag name*</br>
+_The tag name_</br>
 
 
 > type: [string][php:string] <br/>
@@ -54,7 +55,7 @@
 
 ### <a name="reset">`AtomicTag::$reset`</a>
 
-*The terminal reset sequence*</br>
+_The terminal reset sequence_</br>
 
 
 > type: [string][php:string] <br/>
@@ -64,7 +65,7 @@
 
 ### <a name="type">`AtomicTag::$type`</a>
 
-*The tag type: opening|closing*</br>
+_The tag type: opening|closing_</br>
 
 
 > type: [string][php:string] <br/>
@@ -82,7 +83,7 @@
 AtomicTag::__construct($token)
 ```
 
-*AtomicTag constructor.*</br>
+_AtomicTag constructor._</br>
 
 
 > access: public <br/>
@@ -127,7 +128,7 @@ AtomicTag::__toString()
 AtomicTag::close()
 ```
 
-*Return the terminal color reset sequence*</br>
+_Return the terminal color reset sequence_</br>
 
 
 > access: public <br/>
@@ -150,7 +151,7 @@ AtomicTag::close()
 AtomicTag::esc($word)
 ```
 
-*Prefix the given character sequence with the ASCII escape (\e) char*</br>
+_Prefix the given character sequence with the ASCII escape (\e) char_</br>
 
 
 > access: protected <br/>
@@ -175,7 +176,7 @@ $word|[string][php:string]|The color setting or reset sequence<br/>
 AtomicTag::open()
 ```
 
-*Return the terminal color setting sequence*</br>
+_Return the terminal color setting sequence_</br>
 
 
 > access: public <br/>
@@ -202,6 +203,7 @@ AtomicTag::open()
 [php:float]: https://www.php.net/manual/language.types.float.php "PHP Built-in: float"
 [php:int]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: int"
 [php:integer]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: integer"
+[php:mixed]: https://www.php.net/manual/language.types.mixed.php "PHP Built-in: mixed"
 [php:null]: https://www.php.net/manual/language.types.null.php "PHP Built-in: null"
 [php:object]: https://www.php.net/manual/language.types.object.php "PHP Built-in: object"
 [php:resource]: https://www.php.net/manual/language.types.resource.php "PHP Built-in: resource"
@@ -219,14 +221,16 @@ AtomicTag::open()
 [php:RuntimeException]: https://www.php.net/manual/class.runtimeexception.php "PHP Built-in: RuntimeException"
 [php:Reflector]: https://www.php.net/manual/class.reflector.php "PHP Built-in: Reflector"
 [php:ReflectionClass]: https://www.php.net/manual/class.reflectionclass.php "PHP Built-in: ReflectionClass"
-[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
-[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
-[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionClassConstant]: https://www.php.net/manual/class.reflectionclassconstant.php "PHP Built-in: ReflectionClassConstant"
 [php:ReflectionConstant]: https://www.php.net/manual/class.reflectionconstant.php "PHP Built-in: ReflectionConstant"
+[php:ReflectionException]: https://www.php.net/manual/class.reflectionexception.php "PHP Built-in: ReflectionException"
+[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
+[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
+[php:ReflectionParameter]: https://www.php.net/manual/class.reflectionparameter.php "PHP Built-in: ReflectionParameter"
 [php:StdClass]: https://www.php.net/manual/class.stdclass.php "PHP Built-in: StdClass"
 [php:Throwable]: https://www.php.net/manual/class.throwable.php "PHP Built-in: Throwable"
 [php:Traversable]: https://www.php.net/manual/class.traversable.php "PHP Built-in: Traversable"
 
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
 
-<!-- Generated: 2025-05-11 14:17:53 +01:00 -->
+<!-- Generated: 2026-01-08 15:51:59 +01:00 -->

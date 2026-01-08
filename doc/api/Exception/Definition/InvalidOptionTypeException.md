@@ -1,4 +1,5 @@
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
+[API Reference](/doc/api/index.md) &raquo; [Yannoff](../../index.md) &raquo; [Component](../../index.md) &raquo; [Console](../../index.md) &raquo; [Exception](../index.md) &raquo; [Definition](./index.md) &raquo; [InvalidOptionTypeException][self]
+
 
 # Class InvalidOptionTypeException
 
@@ -11,9 +12,9 @@ _**implements** [Throwable][php:Throwable], [DefinitionException](/doc/api/Excep
 
 ## Overview
 
-*Thrown by Option constructor when an invalid value was supplied for the type property*</br>
+_Thrown by Option constructor when an invalid value was supplied for the type property_</br>
 
-
+Source file: [src/Exception/Definition/InvalidOptionTypeException.php](/src/Exception/Definition/InvalidOptionTypeException.php)
 ### Properties
 
 - [$code](#invalidoptiontypeexceptioncode)
@@ -73,7 +74,7 @@ _**implements** [Throwable][php:Throwable], [DefinitionException](/doc/api/Excep
 InvalidOptionTypeException::__construct($name, $value, $code, $previous)
 ```
 
-*InvalidOptionTypeException constructor.*</br>
+_InvalidOptionTypeException constructor._</br>
 
 
 > access: public <br/>
@@ -84,7 +85,7 @@ InvalidOptionTypeException::__construct($name, $value, $code, $previous)
 Name|Type|Description
 ----|----|-----------
 $name|[string][php:string]|Name of the option with invalid type
-$value|mixed|Value of the invalid option type
+$value|[mixed][php:mixed]|Value of the invalid option type
 $code|[int][php:int]|Error status code to be sent to the terminal (defaults to 128)
 $previous|[Exception][php:Exception] &#124; [null][php:null]|Optional parent exception
 
@@ -101,7 +102,7 @@ $previous|[Exception][php:Exception] &#124; [null][php:null]|Optional parent exc
 InvalidOptionTypeException::__toString()
 ```
 
-*Default string cast-type formatting method for the exception*</br>
+_Default string cast-type formatting method for the exception_</br>
 
 
 > access: public <br/>
@@ -129,6 +130,7 @@ InvalidOptionTypeException::__toString()
 [php:float]: https://www.php.net/manual/language.types.float.php "PHP Built-in: float"
 [php:int]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: int"
 [php:integer]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: integer"
+[php:mixed]: https://www.php.net/manual/language.types.mixed.php "PHP Built-in: mixed"
 [php:null]: https://www.php.net/manual/language.types.null.php "PHP Built-in: null"
 [php:object]: https://www.php.net/manual/language.types.object.php "PHP Built-in: object"
 [php:resource]: https://www.php.net/manual/language.types.resource.php "PHP Built-in: resource"
@@ -146,14 +148,16 @@ InvalidOptionTypeException::__toString()
 [php:RuntimeException]: https://www.php.net/manual/class.runtimeexception.php "PHP Built-in: RuntimeException"
 [php:Reflector]: https://www.php.net/manual/class.reflector.php "PHP Built-in: Reflector"
 [php:ReflectionClass]: https://www.php.net/manual/class.reflectionclass.php "PHP Built-in: ReflectionClass"
-[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
-[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
-[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionClassConstant]: https://www.php.net/manual/class.reflectionclassconstant.php "PHP Built-in: ReflectionClassConstant"
 [php:ReflectionConstant]: https://www.php.net/manual/class.reflectionconstant.php "PHP Built-in: ReflectionConstant"
+[php:ReflectionException]: https://www.php.net/manual/class.reflectionexception.php "PHP Built-in: ReflectionException"
+[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
+[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
+[php:ReflectionParameter]: https://www.php.net/manual/class.reflectionparameter.php "PHP Built-in: ReflectionParameter"
 [php:StdClass]: https://www.php.net/manual/class.stdclass.php "PHP Built-in: StdClass"
 [php:Throwable]: https://www.php.net/manual/class.throwable.php "PHP Built-in: Throwable"
 [php:Traversable]: https://www.php.net/manual/class.traversable.php "PHP Built-in: Traversable"
 
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
 
-<!-- Generated: 2025-11-12 11:41:42 +01:00 -->
+<!-- Generated: 2026-01-08 15:51:59 +01:00 -->

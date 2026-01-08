@@ -1,4 +1,5 @@
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
+[API Reference](/doc/api/index.md) &raquo; [Yannoff](../index.md) &raquo; [Component](../index.md) &raquo; [Console](../index.md) &raquo; [Definition](./index.md) &raquo; [Item][self]
+
 
 # Class Item
 
@@ -9,9 +10,9 @@
 
 ## Overview
 
-*Super-class for both Option & Argument*</br>
+_Super-class for both Option & Argument_</br>
 
-
+Source file: [src/Definition/Item.php](/src/Definition/Item.php)
 ### Properties
 
 - [$default](#itemdefault)
@@ -41,7 +42,7 @@
 
 ### <a name="default">`Item::$default`</a>
 
-*Optional default value for the item*</br>
+_Optional default value for the item_</br>
 
 
 > type: [mixed][php:mixed] <br/>
@@ -51,7 +52,7 @@
 
 ### <a name="hasDefault">`Item::$hasDefault`</a>
 
-*Flag indicating if default value was set*</br>
+_Flag indicating if default value was set_</br>
 
 
 > type: [bool][php:bool] <br/>
@@ -61,7 +62,7 @@
 
 ### <a name="help">`Item::$help`</a>
 
-*The item help/description message*</br>
+_The item help/description message_</br>
 
 
 > type: [string][php:string] <br/>
@@ -71,7 +72,7 @@
 
 ### <a name="name">`Item::$name`</a>
 
-*The item name*</br>
+_The item name_</br>
 
 
 > type: [string][php:string] <br/>
@@ -81,7 +82,7 @@
 
 ### <a name="type">`Item::$type`</a>
 
-*The item type*</br>
+_The item type_</br>
 
 
 > type: [int][php:int] <br/>
@@ -99,7 +100,7 @@
 Item::__toString()
 ```
 
-*Default to-string type-cast conversion for Item objects*</br>
+_Default to-string type-cast conversion for Item objects_</br>
 
 
 > access: public <br/>
@@ -122,7 +123,7 @@ Item::__toString()
 Item::escape($value)
 ```
 
-*Escape special chars in value for rendering*</br>
+_Escape special chars in value for rendering_</br>
 
 
 > access: public <br/>
@@ -147,7 +148,7 @@ $value|[string][php:string]|
 Item::getDefault($escape)
 ```
 
-*Getter for the item default value*</br>
+_Getter for the item default value_</br>
 
 
 > access: public <br/>
@@ -173,7 +174,7 @@ _Either the escaped or raw value_
 Item::getHelp()
 ```
 
-*Getter for the item help message*</br>
+_Getter for the item help message_</br>
 
 
 > access: public <br/>
@@ -196,7 +197,7 @@ Item::getHelp()
 Item::getName()
 ```
 
-*Getter for the item name*</br>
+_Getter for the item name_</br>
 
 
 > access: public <br/>
@@ -219,7 +220,7 @@ Item::getName()
 Item::getSynopsis($tab, $width)
 ```
 
-*Return the formatted help for the item*</br>
+_Return the formatted help for the item_</br>
 
 
 > access: public <br/>
@@ -228,8 +229,8 @@ Item::getSynopsis($tab, $width)
 
 Name|Type|Description
 ----|----|-----------
-$tab|[string][php:string]|The tabulation string (defaults to `\t`)<br/>
-$width|[int][php:int]|Minimum width for the names column (defaults to `18`)
+$tab|[string][php:string]|The tabulation string (defaults to `\t`)
+$width|[int][php:int]|Minimum width for the names column (defaults to `18`)<br/>
 
 #### Return value
 
@@ -245,7 +246,7 @@ $width|[int][php:int]|Minimum width for the names column (defaults to `18`)
 Item::getType()
 ```
 
-*Getter for the item type*</br>
+_Getter for the item type_</br>
 
 
 > access: public <br/>
@@ -268,7 +269,7 @@ Item::getType()
 Item::getValidTypes()
 ```
 
-*Give the authorized values for the type property*</br>
+_Give the authorized values for the type property_</br>
 
 
 > access: public <br/>
@@ -291,7 +292,7 @@ Item::getValidTypes()
 Item::hasDefault()
 ```
 
-*Getter for the hasDefault flag*</br>
+_Getter for the hasDefault flag_</br>
 
 
 > access: public <br/>
@@ -314,7 +315,7 @@ Item::hasDefault()
 Item::isValidType($type)
 ```
 
-*Check whether the given type as a valid value*</br>
+_Check whether the given type as a valid value_</br>
 
 
 > access: public <br/>
@@ -339,7 +340,7 @@ $type|[int][php:int]|
 Item::setHasDefault($hasDefault)
 ```
 
-*Setter for the $hasDefault flag*</br>
+_Setter for the $hasDefault flag_</br>
 
 
 > access: public <br/>
@@ -386,14 +387,16 @@ $hasDefault|[bool][php:bool]|
 [php:RuntimeException]: https://www.php.net/manual/class.runtimeexception.php "PHP Built-in: RuntimeException"
 [php:Reflector]: https://www.php.net/manual/class.reflector.php "PHP Built-in: Reflector"
 [php:ReflectionClass]: https://www.php.net/manual/class.reflectionclass.php "PHP Built-in: ReflectionClass"
-[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
-[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
-[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionClassConstant]: https://www.php.net/manual/class.reflectionclassconstant.php "PHP Built-in: ReflectionClassConstant"
 [php:ReflectionConstant]: https://www.php.net/manual/class.reflectionconstant.php "PHP Built-in: ReflectionConstant"
+[php:ReflectionException]: https://www.php.net/manual/class.reflectionexception.php "PHP Built-in: ReflectionException"
+[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
+[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
+[php:ReflectionParameter]: https://www.php.net/manual/class.reflectionparameter.php "PHP Built-in: ReflectionParameter"
 [php:StdClass]: https://www.php.net/manual/class.stdclass.php "PHP Built-in: StdClass"
 [php:Throwable]: https://www.php.net/manual/class.throwable.php "PHP Built-in: Throwable"
 [php:Traversable]: https://www.php.net/manual/class.traversable.php "PHP Built-in: Traversable"
 
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
 
-<!-- Generated: 2025-11-18 12:05:19 +01:00 -->
+<!-- Generated: 2026-01-08 15:51:59 +01:00 -->

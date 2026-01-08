@@ -1,4 +1,5 @@
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
+[API Reference](/doc/api/index.md) &raquo; [Yannoff](./index.md) &raquo; [Component](./index.md) &raquo; [Console](./index.md) &raquo; [ArgvResolver][self]
+
 
 # Class ArgvResolver
 
@@ -11,7 +12,7 @@ _**uses** [IOHelper](/doc/api/IO/IOHelper.md)_
 
 ## Overview
 
-
+Source file: [src/ArgvResolver.php](/src/ArgvResolver.php)
 ### Constants
 
 - [TYPE_ARGUMENT](#argvresolverTYPE_ARGUMENT)
@@ -52,7 +53,7 @@ _**uses** [IOHelper](/doc/api/IO/IOHelper.md)_
 
 ### <a name="TYPE_ARGUMENT">`ArgvResolver::TYPE_ARGUMENT`</a>
 
-*Argv type: argument*</br>
+_Argv type: argument_</br>
 > type: [int][php:int] <br/>
 > access: public <br/>
 > value: `8` <br/>
@@ -61,7 +62,7 @@ _**uses** [IOHelper](/doc/api/IO/IOHelper.md)_
 
 ### <a name="TYPE_LONGOPT">`ArgvResolver::TYPE_LONGOPT`</a>
 
-*Argv type: long option*</br>
+_Argv type: long option_</br>
 > type: [int][php:int] <br/>
 > access: public <br/>
 > value: `2` <br/>
@@ -70,7 +71,7 @@ _**uses** [IOHelper](/doc/api/IO/IOHelper.md)_
 
 ### <a name="TYPE_OPTENDING">`ArgvResolver::TYPE_OPTENDING`</a>
 
-*Argv type: option list end (--)*</br>
+_Argv type: option list end (--)_</br>
 > type: [int][php:int] <br/>
 > access: public <br/>
 > value: `0` <br/>
@@ -79,7 +80,7 @@ _**uses** [IOHelper](/doc/api/IO/IOHelper.md)_
 
 ### <a name="TYPE_SHORTOPT">`ArgvResolver::TYPE_SHORTOPT`</a>
 
-*Argv type: short option*</br>
+_Argv type: short option_</br>
 > type: [int][php:int] <br/>
 > access: public <br/>
 > value: `1` <br/>
@@ -92,7 +93,7 @@ _**uses** [IOHelper](/doc/api/IO/IOHelper.md)_
 
 ### <a name="arguments">`ArgvResolver::$arguments`</a>
 
-*Argument values, stored by name*</br>
+_Argument values, stored by name_</br>
 
 
 > type: [array][php:array] <br/>
@@ -102,8 +103,8 @@ _**uses** [IOHelper](/doc/api/IO/IOHelper.md)_
 
 ### <a name="definition">`ArgvResolver::$definition`</a>
 
-*The command arguments & options definition registry*</br>
-*This is a pointer to the command's definition registry instance*</br>
+_The command arguments & options definition registry_</br>
+_This is a pointer to the command's definition registry instance_</br>
 
 
 > type: [Definition](/doc/api/Definition.md) <br/>
@@ -113,7 +114,7 @@ _**uses** [IOHelper](/doc/api/IO/IOHelper.md)_
 
 ### <a name="options">`ArgvResolver::$options`</a>
 
-*Option values, stored by name*</br>
+_Option values, stored by name_</br>
 
 
 > type: [array][php:array] <br/>
@@ -131,7 +132,7 @@ _**uses** [IOHelper](/doc/api/IO/IOHelper.md)_
 ArgvResolver::__construct($definition)
 ```
 
-*ArgvResolver constructor.*</br>
+_ArgvResolver constructor._</br>
 
 
 > access: public <br/>
@@ -155,12 +156,12 @@ $definition|[Definition](/doc/api/Definition.md)|The arguments & options definit
 ArgvResolver::__get($name)
 ```
 
-*Magic getter method for the input/output streams pseudo-properties*</br>
+_Magic getter method for the input/output streams pseudo-properties_</br>
 
-*In case one may need to define a proper magic getter in the class using IOHelper,*</br>
-*this method should be imported as an alias, and called by the final __get() implementation*</br>
+_In case one may need to define a proper magic getter in the class using IOHelper,_</br>
+_this method should be imported as an alias, and called by the final `__get()` implementation_</br>
 
-*Ex:*</br>
+_Ex:_</br>
 
 ```php
 class AcmeClass {
@@ -215,7 +216,7 @@ Type|Description
 ArgvResolver::dmesg($message, $level)
 ```
 
-*Print a message on stderr if priority is relevant compared to the main verbosity level*</br>
+_Print a message on stderr if priority is relevant compared to the main verbosity level_</br>
 
 
 > access: protected <br/>
@@ -241,7 +242,7 @@ $level|[int][php:int]|
 ArgvResolver::error($text, $ending)
 ```
 
-*Print text to STDERR*</br>
+_Print text to STDERR_</br>
 
 
 > access: public <br/>
@@ -251,8 +252,8 @@ ArgvResolver::error($text, $ending)
 
 Name|Type|Description
 ----|----|-----------
-$text|[string][php:string]|The text to print (defaults to empty string)<br/>
-$ending|[string][php:string]|Ending character or text
+$text|[string][php:string]|The text to print (defaults to empty string)
+$ending|[string][php:string]|Ending character or text<br/>
 
 #### Return value
 
@@ -268,7 +269,7 @@ $ending|[string][php:string]|Ending character or text
 ArgvResolver::getArgumentDefinition($name)
 ```
 
-*Get argument definition by name*</br>
+_Get argument definition by name_</br>
 
 
 > access: public <br/>
@@ -299,7 +300,7 @@ Type|Description
 ArgvResolver::getArgumentValue($name)
 ```
 
-*Get argument value by name*</br>
+_Get argument value by name_</br>
 
 
 > access: public <br/>
@@ -313,7 +314,7 @@ $name|[string][php:string]|
 #### Return value
 
 
-> type: mixed
+> type: [mixed][php:mixed]
 
 
 #### Exceptions
@@ -331,7 +332,7 @@ Type|Description
 ArgvResolver::getOptionDefinition($name)
 ```
 
-*Get option definition by name*</br>
+_Get option definition by name_</br>
 
 
 > access: public <br/>
@@ -362,7 +363,7 @@ Type|Description
 ArgvResolver::getOptionValue($name)
 ```
 
-*Get option value by name*</br>
+_Get option value by name_</br>
 
 
 > access: public <br/>
@@ -376,7 +377,7 @@ $name|[string][php:string]|
 #### Return value
 
 
-> type: mixed
+> type: [mixed][php:mixed]
 
 
 #### Exceptions
@@ -393,8 +394,8 @@ Type|Description
 ArgvResolver::getType($arg)
 ```
 
-*Detect command-line argument type from its name:*</br>
-*long option, short option or argument*</br>
+_Detect command-line argument type from its name:_</br>
+_long option, short option or argument_</br>
 
 
 > access: protected <br/>
@@ -419,7 +420,7 @@ $arg|[string][php:string]|
 ArgvResolver::hasArgumentDefinition($name)
 ```
 
-*Check for the existence of the argument definition by name*</br>
+_Check for the existence of the argument definition by name_</br>
 
 
 > access: public <br/>
@@ -444,7 +445,7 @@ $name|[string][php:string]|
 ArgvResolver::hasArgumentValue($name)
 ```
 
-*Check for the existence of the argument value by name*</br>
+_Check for the existence of the argument value by name_</br>
 
 
 > access: public <br/>
@@ -469,7 +470,7 @@ $name|[string][php:string]|
 ArgvResolver::hasOptionDefinition($name)
 ```
 
-*Check for the existence of the option definition by name*</br>
+_Check for the existence of the option definition by name_</br>
 
 
 > access: public <br/>
@@ -494,7 +495,7 @@ $name|[string][php:string]|
 ArgvResolver::hasOptionValue($name)
 ```
 
-*Check for the existence of the option value by name*</br>
+_Check for the existence of the option value by name_</br>
 
 
 > access: public <br/>
@@ -519,7 +520,7 @@ $name|[string][php:string]|
 ArgvResolver::output($stream, $contents, $ending)
 ```
 
-*Print contents to the given output*</br>
+_Print contents to the given output_</br>
 
 
 > access: private <br/>
@@ -529,9 +530,9 @@ ArgvResolver::output($stream, $contents, $ending)
 
 Name|Type|Description
 ----|----|-----------
-$stream|[IOWriter](/doc/api/IO/Stream/IOWriter.md)|The output stream wrapper<br/>
+$stream|[IOWriter](/doc/api/IO/Stream/IOWriter.md)|The output stream wrapper
 $contents|[string][php:string]|The text to print (defaults to empty string)
-$ending|[string][php:string]|Ending character or text (defaults to "\n")
+$ending|[string][php:string]|Ending character or text (defaults to "\n")<br/>
 
 #### Return value
 
@@ -547,7 +548,7 @@ $ending|[string][php:string]|Ending character or text (defaults to "\n")
 ArgvResolver::read($interactive)
 ```
 
-*Read contents from the standard input*</br>
+_Read contents from the standard input_</br>
 
 
 > access: public <br/>
@@ -574,8 +575,8 @@ _The contents or **false** in case of failure_
 ArgvResolver::resolve($argv)
 ```
 
-*Parse the given command line arguments and populate resolver*</br>
-*arguments & options values accordingly*</br>
+_Parse the given command line arguments and populate resolver_</br>
+_arguments & options values accordingly_</br>
 
 
 > access: public <br/>
@@ -605,7 +606,7 @@ Type|Description
 ArgvResolver::setVerbosity($verbosity)
 ```
 
-*Change the main application verbosity level*</br>
+_Change the main application verbosity level_</br>
 
 
 > access: public <br/>
@@ -631,7 +632,7 @@ $verbosity|[int][php:int]|
 ArgvResolver::write($text, $ending)
 ```
 
-*Print text to STDOUT*</br>
+_Print text to STDOUT_</br>
 
 
 > access: public <br/>
@@ -641,8 +642,8 @@ ArgvResolver::write($text, $ending)
 
 Name|Type|Description
 ----|----|-----------
-$text|[string][php:string]|The text to print (defaults to empty string)<br/>
-$ending|[string][php:string]|Ending character or text
+$text|[string][php:string]|The text to print (defaults to empty string)
+$ending|[string][php:string]|Ending character or text<br/>
 
 #### Return value
 
@@ -662,6 +663,7 @@ $ending|[string][php:string]|Ending character or text
 [php:float]: https://www.php.net/manual/language.types.float.php "PHP Built-in: float"
 [php:int]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: int"
 [php:integer]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: integer"
+[php:mixed]: https://www.php.net/manual/language.types.mixed.php "PHP Built-in: mixed"
 [php:null]: https://www.php.net/manual/language.types.null.php "PHP Built-in: null"
 [php:object]: https://www.php.net/manual/language.types.object.php "PHP Built-in: object"
 [php:resource]: https://www.php.net/manual/language.types.resource.php "PHP Built-in: resource"
@@ -679,14 +681,16 @@ $ending|[string][php:string]|Ending character or text
 [php:RuntimeException]: https://www.php.net/manual/class.runtimeexception.php "PHP Built-in: RuntimeException"
 [php:Reflector]: https://www.php.net/manual/class.reflector.php "PHP Built-in: Reflector"
 [php:ReflectionClass]: https://www.php.net/manual/class.reflectionclass.php "PHP Built-in: ReflectionClass"
-[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
-[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
-[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionClassConstant]: https://www.php.net/manual/class.reflectionclassconstant.php "PHP Built-in: ReflectionClassConstant"
 [php:ReflectionConstant]: https://www.php.net/manual/class.reflectionconstant.php "PHP Built-in: ReflectionConstant"
+[php:ReflectionException]: https://www.php.net/manual/class.reflectionexception.php "PHP Built-in: ReflectionException"
+[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
+[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
+[php:ReflectionParameter]: https://www.php.net/manual/class.reflectionparameter.php "PHP Built-in: ReflectionParameter"
 [php:StdClass]: https://www.php.net/manual/class.stdclass.php "PHP Built-in: StdClass"
 [php:Throwable]: https://www.php.net/manual/class.throwable.php "PHP Built-in: Throwable"
 [php:Traversable]: https://www.php.net/manual/class.traversable.php "PHP Built-in: Traversable"
 
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
 
-<!-- Generated: 2025-05-11 14:17:53 +01:00 -->
+<!-- Generated: 2026-01-08 16:50:57 +01:00 -->

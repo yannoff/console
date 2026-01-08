@@ -1,4 +1,5 @@
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
+[API Reference](/doc/api/index.md) &raquo; [Yannoff](../index.md) &raquo; [Component](../index.md) &raquo; [Console](../index.md) &raquo; [Definition](./index.md) &raquo; [Option][self]
+
 
 # Class Option
 
@@ -10,9 +11,9 @@ _**extends** [Item](/doc/api/Definition/Item.md)_
 
 ## Overview
 
-*Option definition item*</br>
+_Option definition item_</br>
 
-
+Source file: [src/Definition/Option.php](/src/Definition/Option.php)
 ### Constants
 
 - [FLAG](#optionFLAG)
@@ -53,7 +54,7 @@ _**extends** [Item](/doc/api/Definition/Item.md)_
 
 ### <a name="FLAG">`Option::FLAG`</a>
 
-*Option type: flag*</br>
+_Option type: flag_</br>
 
 > type: [int][php:int] <br/>
 > access: public <br/>
@@ -63,7 +64,7 @@ _**extends** [Item](/doc/api/Definition/Item.md)_
 
 ### <a name="MULTI">`Option::MULTI`</a>
 
-*Option type: array (ie: multiple values)*</br>
+_Option type: array (ie: multiple values)_</br>
 
 > type: [int][php:int] <br/>
 > access: public <br/>
@@ -73,7 +74,7 @@ _**extends** [Item](/doc/api/Definition/Item.md)_
 
 ### <a name="VALUE">`Option::VALUE`</a>
 
-*Option type: value*</br>
+_Option type: value_</br>
 
 > type: [int][php:int] <br/>
 > access: public <br/>
@@ -87,7 +88,7 @@ _**extends** [Item](/doc/api/Definition/Item.md)_
 
 ### <a name="default">`Option::$default`</a>
 
-*Optional default value for the item*</br>
+_Optional default value for the item_</br>
 
 
 > type: [mixed][php:mixed] <br/>
@@ -97,7 +98,7 @@ _**extends** [Item](/doc/api/Definition/Item.md)_
 
 ### <a name="hasDefault">`Option::$hasDefault`</a>
 
-*Flag indicating if default value was set*</br>
+_Flag indicating if default value was set_</br>
 
 
 > type: [bool][php:bool] <br/>
@@ -107,7 +108,7 @@ _**extends** [Item](/doc/api/Definition/Item.md)_
 
 ### <a name="help">`Option::$help`</a>
 
-*The item help/description message*</br>
+_The item help/description message_</br>
 
 
 > type: [string][php:string] <br/>
@@ -117,7 +118,7 @@ _**extends** [Item](/doc/api/Definition/Item.md)_
 
 ### <a name="name">`Option::$name`</a>
 
-*The item name*</br>
+_The item name_</br>
 
 
 > type: [string][php:string] <br/>
@@ -127,7 +128,7 @@ _**extends** [Item](/doc/api/Definition/Item.md)_
 
 ### <a name="short">`Option::$short`</a>
 
-*Optional short name for the option*</br>
+_Optional short name for the option_</br>
 
 
 > type: [string][php:string] **&#124;** [null][php:null] <br/>
@@ -137,7 +138,7 @@ _**extends** [Item](/doc/api/Definition/Item.md)_
 
 ### <a name="type">`Option::$type`</a>
 
-*The item type*</br>
+_The item type_</br>
 
 
 > type: [int][php:int] <br/>
@@ -155,7 +156,7 @@ _**extends** [Item](/doc/api/Definition/Item.md)_
 Option::__construct($name, $short, $type, $help, $default)
 ```
 
-*Option constructor.*</br>
+_Option constructor._</br>
 
 
 > access: public <br/>
@@ -164,11 +165,11 @@ Option::__construct($name, $short, $type, $help, $default)
 
 Name|Type|Description
 ----|----|-----------
-$name|[string][php:string]|Option name. This is also the name used as a key in the Definition registry<br/>
+$name|[string][php:string]|Option name. This is also the name used as a key in the Definition registry
 $short|[string][php:string]|Optional short name for the option
 $type|[int][php:int]|Type of option: value or flag
 $help|[string][php:string]|Description text for the option
-$default|[mixed][php:mixed]|Optional default value for the option
+$default|[mixed][php:mixed]|Optional default value for the option<br/>
 
 #### Return value
 
@@ -189,7 +190,7 @@ Type|Description
 Option::__toString()
 ```
 
-*Default to-string type-cast conversion for Item objects*</br>
+_Default to-string type-cast conversion for Item objects_</br>
 
 
 > access: public <br/>
@@ -213,7 +214,7 @@ Option::__toString()
 Option::escape($value)
 ```
 
-*Escape special chars in value for rendering*</br>
+_Escape special chars in value for rendering_</br>
 
 
 > access: public <br/>
@@ -239,7 +240,7 @@ $value|[string][php:string]|
 Option::getDefault($escape)
 ```
 
-*Getter for the item default value*</br>
+_Getter for the item default value_</br>
 
 
 > access: public <br/>
@@ -249,10 +250,11 @@ Option::getDefault($escape)
 
 Name|Type|Description
 ----|----|-----------
-$escape|[bool][php:bool]|Whether the special chars should be escaped<br/>
+$escape|[bool][php:bool]|Whether the special chars should be escaped (default: `false`)<br/>
 
 #### Return value
 
+_Either the escaped or raw value_
 
 > type: [mixed][php:mixed]
 
@@ -265,7 +267,7 @@ $escape|[bool][php:bool]|Whether the special chars should be escaped<br/>
 Option::getHelp()
 ```
 
-*Getter for the item help message*</br>
+_Getter for the item help message_</br>
 
 
 > access: public <br/>
@@ -289,7 +291,7 @@ Option::getHelp()
 Option::getName()
 ```
 
-*Getter for the item name*</br>
+_Getter for the item name_</br>
 
 
 > access: public <br/>
@@ -313,7 +315,7 @@ Option::getName()
 Option::getNames()
 ```
 
-*Get the option invocation names (short & long)*</br>
+_Get the option invocation names (short & long)_</br>
 
 
 > access: protected <br/>
@@ -336,7 +338,7 @@ Option::getNames()
 Option::getShortcut()
 ```
 
-*Getter for the option's short name*</br>
+_Getter for the option's short name_</br>
 
 
 > access: public <br/>
@@ -359,7 +361,7 @@ Option::getShortcut()
 Option::getSynopsis($tab, $width)
 ```
 
-*Return the formatted help for the item*</br>
+_Return the formatted help for the item_</br>
 
 
 > access: public <br/>
@@ -369,8 +371,8 @@ Option::getSynopsis($tab, $width)
 
 Name|Type|Description
 ----|----|-----------
-$tab|[string][php:string]|The tabulation string (defaults to `\t`)<br/>
-$width|[int][php:int]|Minimum width for the names column (defaults to `18`)
+$tab|[string][php:string]|The tabulation string (defaults to `\t`)
+$width|[int][php:int]|Minimum width for the names column (defaults to `18`)<br/>
 
 #### Return value
 
@@ -386,7 +388,7 @@ $width|[int][php:int]|Minimum width for the names column (defaults to `18`)
 Option::getType()
 ```
 
-*Getter for the item type*</br>
+_Getter for the item type_</br>
 
 
 > access: public <br/>
@@ -410,7 +412,7 @@ Option::getType()
 Option::getValidTypes()
 ```
 
-*Give the authorized values for the type property*</br>
+_Give the authorized values for the type property_</br>
 
 
 > access: public <br/>
@@ -434,7 +436,7 @@ Option::getValidTypes()
 Option::hasDefault()
 ```
 
-*Getter for the hasDefault flag*</br>
+_Getter for the hasDefault flag_</br>
 
 
 > access: public <br/>
@@ -458,7 +460,7 @@ Option::hasDefault()
 Option::isFlag()
 ```
 
-*True if the option is typed as a flag*</br>
+_True if the option is typed as a flag_</br>
 
 
 > access: public <br/>
@@ -481,7 +483,7 @@ Option::isFlag()
 Option::isValidType($type)
 ```
 
-*Check whether the given type as a valid value*</br>
+_Check whether the given type as a valid value_</br>
 
 
 > access: public <br/>
@@ -507,7 +509,7 @@ $type|[int][php:int]|
 Option::isValue()
 ```
 
-*True if the option is typed as a value*</br>
+_True if the option is typed as a value_</br>
 
 
 > access: public <br/>
@@ -530,7 +532,7 @@ Option::isValue()
 Option::setHasDefault($hasDefault)
 ```
 
-*Setter for the $hasDefault flag*</br>
+_Setter for the $hasDefault flag_</br>
 
 
 > access: public <br/>
@@ -578,14 +580,16 @@ $hasDefault|[bool][php:bool]|
 [php:RuntimeException]: https://www.php.net/manual/class.runtimeexception.php "PHP Built-in: RuntimeException"
 [php:Reflector]: https://www.php.net/manual/class.reflector.php "PHP Built-in: Reflector"
 [php:ReflectionClass]: https://www.php.net/manual/class.reflectionclass.php "PHP Built-in: ReflectionClass"
-[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
-[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
-[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionClassConstant]: https://www.php.net/manual/class.reflectionclassconstant.php "PHP Built-in: ReflectionClassConstant"
 [php:ReflectionConstant]: https://www.php.net/manual/class.reflectionconstant.php "PHP Built-in: ReflectionConstant"
+[php:ReflectionException]: https://www.php.net/manual/class.reflectionexception.php "PHP Built-in: ReflectionException"
+[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
+[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
+[php:ReflectionParameter]: https://www.php.net/manual/class.reflectionparameter.php "PHP Built-in: ReflectionParameter"
 [php:StdClass]: https://www.php.net/manual/class.stdclass.php "PHP Built-in: StdClass"
 [php:Throwable]: https://www.php.net/manual/class.throwable.php "PHP Built-in: Throwable"
 [php:Traversable]: https://www.php.net/manual/class.traversable.php "PHP Built-in: Traversable"
 
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
 
-<!-- Generated: 2025-11-17 17:34:17 +01:00 -->
+<!-- Generated: 2026-01-08 15:51:59 +01:00 -->

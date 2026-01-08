@@ -1,4 +1,5 @@
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
+[API Reference](/doc/api/index.md) &raquo; [Yannoff](../../index.md) &raquo; [Component](../../index.md) &raquo; [Console](../../index.md) &raquo; [IO](../index.md) &raquo; [Output](./index.md) &raquo; [TagStack][self]
+
 
 # Class TagStack
 
@@ -9,9 +10,9 @@
 
 ## Overview
 
-*First class collection for opened tags list*</br>
+_First class collection for opened tags list_</br>
 
-
+Source file: [src/IO/Output/TagStack.php](/src/IO/Output/TagStack.php)
 ### Properties
 
 - [$tags](#tagstacktags)
@@ -31,7 +32,7 @@
 
 ### <a name="tags">`TagStack::$tags`</a>
 
-*The stacked tags array*</br>
+_The stacked tags array_</br>
 
 
 > type: [AtomicTag[]](/doc/api/IO/Output/Posix/AtomicTag.md) <br/>
@@ -49,7 +50,7 @@
 TagStack::clear()
 ```
 
-*Empty the stack*</br>
+_Empty the stack_</br>
 
 > access: public <br/>
 
@@ -70,7 +71,7 @@ TagStack::clear()
 TagStack::count()
 ```
 
-*Return the number of tags in the stack*</br>
+_Return the number of tags in the stack_</br>
 
 
 > access: public <br/>
@@ -93,7 +94,7 @@ TagStack::count()
 TagStack::last()
 ```
 
-*Set the stack internal pointer to the last tag & return it*</br>
+_Set the stack internal pointer to the last tag & return it_</br>
 
 
 > access: public <br/>
@@ -116,7 +117,7 @@ TagStack::last()
 TagStack::pop()
 ```
 
-*Remove the last tag of the stack and return it*</br>
+_Remove the last tag of the stack and return it_</br>
 
 
 > access: public <br/>
@@ -139,7 +140,7 @@ TagStack::pop()
 TagStack::push($tag)
 ```
 
-*Add a new tag on top of the stack*</br>
+_Add a new tag on top of the stack_</br>
 
 
 > access: public <br/>
@@ -167,6 +168,7 @@ $tag|[AtomicTag](/doc/api/IO/Output/Posix/AtomicTag.md)|
 [php:float]: https://www.php.net/manual/language.types.float.php "PHP Built-in: float"
 [php:int]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: int"
 [php:integer]: https://www.php.net/manual/language.types.integer.php "PHP Built-in: integer"
+[php:mixed]: https://www.php.net/manual/language.types.mixed.php "PHP Built-in: mixed"
 [php:null]: https://www.php.net/manual/language.types.null.php "PHP Built-in: null"
 [php:object]: https://www.php.net/manual/language.types.object.php "PHP Built-in: object"
 [php:resource]: https://www.php.net/manual/language.types.resource.php "PHP Built-in: resource"
@@ -184,14 +186,16 @@ $tag|[AtomicTag](/doc/api/IO/Output/Posix/AtomicTag.md)|
 [php:RuntimeException]: https://www.php.net/manual/class.runtimeexception.php "PHP Built-in: RuntimeException"
 [php:Reflector]: https://www.php.net/manual/class.reflector.php "PHP Built-in: Reflector"
 [php:ReflectionClass]: https://www.php.net/manual/class.reflectionclass.php "PHP Built-in: ReflectionClass"
-[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
-[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
-[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionClassConstant]: https://www.php.net/manual/class.reflectionclassconstant.php "PHP Built-in: ReflectionClassConstant"
 [php:ReflectionConstant]: https://www.php.net/manual/class.reflectionconstant.php "PHP Built-in: ReflectionConstant"
+[php:ReflectionException]: https://www.php.net/manual/class.reflectionexception.php "PHP Built-in: ReflectionException"
+[php:ReflectionFunction]: https://www.php.net/manual/class.reflectionfunction.php "PHP Built-in: ReflectionFunction"
+[php:ReflectionMethod]: https://www.php.net/manual/class.reflectionmethod.php "PHP Built-in: ReflectionMethod"
+[php:ReflectionProperty]: https://www.php.net/manual/class.reflectionproperty.php "PHP Built-in: ReflectionProperty"
+[php:ReflectionParameter]: https://www.php.net/manual/class.reflectionparameter.php "PHP Built-in: ReflectionParameter"
 [php:StdClass]: https://www.php.net/manual/class.stdclass.php "PHP Built-in: StdClass"
 [php:Throwable]: https://www.php.net/manual/class.throwable.php "PHP Built-in: Throwable"
 [php:Traversable]: https://www.php.net/manual/class.traversable.php "PHP Built-in: Traversable"
 
-[&laquo; Back to Table Of Contents](/doc/api/index.md)
 
-<!-- Generated: 2025-05-11 14:17:53 +01:00 -->
+<!-- Generated: 2026-01-08 15:51:59 +01:00 -->
