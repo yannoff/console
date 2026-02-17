@@ -14,6 +14,9 @@
 
 DOC_ROOT=${1:-doc/api}
 
+# Remove all documentation pages
+rm -rf ${DOC_ROOT}/*
+
 # Build classes documentation
 env PHP_VERSION=7.2 phpdoc gen:pages --docs-root ${DOC_ROOT} --template class.md.twig --namespace Yannoff\\Component\\Console --exclude Yannoff\\Component\\Console\\Tests\\Command\\HelloCommand --exclude Yannoff\\Component\\Console\\Internal\\Version
 
